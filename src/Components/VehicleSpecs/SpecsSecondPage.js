@@ -3,44 +3,35 @@ import styles from "../../CSS/VehicleSpecs.module.css";
 
 const SpecsSecondPage = () => {
     return (
-        <table className={styles.table}>
-            <tr>
-                <td>HEIGHT</td>
-                <td>
-                    70 m <span>/ 229.6 ft</span>
-                </td>
-            </tr>
-            <tr>
-                <td>DIAMETER</td>
-                <td>
-                    3.7 m <span>/ 12 ft</span>
-                </td>
-            </tr>
-            <tr>
-                <td>MASS</td>
-                <td>
-                    549,054 kg <span>/ 1,207,920 lb</span>
-                </td>
-            </tr>
-            <tr>
-                <td>PAYLOAD TO LEO</td>
-                <td>
-                    22,800 kg <span>/ 50,265 lb</span>
-                </td>
-            </tr>
-            <tr>
-                <td>PAYLOAD TO GTO</td>
-                <td>
-                    8,300 kg <span>/ 18,300 lb</span>
-                </td>
-            </tr>
-            <tr>
-                <td>PAYLOAD TO MARS</td>
-                <td>
-                    4,020 kg <span>/ 8,860 lb</span>
-                </td>
-            </tr>
-        </table>
+        <>
+            <table className={styles.table}>
+                <tr>
+                    <td>FIRST LAUNCH</td>
+                    <td>4 JUNE 2010</td>
+                </tr>
+                <tr>
+                    <td>TOTAL LAUNCHES</td>
+                    <td>98</td>
+                </tr>
+                <tr>
+                    <td>ENGINES</td>
+                    <td>
+                        9 <span>/ MERLIN</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>COST PER LAUNCH</td>
+                    <td>
+                        $50 m REUSED <span>/ $60 m NEW</span>
+                    </td>
+                </tr>
+            </table>
+            <div class={styles.videoBtns}>
+                <button>FIRST FLIGHT</button>
+                <button>FIRST LANDING</button>
+                <button>LATEST MISSION</button>
+            </div>
+        </>
     );
 };
 
