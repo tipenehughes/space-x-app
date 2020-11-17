@@ -4,7 +4,6 @@ import SpecsFirstPage from "./SpecsFirstPage";
 import SpecsSecondPage from "./SpecsSecondPage";
 import VehicleImage from "./VehicleImage";
 
-import vehicleImg from "../../Assets/img/F9.png";
 import styles from "../../CSS/VehicleSpecs.module.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,21 +12,55 @@ import {
     faCaretRight,
     faCircle,
 } from "@fortawesome/free-solid-svg-icons";
-// import { faCircle as farCircle } from "@fortawesome/free-regular-svg-icons";
+import { faCircle as farCircle } from "@fortawesome/free-regular-svg-icons";
 
-const VehicleSpecs = ({ page, onClick }) => {
+const VehicleSpecs = ({
+    page,
+    handleSpecPage,
+    vehicleSelection,
+    vehicleData,
+}) => {
+    let selectionData = [];
+
+    switch (vehicleSelection) {
+        case "FALCON 9":
+            selectionData = vehicleData[0][1];
+            break;
+        case "FALCON HEAVY":
+            selectionData = vehicleData[0][2];
+            break;
+        case "DRAGON":
+            selectionData = vehicleData[1];
+            break;
+        case "STARSHIP":
+            selectionData = vehicleData[0][3];
+            break;
+        default:
+            selectionData = [];
+    }
+
     return (
         <section className={styles.vehicleSpecs}>
             <div className={styles.specs}>
                 <div>
-                    <VehicleName />
+                    <VehicleName selectionData={selectionData} />
                     <div className={styles.title}>
                         <h4>OVERVIEW</h4>
                     </div>
                 </div>
-                {page === 1 ? <SpecsFirstPage /> : <SpecsSecondPage />}
+                {page === 1 ? (
+                    <SpecsFirstPage
+                        selectionData={selectionData}
+                        vehicleSelection={vehicleSelection}
+                    />
+                ) : (
+                    <SpecsSecondPage
+                        selectionData={selectionData}
+                        vehicleSelection={vehicleSelection}
+                    />
+                )}
                 <div className={styles.specsNav}>
-                    <button className={styles.leftBtn} onClick={onClick}>
+                    <button className={styles.leftBtn} onClick={handleSpecPage}>
                         <FontAwesomeIcon icon={faCaretLeft} />
                     </button>
                     <div className={styles.midBtns}>
@@ -35,23 +68,26 @@ const VehicleSpecs = ({ page, onClick }) => {
                             {page === 1 ? (
                                 <FontAwesomeIcon icon={faCircle} />
                             ) : (
-                                <FontAwesomeIcon icon={faCircle} />
+                                <FontAwesomeIcon icon={farCircle} />
                             )}
                         </button>
                         <button>
                             {page === 2 ? (
                                 <FontAwesomeIcon icon={faCircle} />
                             ) : (
-                                <FontAwesomeIcon icon={faCircle} />
+                                <FontAwesomeIcon icon={farCircle} />
                             )}
                         </button>
                     </div>
-                    <button className={styles.rightBtn} onClick={onClick}>
+                    <button
+                        className={styles.rightBtn}
+                        onClick={handleSpecPage}
+                    >
                         <FontAwesomeIcon icon={faCaretRight} />
                     </button>
                 </div>
             </div>
-            <VehicleImage />
+            <VehicleImage vehicleSelection={vehicleSelection} />
         </section>
     );
 };

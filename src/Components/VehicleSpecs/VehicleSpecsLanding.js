@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import VehicleSpecs from "./VehicleSpecs";
 import styles from "../../CSS/VehicleSpecs.module.css";
 
-const VehicleSpecsLanding = () => {
+const VehicleSpecsLanding = ({ vehicleSelection, vehicleData }) => {
     const [page, setPage] = useState(1);
 
     const handleSpecPage = (e) => {
@@ -11,7 +11,12 @@ const VehicleSpecsLanding = () => {
 
     return (
         <main className={styles.landing}>
-            <VehicleSpecs page={page} onClick={handleSpecPage} />
+            <VehicleSpecs
+                page={page}
+                handleSpecPage={handleSpecPage}
+                vehicleSelection={vehicleSelection}
+                vehicleData={vehicleData}
+            />
         </main>
     );
 };

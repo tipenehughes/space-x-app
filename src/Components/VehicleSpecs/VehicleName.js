@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "../../CSS/VehicleSpecs.module.css";
 
-const VehicleName = () => {
+const VehicleName = ({ selectionData }) => {
     return (
         <div className={styles.vehicleTitle}>
-            <h3>FALCON 9</h3>
+            <h3>{selectionData.name}</h3>
         </div>
     );
 };
