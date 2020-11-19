@@ -9,3 +9,7 @@
     --secondary-color: #868686;
     --space-x-blue: #005288;
 }
+
+a {
+    text-decoration: none;
+}

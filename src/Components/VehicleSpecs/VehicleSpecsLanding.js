@@ -52,12 +52,7 @@ const VehicleSpecsLanding = ({ vehicleSelection, vehicleData }) => {
                     />
                 </Route>
             </Switch>
-            {/* <VehicleSpecs
-                page={page}
-                handleSpecPage={handleSpecPage}
-                vehicleSelection={vehicleSelection}
-                vehicleData={vehicleData}
-            /> */}
+            
         </main>
     );
 };

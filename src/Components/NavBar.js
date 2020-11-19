@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 
 import logo from "../Assets/img/logo.svg";
 import styles from "../CSS/NavBar.module.css";
@@ -7,7 +7,7 @@ import styles from "../CSS/NavBar.module.css";
 const NavBar = ({ handleVehicleSelection }) => {
     const history = useHistory();
     console.log(history);
-
+    
     return (
         <header className={styles.header}>
             <nav className={styles.nav}>

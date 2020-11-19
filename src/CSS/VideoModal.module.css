@@ -1,0 +1,41 @@
+.videoModal {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.videoContainer {
+    display: grid;
+    place-items: center;
+    width: 50%;
+    height: 60%;
+    background-color: green;
+}
+
+.video {
+    width: 100%;
+    height: 100%;
+}
+
+.closeIcon {
+    position: absolute;
+    color: #fff;
+    font-size: 2rem;
+    top: 1rem;
+    right: 1rem;
+}
+
+.closeIcon button {
+    color: #fff;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}

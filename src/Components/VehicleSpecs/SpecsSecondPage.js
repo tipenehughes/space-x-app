@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "../../CSS/VehicleSpecs.module.css";
+import { useParams } from "react-router-dom";
 
 const SpecsSecondPage = ({
     selectionData: {
@@ -12,7 +14,10 @@ const SpecsSecondPage = ({
     vehicleSelection,
 }) => {
     const setVehicleDisplay = () => {
-        return vehicleSelection === "DRAGON" ? (
+        const { params } = useParams;
+        console.log(params);
+
+        return vehicleSelection === "dragon" ? (
             <table className={styles.table}>
                 <tbody>
                     <tr>
@@ -69,13 +74,40 @@ const SpecsSecondPage = ({
             </table>
         );
     };
+    const checkDragon = () => {
+        return vehicleSelection === "dragon"
+            ? "first-crew-launch"
+            : "first-landing";
+    };
     return (
         <>
             {setVehicleDisplay()}
-            <div class={styles.videoBtns}>
-                <button>FIRST FLIGHT</button>
-                <button>FIRST LANDING</button>
-                <button>LATEST MISSION</button>
+            <div className={styles.videoBtns}>
+                <button>
+                    <Link to={`/vehicles/${vehicleSelection}/first-flight`}>
+                        FIRST FLIGHT
+                    </Link>
+                </button>
+                <button>
+                    <Link
+                        to={`/vehicles/${vehicleSelection}/${
+                            vehicleSelection === "dragon"
+                                ? "first-crew-launch"
+                                : "first-landing"
+                        }`}
+                    >
+                        {
+                            vehicleSelection === "dragon"
+                                ? "FIRST CREW LAUNCH"
+                                : "FIRST LANDING"
+                        }
+                    </Link>
+                </button>
+                <button>
+                    <Link to={`/vehicles/${vehicleSelection}/latest-mission`}>
+                        LATEST MISSION
+                    </Link>
+                </button>
             </div>
         </>
     );

@@ -16,7 +16,7 @@ const SpecsFirstPage = ({
     },
     vehicleSelection,
 }) => {
-    return vehicleSelection === "DRAGON" ? (
+    return vehicleSelection === "dragon" ? (
         <table className={styles.table}>
             <tbody>
                 <tr>

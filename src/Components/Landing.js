@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
 import VehicleSpecsLanding from "./VehicleSpecs/VehicleSpecsLanding";
+import VideoModal from "../Components/VideoModal/VideoModal";
 import { Route } from "react-router-dom";
 
+import data from "../data.json";
 import styles from "../CSS/Landing.module.css";
 
 const Landing = () => {
     const [vehicleData, setVehicleData] = useState({});
-    const [vehicleSelection, setVehicleSelection] = useState("FALCON 9");
+    const [vehicleSelection, setVehicleSelection] = useState("falcon9");
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -40,7 +42,10 @@ const Landing = () => {
 
     const handleVehicleSelection = (e) => {
         e.preventDefault();
-        setVehicleSelection(e.target.innerText);
+        let originalText = e.target.innerText;
+        const newText = originalText.replace(/ /g, "").toLowerCase();
+
+        setVehicleSelection(newText);
     };
 
     // Determines whether to display Vehicle Spec Panel based on API data being loaded and isLoading = false
@@ -60,6 +65,9 @@ const Landing = () => {
         <div className={styles.landing}>
             <NavBar handleVehicleSelection={handleVehicleSelection} />
             {VehicleSpecsDisplay()}
+            <Route path="/vehicles/:vehicle/:video">
+                <VideoModal vehicleSelection={vehicleSelection} />
+            </Route>
         </div>
     );
 };
