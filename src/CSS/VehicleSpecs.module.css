@@ -9,7 +9,7 @@
     position: absolute;
     top: 0;
     left: 50%;
-    width: 40%;
+    width: 50%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -137,12 +137,12 @@
     display: grid;
     place-items: center;
     height: 100%;
-    width: auto;
+    width: 50%;
+    padding-right: 2rem;
 }
 
 .vehicleImage img {
     height: 80%;
     width: auto;
-    flex: 1 1 30%;
-    margin: auto 5rem auto 5rem;
+    margin: auto 3rem auto 5rem;
 }

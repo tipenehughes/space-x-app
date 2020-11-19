@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
 import VehicleSpecsLanding from "./VehicleSpecs/VehicleSpecsLanding";
+import { Route } from "react-router-dom";
 
 import styles from "../CSS/Landing.module.css";
 
 const Landing = () => {
     const [vehicleData, setVehicleData] = useState({});
-    const [vehicleSelection, setVehicleSelection] = useState("");
+    const [vehicleSelection, setVehicleSelection] = useState("FALCON 9");
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         getVehicleData();
-        vehicleSpecsDisplay();
-    }, []);
+        VehicleSpecsDisplay();
+    }, [vehicleSelection]);
 
     // API call for vehicle data
 
@@ -30,6 +32,7 @@ const Landing = () => {
             })
             .then((data) => {
                 setVehicleData(data);
+                setIsLoading(false);
             });
     };
 
@@ -40,23 +43,23 @@ const Landing = () => {
         setVehicleSelection(e.target.innerText);
     };
 
-    const vehicleSpecsDisplay = () => {
-        return vehicleSelection === "" ? (
-            <></>
-        ) : (
-            <VehicleSpecsLanding
-                vehicleSelection={vehicleSelection}
-                vehicleData={vehicleData}
-            />
+    // Determines whether to display Vehicle Spec Panel based on API data being loaded and isLoading = false
+
+    const VehicleSpecsDisplay = () => {
+        return isLoading ? null : (
+            <Route path="/vehicles">
+                <VehicleSpecsLanding
+                    vehicleSelection={vehicleSelection}
+                    vehicleData={vehicleData}
+                />
+            </Route>
         );
     };
 
     return (
         <div className={styles.landing}>
-            <NavBar
-                handleVehicleSelection={handleVehicleSelection}
-            />
-            {vehicleSpecsDisplay()}
+            <NavBar handleVehicleSelection={handleVehicleSelection} />
+            {VehicleSpecsDisplay()}
         </div>
     );
 };
