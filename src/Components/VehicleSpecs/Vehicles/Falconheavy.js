@@ -1,17 +1,29 @@
 import React from "react";
-
-import VehicleSpecsNav from "./VehicleSpecsNav";
+import { motion } from "framer-motion";
+import VehicleSpecsNav from "../VehicleSpecsNav";
 import SpecsFirstPage from "./SpecsFirstPage";
 import SpecsSecondPage from "./SpecsSecondPage";
-import SS from "../../Assets/img/SS.png";
+import FH from "../../../Assets/img/FH.png";
 
-import styles from "../../CSS/VehicleSpecs.module.css";
+import styles from "../../../CSS/VehicleSpecs.module.css";
 
-const Starship = ({ page, handleSpecPage, vehicleSelection, vehicleData }) => {
-    let selectionData = vehicleData[0][3];
+const Falconheavy = ({
+    page,
+    handleSpecPage,
+    vehicleSelection,
+    vehicleData,
+    containerVariants,
+}) => {
+    let selectionData = vehicleData[0][2];
 
     return (
-        <section className={styles.vehicleSpecs}>
+        <motion.section
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className={styles.vehicleSpecs}
+        >
             <div className={styles.specs}>
                 <div>
                     <div className={styles.vehicleTitle}>
@@ -35,10 +47,10 @@ const Starship = ({ page, handleSpecPage, vehicleSelection, vehicleData }) => {
                 <VehicleSpecsNav page={page} handleSpecPage={handleSpecPage} />
             </div>
             <div className={styles.vehicleImage}>
-                <img src={SS} alt={`Starship vehicle image`} />
+                <img src={FH} alt={`Falcon 9 vehicle image`} />
             </div>
-        </section>
+        </motion.section>
     );
 };
 
-export default Starship;
+export default Falconheavy;

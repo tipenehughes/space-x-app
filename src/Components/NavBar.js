@@ -1,12 +1,10 @@
 import React from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useParams, withRouter } from "react-router-dom";
 
 import logo from "../Assets/img/logo.svg";
 import styles from "../CSS/NavBar.module.css";
 
 const NavBar = ({ handleVehicleSelection }) => {
-    const history = useHistory();
-    console.log(history);
     
     return (
         <header className={styles.header}>
@@ -56,4 +54,4 @@ const NavBar = ({ handleVehicleSelection }) => {
     );
 };
 
-export default NavBar;
+export default withRouter(NavBar);

@@ -1,6 +1,7 @@
 import React from "react";
+import { motion } from "framer-motion";
 import styles from "../../CSS/VideoModal.module.css";
-import data from '../../data.json';
+import data from "../../data.json";
 import { useHistory, useParams } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,22 +12,35 @@ const VideoModal = () => {
     const handleGoBack = () => {
         history.goBack();
     };
-  const { vehicle, video } = useParams();
-  
-  console.log(vehicle, video);
-  
-  console.log(data[vehicle][video]);
-  
+    const { vehicle, video } = useParams();
 
+    const containerVariants = {
+        hidden: {
+            opacity: 0,
+        },
+        visible: {
+            opacity: 1,
+            transition: {
+                duration: 0.2,
+                type: "tween",
+            },
+        },
+    };
     return (
-        <section className={styles.videoModal} onClick={handleGoBack}>
+        <motion.section
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className={styles.videoModal}
+            onClick={handleGoBack}
+        >
             <div className={styles.videoContainer}>
                 <iframe
                     className={styles.video}
                     src={data[vehicle][video]}
-                    frameborder="0"
+                    frameBorder="0"
                     allow="autoplay; encrypted-media"
-                    allowfullscreen
+                    allowFullScreen
                     title="video"
                 ></iframe>
             </div>
@@ -35,7 +49,7 @@ const VideoModal = () => {
                     <FontAwesomeIcon icon={faTimes} />
                 </button>
             </div>
-        </section>
+        </motion.section>
     );
 };
 

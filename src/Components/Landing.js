@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
 import VehicleSpecsLanding from "./VehicleSpecs/VehicleSpecsLanding";
 import VideoModal from "../Components/VideoModal/VideoModal";
-import { Route } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 
-import data from "../data.json";
 import styles from "../CSS/Landing.module.css";
 
 const Landing = () => {

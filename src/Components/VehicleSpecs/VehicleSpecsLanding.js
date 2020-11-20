@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import VehicleSpecs from "./VehicleSpecsNav";
-import Falcon9 from "./Falcon9";
-import Falconheavy from "./Falconheavy";
-import Dragon from "./Dragon";
-import Starship from "./Starship";
+import Falcon9 from "./Vehicles/Falcon9";
+import Falconheavy from "./Vehicles/Falconheavy";
+import Dragon from "./Vehicles/Dragon";
+import Starship from "./Vehicles/Starship";
 import styles from "../../CSS/VehicleSpecs.module.css";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 const VehicleSpecsLanding = ({ vehicleSelection, vehicleData }) => {
     const [page, setPage] = useState(1);
@@ -15,44 +15,76 @@ const VehicleSpecsLanding = ({ vehicleSelection, vehicleData }) => {
     const handleSpecPage = (e) => {
         page === 2 ? setPage(1) : setPage(2);
     };
+    const location = useLocation();
+
+    // Variants for animation
+
+    const containerVariants = {
+        hidden: {
+            x: 200,
+            opacity: 0,
+        },
+        visible: {
+            x: 0,
+            opacity: 1,
+            transition: {
+                duration: 0.3,
+                type: "tween",
+            },
+        },
+        exit: {
+            x: 200,
+            opacity: 0,
+            transition: {
+                duration: 0.3,
+                type: "tween",
+            },
+        },
+    };
 
     return (
         <main className={styles.landing}>
-            <Switch>
-                <Route path="/vehicles/falcon9">
-                    <Falcon9
-                        page={page}
-                        handleSpecPage={handleSpecPage}
-                        vehicleSelection={vehicleSelection}
-                        vehicleData={vehicleData}
-                    />
-                </Route>
-                <Route path="/vehicles/falconheavy">
-                    <Falconheavy
-                        page={page}
-                        handleSpecPage={handleSpecPage}
-                        vehicleSelection={vehicleSelection}
-                        vehicleData={vehicleData}
-                    />
-                </Route>
-                <Route path="/vehicles/dragon">
-                    <Dragon
-                        page={page}
-                        handleSpecPage={handleSpecPage}
-                        vehicleSelection={vehicleSelection}
-                        vehicleData={vehicleData}
-                    />
-                </Route>
-                <Route path="/vehicles/starship">
-                    <Starship
-                        page={page}
-                        handleSpecPage={handleSpecPage}
-                        vehicleSelection={vehicleSelection}
-                        vehicleData={vehicleData}
-                    />
-                </Route>
-            </Switch>
-            
+            <AnimatePresence exitBeforeEnter>
+                <Switch location={location} key={location}>
+                    <Route path="/vehicles/falcon9/">
+                        <Falcon9
+                            page={page}
+                            handleSpecPage={handleSpecPage}
+                            vehicleSelection={vehicleSelection}
+                            vehicleData={vehicleData}
+                            containerVariants={containerVariants}
+                            
+                        />
+                    </Route>
+                    <Route path="/vehicles/falconheavy">
+                        <Falconheavy
+                            page={page}
+                            handleSpecPage={handleSpecPage}
+                            vehicleSelection={vehicleSelection}
+                            vehicleData={vehicleData}
+                            containerVariants={containerVariants}
+                        />
+                    </Route>
+                    <Route path="/vehicles/dragon">
+                        <Dragon
+                            page={page}
+                            handleSpecPage={handleSpecPage}
+                            vehicleSelection={vehicleSelection}
+                            vehicleData={vehicleData}
+                            containerVariants={containerVariants}
+                        />
+                    </Route>
+                    <Route path="/vehicles/starship">
+                        <Starship
+                            page={page}
+                            handleSpecPage={handleSpecPage}
+                            vehicleSelection={vehicleSelection}
+                            vehicleData={vehicleData}
+                            containerVariants={containerVariants}
+                        />
+                    </Route>
+                </Switch>
+            </AnimatePresence>
         </main>
     );
 };

@@ -1,16 +1,31 @@
 import React from "react";
-import VehicleSpecsNav from "./VehicleSpecsNav";
+import { motion } from "framer-motion";
+import VehicleSpecsNav from "../VehicleSpecsNav";
 import SpecsFirstPage from "./SpecsFirstPage";
 import SpecsSecondPage from "./SpecsSecondPage";
-import D2 from "../../Assets/img/D2.png";
+import F9 from "../../../Assets/img/F9.png";
+import { useLocation } from "react-router-dom";
 
-import styles from "../../CSS/VehicleSpecs.module.css";
-
-const Dragon = ({ page, handleSpecPage, vehicleSelection, vehicleData }) => {
-    let selectionData = vehicleData[1];
+import styles from "../../../CSS/VehicleSpecs.module.css";
+const Falcon9 = ({
+    page,
+    handleSpecPage,
+    vehicleSelection,
+    vehicleData,
+    containerVariants,
+}) => {
+    let selectionData = vehicleData[0][1];
+    const location = useLocation();
+    console.log(location.pathname);
 
     return (
-        <section className={styles.vehicleSpecs}>
+        <motion.section
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className={styles.vehicleSpecs}
+        >
             <div className={styles.specs}>
                 <div>
                     <div className={styles.vehicleTitle}>
@@ -33,15 +48,12 @@ const Dragon = ({ page, handleSpecPage, vehicleSelection, vehicleData }) => {
                 )}
                 <VehicleSpecsNav page={page} handleSpecPage={handleSpecPage} />
             </div>
+
             <div className={styles.vehicleImage}>
-                <img
-                    src={D2}
-                    alt={`Dragon 2 vehicle image`}
-                    style={{ height: "30%" }}
-                />
+                <img src={F9} alt={`Falcon 9 vehicle image`} />
             </div>
-        </section>
+        </motion.section>
     );
 };
 
-export default Dragon;
+export default Falcon9;

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../CSS/VehicleSpecs.module.css";
+import styles from "../../../CSS/VehicleSpecs.module.css";
 
 const SpecsFirstPage = ({
     selectionData: {

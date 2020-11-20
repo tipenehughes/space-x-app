@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "../../CSS/VehicleSpecs.module.css";
-import { useParams } from "react-router-dom";
+import styles from "../../../CSS/VehicleSpecs.module.css";
 
 const SpecsSecondPage = ({
     selectionData: {
@@ -14,9 +13,6 @@ const SpecsSecondPage = ({
     vehicleSelection,
 }) => {
     const setVehicleDisplay = () => {
-        const { params } = useParams;
-        console.log(params);
-
         return vehicleSelection === "dragon" ? (
             <table className={styles.table}>
                 <tbody>
@@ -74,11 +70,6 @@ const SpecsSecondPage = ({
             </table>
         );
     };
-    const checkDragon = () => {
-        return vehicleSelection === "dragon"
-            ? "first-crew-launch"
-            : "first-landing";
-    };
     return (
         <>
             {setVehicleDisplay()}
@@ -96,11 +87,9 @@ const SpecsSecondPage = ({
                                 : "first-landing"
                         }`}
                     >
-                        {
-                            vehicleSelection === "dragon"
-                                ? "FIRST CREW LAUNCH"
-                                : "FIRST LANDING"
-                        }
+                        {vehicleSelection === "dragon"
+                            ? "FIRST CREW LAUNCH"
+                            : "FIRST LANDING"}
                     </Link>
                 </button>
                 <button>
