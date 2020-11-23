@@ -14,6 +14,8 @@ const Missions = ({
     launchData,
     handlePageCounterUp,
     handlePageCounterDown,
+    handleSetIndex,
+    
     outcome,
     unixConverter,
 }) => {
@@ -59,6 +61,8 @@ const Missions = ({
                     launchData={launchData}
                     outcome={outcome}
                     unixConverter={unixConverter}
+                    handleSetIndex={handleSetIndex}
+                    
                 />
                 <div className={styles.missionsNav}>
                     <button

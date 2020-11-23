@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
+import InfoModal from "./InfoModal";
 import Missions from "./Missions";
+import { Route } from "react-router-dom";
 
 const MissionLogic = () => {
     const [launchData, setLaunchData] = useState({});
     const [pageCount, setPageCount] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
-    const [filter, setFilter] = useState("");
-
-    console.log(launchData);
+    // const [filter, setFilter] = useState("");
+    const [index, setIndex] = useState(0);
 
     useEffect(() => {
         getLaunchData();
@@ -28,6 +29,8 @@ const MissionLogic = () => {
         setLaunchData(result[pageCount]);
         setIsLoading(false);
     };
+
+    console.log(launchData[index]);
 
     // Converts outcome data to string for display
 
@@ -57,7 +60,14 @@ const MissionLogic = () => {
     const handlePageCounterDown = () => {
         pageCount > 0 ? setPageCount(pageCount - 1) : setPageCount(0);
     };
-    console.log(pageCount);
+
+    const handleSetIndex = (i) => {
+        setIndex(i);
+    };
+
+    
+
+    console.log(index);
     // Determines whether to display Missions based on API data being loaded and isLoading = false
 
     const missionDisplay = () => {
@@ -66,13 +76,22 @@ const MissionLogic = () => {
                 launchData={launchData}
                 handlePageCounterUp={handlePageCounterUp}
                 handlePageCounterDown={handlePageCounterDown}
+                handleSetIndex={handleSetIndex}
+                
                 outcome={outcome}
                 unixConverter={unixConverter}
             />
         );
     };
 
-    return <>{missionDisplay()}</>;
+    return (
+        <>
+            {missionDisplay()}
+            <Route path="/missions/:mission">
+                <InfoModal data={launchData[index]} />
+            </Route>
+        </>
+    );
 };
 
 export default MissionLogic;

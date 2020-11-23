@@ -1,0 +1,11 @@
+.infoModal {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.8);
+  top: 0;
+  right: 0;
+  z-index: 10;
+}

@@ -87,6 +87,7 @@
   height: 3.75rem;
   width: 100%;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .missionTable td {

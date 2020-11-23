@@ -1,11 +1,27 @@
 import React from "react";
 import styles from "../../CSS/Missions.module.css";
+import { useHistory } from "react-router-dom";
 
 // const outcome = (outcome) => {
 //     return outcome === false ? "FAILURE" : "SUCCESS";
 // };
 
-const MissionData = ({ launchData, outcome, unixConverter }) => {
+const MissionData = ({
+    launchData,
+    outcome,
+    unixConverter,
+    handleSetIndex,
+}) => {
+    const history = useHistory();
+    const handleRowClick = (i) => {
+        history.push(`/missions/${launchData[i].mission_name}`);
+    };
+
+    const clickEvent = (i) => {
+        handleSetIndex(i);
+        handleRowClick(i);
+    };
+
     return (
         <table className={styles.missionTable}>
             <tbody>
@@ -19,8 +35,8 @@ const MissionData = ({ launchData, outcome, unixConverter }) => {
                     <td>OUTCOME</td>
                 </tr>
 
-                {launchData.map((data) => (
-                    <tr>
+                {launchData.map((data, index) => (
+                    <tr onClick={() => clickEvent(index)}>
                         <td>{data.flight_number}</td>
                         <td>{data.rocket.rocket_name}</td>
                         <td>{unixConverter(data.launch_date_unix)}</td>
