@@ -1,11 +1,10 @@
 import React from "react";
-import { Link, useParams, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import logo from "../Assets/img/logo.svg";
 import styles from "../CSS/NavBar.module.css";
 
 const NavBar = ({ handleVehicleSelection }) => {
-    
     return (
         <header className={styles.header}>
             <nav className={styles.nav}>
@@ -47,11 +46,13 @@ const NavBar = ({ handleVehicleSelection }) => {
                     </Link>
                 </div>
                 <div className={styles.missionBtn}>
-                    <button>MISSIONS</button>
+                    <Link to="/missions">
+                        <button>MISSIONS</button>
+                    </Link>
                 </div>
             </nav>
         </header>
     );
 };
 
-export default withRouter(NavBar);
+export default NavBar;

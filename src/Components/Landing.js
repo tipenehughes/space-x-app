@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
 import VehicleSpecsLanding from "./VehicleSpecs/VehicleSpecsLanding";
+import MissionLogic from "./Missions/MissionLogic";
 import VideoModal from "../Components/VideoModal/VideoModal";
-import { Route, Switch, useLocation } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import styles from "../CSS/Landing.module.css";
 
@@ -15,8 +16,6 @@ const Landing = () => {
         getVehicleData();
         VehicleSpecsDisplay();
     }, [vehicleSelection]);
-
-    // API call for vehicle data
 
     const getVehicleData = async () => {
         const rockets = fetch("https://api.spacexdata.com/v4/rockets");
@@ -63,7 +62,13 @@ const Landing = () => {
     return (
         <div className={styles.landing}>
             <NavBar handleVehicleSelection={handleVehicleSelection} />
-            {VehicleSpecsDisplay()}
+            <Switch>
+                {VehicleSpecsDisplay()}
+                <Route path="/missions">
+                    <MissionLogic />
+                </Route>
+            </Switch>
+
             <Route path="/vehicles/:vehicle/:video">
                 <VideoModal vehicleSelection={vehicleSelection} />
             </Route>
