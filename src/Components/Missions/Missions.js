@@ -15,7 +15,6 @@ const Missions = ({
     handlePageCounterUp,
     handlePageCounterDown,
     handleSetIndex,
-    
     outcome,
     unixConverter,
 }) => {
@@ -54,7 +53,7 @@ const Missions = ({
                 </div>
             </div>
             <div className={styles.filter}>
-                <button className={styles.filterBtn}>FILTER</button>                
+                <button className={styles.filterBtn}>FILTER</button>
             </div>
             <div className={styles.missionInfo}>
                 <MissionData
@@ -62,7 +61,6 @@ const Missions = ({
                     outcome={outcome}
                     unixConverter={unixConverter}
                     handleSetIndex={handleSetIndex}
-                    
                 />
                 <div className={styles.missionsNav}>
                     <button

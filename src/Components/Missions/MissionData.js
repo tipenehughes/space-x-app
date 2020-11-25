@@ -11,6 +11,7 @@ const MissionData = ({
     outcome,
     unixConverter,
     handleSetIndex,
+    
 }) => {
     const history = useHistory();
     const handleRowClick = (i) => {
@@ -23,7 +24,7 @@ const MissionData = ({
     };
 
     return (
-        <table className={styles.missionTable}>
+        <table className={styles.missionTable} >
             <tbody>
                 <tr>
                     <td>FLIGHT NO</td>
@@ -34,9 +35,8 @@ const MissionData = ({
                     <td>CUSTOMER</td>
                     <td>OUTCOME</td>
                 </tr>
-
                 {launchData.map((data, index) => (
-                    <tr onClick={() => clickEvent(index)}>
+                    <tr onClick={() => clickEvent(index)} key={index}>
                         <td>{data.flight_number}</td>
                         <td>{data.rocket.rocket_name}</td>
                         <td>{unixConverter(data.launch_date_unix)}</td>

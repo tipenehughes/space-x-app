@@ -1,18 +1,33 @@
 import React, { useState, useEffect } from "react";
-import InfoModal from "./InfoModal";
+import InfoModal from "./InfoModal/InfoModal";
 import Missions from "./Missions";
-import { Route } from "react-router-dom";
+import { Route, useHistory } from "react-router-dom";
 
 const MissionLogic = () => {
     const [launchData, setLaunchData] = useState({});
     const [pageCount, setPageCount] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
+    const [page, setPage] = useState(1);
+
+    // Event Handler for switching between Vehicle spec panel pages
+
+    const handleInfoModalPage = () => {
+        page === 2 ? setPage(1) : setPage(2);
+    };
     // const [filter, setFilter] = useState("");
+
+    // Index of table row from mission data
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
         getLaunchData();
     }, [pageCount]);
+
+    // Browser back button functionality used to close info modal
+    const history = useHistory();
+    const handleGoBack = () => {
+        history.goBack();        
+    };
 
     const getLaunchData = async () => {
         const response = await fetch(`https://api.spacexdata.com/v3/launches`);
@@ -29,8 +44,6 @@ const MissionLogic = () => {
         setLaunchData(result[pageCount]);
         setIsLoading(false);
     };
-
-    console.log(launchData[index]);
 
     // Converts outcome data to string for display
 
@@ -65,9 +78,6 @@ const MissionLogic = () => {
         setIndex(i);
     };
 
-    
-
-    console.log(index);
     // Determines whether to display Missions based on API data being loaded and isLoading = false
 
     const missionDisplay = () => {
@@ -77,7 +87,6 @@ const MissionLogic = () => {
                 handlePageCounterUp={handlePageCounterUp}
                 handlePageCounterDown={handlePageCounterDown}
                 handleSetIndex={handleSetIndex}
-                
                 outcome={outcome}
                 unixConverter={unixConverter}
             />
@@ -88,7 +97,12 @@ const MissionLogic = () => {
         <>
             {missionDisplay()}
             <Route path="/missions/:mission">
-                <InfoModal data={launchData[index]} />
+                <InfoModal
+                    data={launchData[index]}
+                    unixConverter={unixConverter}
+                    handleInfoModalPage={handleInfoModalPage}
+                    handleGoBack={handleGoBack}
+                />
             </Route>
         </>
     );

@@ -15,6 +15,7 @@ const VehicleSpecsLanding = ({ vehicleSelection, vehicleData }) => {
     const handleSpecPage = (e) => {
         page === 2 ? setPage(1) : setPage(2);
     };
+    
     const location = useLocation();
 
     // Variants for animation

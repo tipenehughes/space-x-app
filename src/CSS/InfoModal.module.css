@@ -1,11 +1,94 @@
 .infoModal {
-  position: absolute;
-  display: grid;
-  place-items: center;
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.8);
-  top: 0;
-  right: 0;
-  z-index: 10;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 0;
+    right: 0;
+    z-index: 1;
+    text-transform: uppercase;
+}
+
+.infoContainer {
+    height: 80%;
+    width: 30%;
+    background-color: var(--space-x-blue);
+    padding: 2rem 2.5rem;
+}
+
+.infoHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.missionPatch img {
+    height: 7rem;
+    width: auto;
+}
+
+.vehicleTitle h3 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 2;
+}
+
+.title h4 {
+    font-size: 2.7rem;
+    font-weight: 500;
+}
+
+.table {
+    margin-top: 2rem;
+    margin-bottom: 1.87rem;
+    width: 100%;
+    font-weight: 500;
+    border-collapse: collapse;
+}
+
+.table tr td:last-of-type {
+    text-align: right;
+}
+
+.table span {
+    color: var(--secondary-color);
+}
+
+.table tr {
+    height: 3.75rem;
+    width: 100%;
+}
+
+.table td {
+    border-bottom: 1px solid var(--secondary-color);
+    font-size: 1rem;
+}
+
+.infoNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: -1rem;
+}
+
+.leftBtn,
+.rightBtn {
+    font-size: 2rem;
+    width: 20px;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--secondary-color);
+    cursor: pointer;
+}
+
+.midBtns button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin: 0 5px;
 }
