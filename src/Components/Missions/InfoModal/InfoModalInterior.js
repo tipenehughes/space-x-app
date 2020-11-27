@@ -1,11 +1,18 @@
 import React from "react";
 import TableData from "./TableData";
+import MediaData from "./MediaData";
 import InfoModalNav from "./InfoModalNav";
 import styles from "../../../CSS/InfoModal.module.css";
 
-const InfoModalInterior = ({ data, unixConverter, handleInfoModalPage }) => {
+const InfoModalInterior = ({
+    data,
+    unixConverter,
+    handleInfoModalPage,
+    page,
+    stopPropagation,
+}) => {
     return (
-        <div className={styles.infoContainer}>
+        <div className={styles.infoContainer} onClick={stopPropagation}>
             <div className={styles.infoHeader}>
                 <div>
                     <div className={styles.vehicleTitle}>
@@ -19,8 +26,14 @@ const InfoModalInterior = ({ data, unixConverter, handleInfoModalPage }) => {
                     <img src={data.links.mission_patch_small} alt="#" />
                 </div>
             </div>
-            <TableData data={data} unixConverter={unixConverter} />
-            <InfoModalNav handleInfoModalPage={handleInfoModalPage} />
+            {page === 1 && (
+                <TableData data={data} unixConverter={unixConverter} />
+            )}
+            {page === 2 && <MediaData data={data} />}
+            <InfoModalNav
+                handleInfoModalPage={handleInfoModalPage}
+                page={page}
+            />
         </div>
     );
 };

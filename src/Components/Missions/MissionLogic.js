@@ -4,20 +4,24 @@ import Missions from "./Missions";
 import { Route, useHistory } from "react-router-dom";
 
 const MissionLogic = () => {
+    // API Data
     const [launchData, setLaunchData] = useState({});
+    // Pagination for Missions
     const [pageCount, setPageCount] = useState(0);
+    // Checks if API data loaded
     const [isLoading, setIsLoading] = useState(true);
+    // Pagination for infoModal
     const [page, setPage] = useState(1);
+    // Index of table row from mission data
+    const [index, setIndex] = useState(0);
 
     // Event Handler for switching between Vehicle spec panel pages
-
     const handleInfoModalPage = () => {
         page === 2 ? setPage(1) : setPage(2);
     };
-    // const [filter, setFilter] = useState("");
-
-    // Index of table row from mission data
-    const [index, setIndex] = useState(0);
+    const handleInfoModalSetPage = () => {
+        
+    }
 
     useEffect(() => {
         getLaunchData();
@@ -26,7 +30,13 @@ const MissionLogic = () => {
     // Browser back button functionality used to close info modal
     const history = useHistory();
     const handleGoBack = () => {
-        history.goBack();        
+        history.goBack();
+        setPage(1);
+    };
+
+    // Stop event handler from firing on child component (infoModalInterior)
+    const stopPropagation = (e) => {
+        e.stopPropagation();
     };
 
     const getLaunchData = async () => {
@@ -102,6 +112,8 @@ const MissionLogic = () => {
                     unixConverter={unixConverter}
                     handleInfoModalPage={handleInfoModalPage}
                     handleGoBack={handleGoBack}
+                    stopPropagation={stopPropagation}
+                    page={page}
                 />
             </Route>
         </>

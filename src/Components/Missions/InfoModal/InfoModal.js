@@ -9,6 +9,8 @@ const InfoModal = ({
     unixConverter,
     handleInfoModalPage,
     handleGoBack,
+    stopPropagation,
+    page,
 }) => {
     const containerVariants = {
         hidden: {
@@ -21,10 +23,7 @@ const InfoModal = ({
                 type: "tween",
             },
         },
-    };
-    function stopPropagation(e) {
-        e.stopPropagation();
-    }
+    };    
     return (
         <motion.section
             variants={containerVariants}
@@ -37,7 +36,8 @@ const InfoModal = ({
                 data={data}
                 unixConverter={unixConverter}
                 handleInfoModalPage={handleInfoModalPage}
-                onClick={stopPropagation}
+                stopPropagation={stopPropagation}
+                page={page}
             />
         </motion.section>
     );

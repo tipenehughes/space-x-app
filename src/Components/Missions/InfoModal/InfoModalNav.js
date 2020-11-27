@@ -8,18 +8,26 @@ import {
 import { faCircle as farCircle } from "@fortawesome/free-regular-svg-icons";
 import styles from "../../../CSS/InfoModal.module.css";
 
-const InfoModalNav = ({ handleInfoModalPage }) => {
+const InfoModalNav = ({ handleInfoModalPage, page }) => {
     return (
         <div className={styles.infoNav}>
             <button className={styles.leftBtn} onClick={handleInfoModalPage}>
                 <FontAwesomeIcon icon={faCaretLeft} />
             </button>
             <div className={styles.midBtns}>
-                <button>
-                    <FontAwesomeIcon icon={faCircle} />
+            <button>
+                    {page === 1 ? (
+                        <FontAwesomeIcon icon={faCircle} />
+                    ) : (
+                        <FontAwesomeIcon icon={farCircle} />
+                    )}
                 </button>
                 <button>
-                    <FontAwesomeIcon icon={farCircle} />
+                    {page === 2 ? (
+                        <FontAwesomeIcon icon={faCircle} />
+                    ) : (
+                        <FontAwesomeIcon icon={farCircle} />
+                    )}
                 </button>
             </div>
             <button className={styles.rightBtn} onClick={handleInfoModalPage}>

@@ -71,7 +71,6 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-top: -1rem;
 }
 
 .leftBtn,
@@ -91,4 +90,71 @@
     outline: none;
     cursor: pointer;
     margin: 0 5px;
+}
+
+/* Media page */
+
+.mediaContainer {
+    margin: 2rem 0 4.6rem 0;
+    height: 60%;
+    width: auto;
+}
+
+.videoContainer {
+    width: 100%;
+    height: 90%;
+}
+
+.video {
+    height: 100%;
+    width: 100%;
+}
+
+.mediaBtns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: calc(7.25rem - 1.87rem);
+}
+
+.mediaBtns a {
+    position: relative;
+    display: grid;
+    place-items: center;
+    background: none;
+    width: 30%;
+    height: 3.75rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 4px solid #fff;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.mediaBtns a:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3.5rem;
+    background: #fff;
+    transform: scaleY(0);
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    transform-origin: top center;
+    z-index: -1;
+}
+
+.mediaBtns a:hover:after {
+    transform: scaleY(1);
+    transition-duration: 0.4s;
+    transform-origin: bottom center;
+}
+
+.mediaBtns a:hover {
+    transition-duration: 0.4s;
+    font-weight: 700;
+    color: var(--space-x-blue) !important;
 }
