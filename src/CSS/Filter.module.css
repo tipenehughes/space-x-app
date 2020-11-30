@@ -1,4 +1,21 @@
-.container {
-  width: 50px;
-  height: 50px;
+.filterContainer {
+    position: absolute;
+    background-color: var(--space-x-blue);
+}
+
+.filterOption {
+    display: block;
+    font-size: 13.3px;
+    text-align: center;
+    border-bottom: 1px solid red;
+}
+
+.subFilterContainer {
+    position: absolute;
+    left: 130px;
+    background-color: var(--space-x-blue);
+}
+
+.subFilterOption {
+    display: block;
 }

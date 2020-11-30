@@ -1,5 +1,7 @@
 import React from "react";
 import MissionData from "./MissionData";
+import Filter from "./Filter/Filter";
+import SubFilter from "./Filter/SubFilter";
 import styles from "../../CSS/Missions.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,9 +17,15 @@ const Missions = ({
     handlePageCounterUp,
     handlePageCounterDown,
     handleSetIndex,
+    handleSetFilter,
+    handleSetSubFilter,
+    handleFilterChoice,
     outcome,
     unixConverter,
     pageCount,
+    filter,
+    subFilter,
+    filterOptions,
 }) => {
     return (
         <section className={styles.missions}>
@@ -54,7 +62,22 @@ const Missions = ({
                 </div>
             </div>
             <div className={styles.filter}>
-                <button className={styles.filterBtn}>FILTER</button>
+                <button
+                    className={styles.filterBtn}
+                    onClick={handleSetFilter}
+                    style={{ backgroundColor: filter && "var(--space-x-blue)" }}
+                >
+                    FILTER
+                </button>
+                {filter && (
+                    <Filter
+                        handleSetSubFilter={handleSetSubFilter}
+                        handleFilterChoice={handleFilterChoice}
+                        filterOptions={filterOptions}
+                        subFilter={subFilter}
+                    />
+                )}
+                {subFilter && <SubFilter filterOptions={filterOptions} />}
             </div>
             <div className={styles.missionInfo}>
                 <MissionData

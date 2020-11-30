@@ -15,27 +15,34 @@ const MissionLogic = () => {
     const [page, setPage] = useState(1);
     // Index of table row from mission data
     const [index, setIndex] = useState(0);
-
-    // Event Handler for switching between Vehicle spec panel pages
-    const handleInfoModalPage = () => {
-        page === 2 ? setPage(1) : setPage(2);
-    };
+    // Filter display
+    const [filter, setFilter] = useState(false);
+    // SubFilter display
+    const [subFilter, setSubFilter] = useState(false);
+    // Filter options
+    const [filterOptions, setFilterOptions] = useState({
+        choice: "",
+        options: {
+            vehicle: ["FALCON 1", "FALCON 9", "FALCON HEAVY"],
+            "launch site": [
+                "KWAJALEIN ATOLL",
+                "CCAFS SLC 40",
+                "VAFB SLC 4E",
+                "KSC LC 39A",
+            ],
+            outcome: ["SUCCESS", "FAILURE"],
+        },
+        selected: {
+            vehicles: [""],
+            "Launch Site": [""],
+            outcome: [true],
+        },
+    });
+    console.log(filterOptions);
 
     useEffect(() => {
         getLaunchData();
     }, []);
-
-    // Browser back button functionality used to close info modal
-    const history = useHistory();
-    const handleGoBack = () => {
-        history.goBack();
-        setPage(1);
-    };
-
-    // Stop event handler from firing on child component (infoModalInterior)
-    const stopPropagation = (e) => {
-        e.stopPropagation();
-    };
 
     const getLaunchData = async () => {
         const response = await fetch(`https://api.spacexdata.com/v3/launches`);
@@ -51,6 +58,47 @@ const MissionLogic = () => {
         }, []);
         setLaunchData(result);
         setIsLoading(false);
+    };
+
+    // Browser back button functionality used to close info modal
+    const history = useHistory();
+    const handleGoBack = () => {
+        history.goBack();
+        setPage(1);
+    };
+
+    // Event Handler for switching between Vehicle spec panel pages
+    const handleInfoModalPage = () => {
+        page === 2 ? setPage(1) : setPage(2);
+    };
+
+    // Stop event handler from firing on child component (infoModalInterior)
+    const stopPropagation = (e) => {
+        e.stopPropagation();
+    };
+
+    // Event handler to set filter display
+    const handleSetFilter = () => {
+        if (filter) {
+            setFilter(false);
+        } else {
+            setFilter(true);
+        }
+        if (subFilter) {
+            setSubFilter(false);
+        }
+    };
+    // Event handler to update choice based on first filter option selected
+    const handleFilterChoice = (e) => {
+        let choice = e.target.innerText;
+        setFilterOptions({
+            ...filterOptions,
+            choice: choice,
+        });
+    };
+    // Event handler to set sub filter display
+    const handleSetSubFilter = () => {
+        subFilter ? setSubFilter(false) : setSubFilter(true);
     };
 
     // Converts outcome data to string for display
@@ -97,9 +145,15 @@ const MissionLogic = () => {
                 handlePageCounterUp={handlePageCounterUp}
                 handlePageCounterDown={handlePageCounterDown}
                 handleSetIndex={handleSetIndex}
+                handleSetFilter={handleSetFilter}
+                handleSetSubFilter={handleSetSubFilter}
+                handleFilterChoice={handleFilterChoice}
                 outcome={outcome}
                 unixConverter={unixConverter}
                 pageCount={pageCount}
+                filter={filter}
+                subFilter={subFilter}
+                filterOptions={filterOptions}
             />
         );
     };
