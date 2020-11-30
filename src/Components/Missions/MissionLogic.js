@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import InfoModal from "./InfoModal/InfoModal";
 import Missions from "./Missions";
+import Loading from "../Loading";
 import { Route, useHistory } from "react-router-dom";
 
 const MissionLogic = () => {
@@ -19,13 +20,10 @@ const MissionLogic = () => {
     const handleInfoModalPage = () => {
         page === 2 ? setPage(1) : setPage(2);
     };
-    const handleInfoModalSetPage = () => {
-        
-    }
 
     useEffect(() => {
         getLaunchData();
-    }, [pageCount]);
+    }, []);
 
     // Browser back button functionality used to close info modal
     const history = useHistory();
@@ -51,7 +49,7 @@ const MissionLogic = () => {
             resultArray[chunkIndex].push(item);
             return resultArray;
         }, []);
-        setLaunchData(result[pageCount]);
+        setLaunchData(result);
         setIsLoading(false);
     };
 
@@ -91,14 +89,17 @@ const MissionLogic = () => {
     // Determines whether to display Missions based on API data being loaded and isLoading = false
 
     const missionDisplay = () => {
-        return isLoading ? null : (
+        return isLoading ? (
+            <Loading />
+        ) : (
             <Missions
-                launchData={launchData}
+                launchData={launchData[pageCount]}
                 handlePageCounterUp={handlePageCounterUp}
                 handlePageCounterDown={handlePageCounterDown}
                 handleSetIndex={handleSetIndex}
                 outcome={outcome}
                 unixConverter={unixConverter}
+                pageCount={pageCount}
             />
         );
     };
@@ -108,7 +109,8 @@ const MissionLogic = () => {
             {missionDisplay()}
             <Route path="/missions/:mission">
                 <InfoModal
-                    data={launchData[index]}
+                    data={launchData[pageCount]}
+                    index={index}
                     unixConverter={unixConverter}
                     handleInfoModalPage={handleInfoModalPage}
                     handleGoBack={handleGoBack}

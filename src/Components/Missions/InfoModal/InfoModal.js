@@ -6,6 +6,7 @@ import styles from "../../../CSS/InfoModal.module.css";
 
 const InfoModal = ({
     data,
+    index,
     unixConverter,
     handleInfoModalPage,
     handleGoBack,
@@ -23,7 +24,7 @@ const InfoModal = ({
                 type: "tween",
             },
         },
-    };    
+    };
     return (
         <motion.section
             variants={containerVariants}
@@ -33,7 +34,7 @@ const InfoModal = ({
             className={styles.infoModal}
         >
             <InfoModalInterior
-                data={data}
+                data={data[index]}
                 unixConverter={unixConverter}
                 handleInfoModalPage={handleInfoModalPage}
                 stopPropagation={stopPropagation}

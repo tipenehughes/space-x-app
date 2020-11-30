@@ -10,8 +10,7 @@ const MissionData = ({
     launchData,
     outcome,
     unixConverter,
-    handleSetIndex,
-    
+    handleSetIndex,    
 }) => {
     const history = useHistory();
     const handleRowClick = (i) => {
@@ -24,7 +23,7 @@ const MissionData = ({
     };
 
     return (
-        <table className={styles.missionTable} >
+        <table className={styles.missionTable}>
             <tbody>
                 <tr>
                     <td>FLIGHT NO</td>

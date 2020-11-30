@@ -17,6 +17,7 @@ const Missions = ({
     handleSetIndex,
     outcome,
     unixConverter,
+    pageCount,
 }) => {
     return (
         <section className={styles.missions}>
@@ -61,6 +62,7 @@ const Missions = ({
                     outcome={outcome}
                     unixConverter={unixConverter}
                     handleSetIndex={handleSetIndex}
+                    key={pageCount}
                 />
                 <div className={styles.missionsNav}>
                     <button
