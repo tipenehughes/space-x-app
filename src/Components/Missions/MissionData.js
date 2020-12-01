@@ -2,10 +2,6 @@ import React from "react";
 import styles from "../../CSS/Missions.module.css";
 import { useHistory } from "react-router-dom";
 
-// const outcome = (outcome) => {
-//     return outcome === false ? "FAILURE" : "SUCCESS";
-// };
-
 const MissionData = ({
     launchData,
     outcome,

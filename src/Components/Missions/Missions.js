@@ -17,13 +17,15 @@ const Missions = ({
     handlePageCounterUp,
     handlePageCounterDown,
     handleSetIndex,
-    handleSetFilter,
+    handleSetFilterDisplay,
     handleSetSubFilter,
     handleFilterChoice,
+    handleFilterSelected,
+    handleClearFilter,
     outcome,
     unixConverter,
     pageCount,
-    filter,
+    filterDisplay,
     subFilter,
     filterOptions,
 }) => {
@@ -64,20 +66,28 @@ const Missions = ({
             <div className={styles.filter}>
                 <button
                     className={styles.filterBtn}
-                    onClick={handleSetFilter}
-                    style={{ backgroundColor: filter && "var(--space-x-blue)" }}
+                    onClick={handleSetFilterDisplay}
+                    style={{
+                        backgroundColor: filterDisplay && "var(--space-x-blue)",
+                    }}
                 >
                     FILTER
                 </button>
-                {filter && (
+                {filterDisplay && (
                     <Filter
                         handleSetSubFilter={handleSetSubFilter}
                         handleFilterChoice={handleFilterChoice}
                         filterOptions={filterOptions}
+                        handleClearFilter={handleClearFilter}
                         subFilter={subFilter}
                     />
                 )}
-                {subFilter && <SubFilter filterOptions={filterOptions} />}
+                {subFilter && (
+                    <SubFilter
+                        filterOptions={filterOptions}
+                        handleFilterSelected={handleFilterSelected}
+                    />
+                )}
             </div>
             <div className={styles.missionInfo}>
                 <MissionData

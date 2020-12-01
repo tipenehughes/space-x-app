@@ -16,7 +16,7 @@ const MissionLogic = () => {
     // Index of table row from mission data
     const [index, setIndex] = useState(0);
     // Filter display
-    const [filter, setFilter] = useState(false);
+    const [filterDisplay, setFilterDisplay] = useState(false);
     // SubFilter display
     const [subFilter, setSubFilter] = useState(false);
     // Filter options
@@ -33,19 +33,31 @@ const MissionLogic = () => {
             outcome: ["SUCCESS", "FAILURE"],
         },
         selected: {
-            vehicles: [""],
-            "Launch Site": [""],
-            outcome: [true],
+            vehicles: "",
+            "Launch Site": "",
+            outcome: "",
         },
+        filterClear: true,
     });
-    console.log(filterOptions);
 
     useEffect(() => {
         getLaunchData();
-    }, []);
+    }, [filterOptions.selected]);
 
     const getLaunchData = async () => {
-        const response = await fetch(`https://api.spacexdata.com/v3/launches`);
+        let vehicle = filterOptions.selected.vehicles
+            .replace(/\s+/g, "")
+            .toLowerCase();
+        let launchSite = filterOptions.selected["Launch Site"]
+            .replace(/\s+/g, "_")
+            .toLowerCase();
+        let launchSuccess = filterOptions.selected.outcome;
+
+        const response = await fetch(
+            `https://api.spacexdata.com/v3/launches?rocket_id=${vehicle}&site_id=${launchSite}&launch_success=${launchSuccess}`
+        );
+        //  `https://api.spacexdata.com/v3/launches`
+        // `https://api.spacexdata.com/v3/launches?rocket_name=${vehicle}&site_name=VAFB+SLC+4E&launch_success=${launchSuccess}`
         const data = await response.json();
         let perChunk = 8; // items per chunk
         let result = data.reduce((resultArray, item, index) => {
@@ -57,7 +69,12 @@ const MissionLogic = () => {
             return resultArray;
         }, []);
         setLaunchData(result);
-        setIsLoading(false);
+        setSubFilter(false);
+        setFilterDisplay(false);
+        setPageCount(0);
+        return result === undefined || result.length === 0
+            ? null
+            : setIsLoading(false);
     };
 
     // Browser back button functionality used to close info modal
@@ -78,16 +95,24 @@ const MissionLogic = () => {
     };
 
     // Event handler to set filter display
-    const handleSetFilter = () => {
-        if (filter) {
-            setFilter(false);
+    const handleSetFilterDisplay = () => {
+        if (filterDisplay) {
+            setFilterDisplay(false);
         } else {
-            setFilter(true);
+            setFilterDisplay(true);
         }
         if (subFilter) {
             setSubFilter(false);
         }
     };
+
+    // Event handler to set sub filter display
+    const handleSetSubFilter = (e) => {
+        subFilter && e.target.tagName !== "BUTTON"
+            ? setSubFilter(false)
+            : setSubFilter(true);
+    };
+
     // Event handler to update choice based on first filter option selected
     const handleFilterChoice = (e) => {
         let choice = e.target.innerText;
@@ -96,9 +121,59 @@ const MissionLogic = () => {
             choice: choice,
         });
     };
-    // Event handler to set sub filter display
-    const handleSetSubFilter = () => {
-        subFilter ? setSubFilter(false) : setSubFilter(true);
+
+    // Event handler to set state based on filter selections
+    const handleFilterSelected = (e) => {
+        let option = e.target.innerText;
+        if (filterOptions.choice === "VEHICLE") {
+            setFilterOptions({
+                ...filterOptions,
+                filterClear: false,
+                selected: {
+                    ...filterOptions.selected,
+                    vehicles: option,
+                },
+            });
+            setIsLoading(true);
+        } else if (filterOptions.choice === "LAUNCH SITE") {
+            setFilterOptions({
+                ...filterOptions,
+                filterClear: false,
+                selected: {
+                    ...filterOptions.selected,
+                    "Launch Site": option,
+                },
+            });
+            setIsLoading(true);
+        } else if (filterOptions.choice === "OUTCOME") {
+            option === "SUCCESS" ? (option = "true") : (option = "false");
+            setFilterOptions({
+                ...filterOptions,
+                filterClear: false,
+                selected: {
+                    ...filterOptions.selected,
+                    outcome: option,
+                },
+            });
+            setIsLoading(true);
+        }
+    };
+
+    // Event handler to clear sub filter
+    const handleClearFilter = () => {
+        setFilterOptions({
+            ...filterOptions,
+            filterClear: true,
+            selected: {
+                ...filterOptions.selected,
+                vehicles: "",
+                "Launch Site": "",
+                outcome: "",
+            },
+        });
+        setIsLoading(true);
+        setFilterDisplay(false);
+        setSubFilter(false);
     };
 
     // Converts outcome data to string for display
@@ -145,13 +220,15 @@ const MissionLogic = () => {
                 handlePageCounterUp={handlePageCounterUp}
                 handlePageCounterDown={handlePageCounterDown}
                 handleSetIndex={handleSetIndex}
-                handleSetFilter={handleSetFilter}
+                handleSetFilterDisplay={handleSetFilterDisplay}
                 handleSetSubFilter={handleSetSubFilter}
                 handleFilterChoice={handleFilterChoice}
+                handleFilterSelected={handleFilterSelected}
+                handleClearFilter={handleClearFilter}
                 outcome={outcome}
                 unixConverter={unixConverter}
                 pageCount={pageCount}
-                filter={filter}
+                filterDisplay={filterDisplay}
                 subFilter={subFilter}
                 filterOptions={filterOptions}
             />
