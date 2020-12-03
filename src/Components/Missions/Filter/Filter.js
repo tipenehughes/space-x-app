@@ -8,7 +8,6 @@ const Filter = ({
     handleClearFilter,
     filterOptions,
 }) => {
-    console.log(Object.keys(filterOptions.options));
     return (
         <div className={styles.filterContainer}>
             {Object.keys(filterOptions.options).map((value, i) => {

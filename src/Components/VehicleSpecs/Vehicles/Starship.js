@@ -53,7 +53,7 @@ const Starship = ({
                 selectionData={selectionData}
             /> */}
             <div className={styles.vehicleImage}>
-                <img src={SS} alt={`Starship vehicle image`} />
+                <img src={SS} alt={`Starship vehicle`} />
             </div>
         </motion.section>
     );

@@ -23,6 +23,7 @@ const Missions = ({
     handleFilterSelected,
     handleClearFilter,
     outcome,
+    dataCounter,
     unixConverter,
     pageCount,
     filterDisplay,
@@ -35,7 +36,7 @@ const Missions = ({
                 <div className={styles.totalLaunches}>
                     <div className={styles.number}>
                         <h3>
-                            <CountUp end={101} duration={1} />
+                            <CountUp end={dataCounter.launches} duration={1} />
                         </h3>
                     </div>
                     <div className={styles.subHeading}>
@@ -45,7 +46,7 @@ const Missions = ({
                 <div className={styles.totalLaunches}>
                     <div className={styles.number}>
                         <h3>
-                            <CountUp end={64} duration={1} />
+                            <CountUp end={dataCounter.landings} duration={1} />
                         </h3>
                     </div>
                     <div className={styles.subHeading}>
@@ -55,7 +56,7 @@ const Missions = ({
                 <div className={styles.totalLaunches}>
                     <div className={styles.number}>
                         <h3>
-                            <CountUp end={45} duration={1} />
+                            <CountUp end={dataCounter.reflown} duration={1} />
                         </h3>
                     </div>
                     <div className={styles.subHeading}>
@@ -66,7 +67,7 @@ const Missions = ({
             <div className={styles.filter}>
                 <button
                     className={styles.filterBtn}
-                    onClick={handleSetFilterDisplay}
+                    onClick={(e) => handleSetFilterDisplay(e)}
                     style={{
                         backgroundColor: filterDisplay && "var(--space-x-blue)",
                     }}

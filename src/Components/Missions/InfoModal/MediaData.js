@@ -8,9 +8,9 @@ const MediaData = ({ data }) => {
                 <iframe
                     className={styles.video}
                     src={`https://www.youtube.com/embed/${data.links.youtube_id}`}
-                    frameborder="0"
+                    frameBorder="0"
                     allow="autoplay; encrypted-media"
-                    allowfullscreen
+                    allowFullScreen
                     title="video"
                 ></iframe>
             </div>

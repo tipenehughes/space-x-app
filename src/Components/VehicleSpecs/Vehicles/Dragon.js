@@ -49,7 +49,7 @@ const Dragon = ({
             <div className={styles.vehicleImage}>
                 <img
                     src={D2}
-                    alt={`Dragon 2 vehicle image`}
+                    alt={`Dragon 2 vehicle`}
                     style={{ height: "30%" }}
                 />
             </div>

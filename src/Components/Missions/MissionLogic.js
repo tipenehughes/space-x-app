@@ -11,6 +11,12 @@ const MissionLogic = () => {
     const [pageCount, setPageCount] = useState(0);
     // Checks if API data loaded
     const [isLoading, setIsLoading] = useState(true);
+    // Page counter state
+    const [dataCounter, setDataCounter] = useState({
+        launches: "",
+        landings: "",
+        reflown: "",
+    });
     // Pagination for infoModal
     const [page, setPage] = useState(1);
     // Index of table row from mission data
@@ -52,15 +58,17 @@ const MissionLogic = () => {
             .replace(/\s+/g, "_")
             .toLowerCase();
         let launchSuccess = filterOptions.selected.outcome;
+        const filter =
+            "filter=flight_number,flight_name,mission_name,launch_date_unix,static_fire_date_unix,launch_site/site_name,launch_success,links(mission_patch_small,wikipedia,youtube_id,presskit,article_link),rocket(rocket_name,first_stage/cores(core_serial,reused,landing_vehicle,landing_intent,land_success),second_stage(block,payloads(payload_id,orbit_params/regime,customers))";
 
         const response = await fetch(
-            `https://api.spacexdata.com/v3/launches?rocket_id=${vehicle}&site_id=${launchSite}&launch_success=${launchSuccess}`
+            `https://api.spacexdata.com/v3/launches?rocket_id=${vehicle}&site_id=${launchSite}&launch_success=${launchSuccess}&${filter}`
         );
-        //  `https://api.spacexdata.com/v3/launches`
-        // `https://api.spacexdata.com/v3/launches?rocket_name=${vehicle}&site_name=VAFB+SLC+4E&launch_success=${launchSuccess}`
         const data = await response.json();
-        let perChunk = 8; // items per chunk
-        let result = data.reduce((resultArray, item, index) => {
+
+        // Function to create 8 length arrays of data
+        const perChunk = 8;
+        const result = data.reduce((resultArray, item, index) => {
             const chunkIndex = Math.floor(index / perChunk);
             if (!resultArray[chunkIndex]) {
                 resultArray[chunkIndex] = []; // start a new chunk
@@ -68,6 +76,49 @@ const MissionLogic = () => {
             resultArray[chunkIndex].push(item);
             return resultArray;
         }, []);
+
+        // Function to determine landing number
+        let landingCount = 0;
+        let reflownCount = 0;
+        const landings = data.forEach((data) => {
+            if (data.rocket.first_stage.cores[0].land_success) {
+                landingCount++;
+            }
+            if (data.rocket.first_stage.cores[0].reused) {
+                reflownCount++;
+            }
+            if (
+                data.rocket.rocket_name === "Falcon Heavy" &&
+                data.rocket.first_stage.cores[1].reused
+            ) {
+                reflownCount++;
+            }
+            if (
+                data.rocket.rocket_name === "Falcon Heavy" &&
+                data.rocket.first_stage.cores[1].land_success
+            ) {
+                landingCount++;
+            }
+            if (
+                data.rocket.rocket_name === "Falcon Heavy" &&
+                data.rocket.first_stage.cores[2].reused
+            ) {
+                reflownCount++;
+            }
+            if (
+                data.rocket.rocket_name === "Falcon Heavy" &&
+                data.rocket.first_stage.cores[2].land_success
+            ) {
+                landingCount++;
+            }
+        });
+
+        setDataCounter({
+            ...dataCounter,
+            launches: data.length,
+            landings: landingCount,
+            reflown: reflownCount,
+        });
         setLaunchData(result);
         setSubFilter(false);
         setFilterDisplay(false);
@@ -95,7 +146,7 @@ const MissionLogic = () => {
     };
 
     // Event handler to set filter display
-    const handleSetFilterDisplay = () => {
+    const handleSetFilterDisplay = (e) => {
         if (filterDisplay) {
             setFilterDisplay(false);
         } else {
@@ -198,7 +249,9 @@ const MissionLogic = () => {
     // Sets state to determine which page of launch data to display in Missions component
 
     const handlePageCounterUp = () => {
-        pageCount < 13 ? setPageCount(pageCount + 1) : setPageCount(pageCount);
+        pageCount < Math.floor(dataCounter.launches / 8)
+            ? setPageCount(pageCount + 1)
+            : setPageCount(pageCount);
     };
 
     const handlePageCounterDown = () => {
@@ -228,6 +281,7 @@ const MissionLogic = () => {
                 outcome={outcome}
                 unixConverter={unixConverter}
                 pageCount={pageCount}
+                dataCounter={dataCounter}
                 filterDisplay={filterDisplay}
                 subFilter={subFilter}
                 filterOptions={filterOptions}

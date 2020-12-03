@@ -16,8 +16,6 @@ const Falcon9 = ({
 }) => {
     let selectionData = vehicleData[0][1];
     const location = useLocation();
-    console.log(location.pathname);
-
     return (
         <motion.section
             variants={containerVariants}
@@ -50,7 +48,7 @@ const Falcon9 = ({
             </div>
 
             <div className={styles.vehicleImage}>
-                <img src={F9} alt={`Falcon 9 vehicle image`} />
+                <img src={F9} alt={`Falcon 9 vehicle`} />
             </div>
         </motion.section>
     );

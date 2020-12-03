@@ -47,7 +47,7 @@ const Falconheavy = ({
                 <VehicleSpecsNav page={page} handleSpecPage={handleSpecPage} />
             </div>
             <div className={styles.vehicleImage}>
-                <img src={FH} alt={`Falcon 9 vehicle image`} />
+                <img src={FH} alt={`Falcon 9 vehicle`} />
             </div>
         </motion.section>
     );

@@ -5,16 +5,17 @@ const SubFilter = ({ filterOptions, handleFilterSelected }) => {
     const choice = filterOptions.choice.toLowerCase();
     return (
         <div className={styles.subFilterContainer}>
-            {filterOptions.options[choice].map((value) => {
+            {filterOptions.options[choice].map((value, i) => {
                 return (
                     <button
+                        key={i}
                         className={styles.subFilterOption}
                         onClick={(e) => handleFilterSelected(e)}
                     >
                         {value}
                     </button>
                 );
-            })}            
+            })}
         </div>
     );
 };
