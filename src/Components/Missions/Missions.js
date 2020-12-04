@@ -65,15 +65,54 @@ const Missions = ({
                 </div>
             </div>
             <div className={styles.filter}>
-                <button
-                    className={styles.filterBtn}
-                    onClick={(e) => handleSetFilterDisplay(e)}
-                    style={{
-                        backgroundColor: filterDisplay && "var(--space-x-blue)",
-                    }}
-                >
-                    FILTER
-                </button>
+                <div className={styles.filterSelected}>
+                    <button
+                        className={styles.filterBtn}
+                        onClick={(e) => handleSetFilterDisplay(e)}
+                        style={{
+                            backgroundColor:
+                                filterDisplay && "var(--space-x-blue)",
+                        }}
+                    >
+                        FILTER
+                    </button>
+                    {filterOptions.selected.vehicles && (
+                        <button
+                            className={styles.selected}
+                            onClick={() =>
+                                handleClearFilter(
+                                    filterOptions.selected.vehicles
+                                )
+                            }
+                        >
+                            {filterOptions.selected.vehicles}
+                        </button>
+                    )}
+                    {filterOptions.selected["Launch Site"] && (
+                        <button
+                            className={styles.selected}
+                            onClick={() =>
+                                handleClearFilter(
+                                    filterOptions.selected["Launch Site"]
+                                )
+                            }
+                        >
+                            {filterOptions.selected["Launch Site"]}
+                        </button>
+                    )}
+                    {filterOptions.selected.outcome && (
+                        <button
+                            className={styles.selected}
+                            onClick={() =>
+                                handleClearFilter(
+                                    filterOptions.selected.outcome
+                                )
+                            }
+                        >
+                            {filterOptions.selected.outcome}
+                        </button>
+                    )}
+                </div>
                 {filterDisplay && (
                     <Filter
                         handleSetSubFilter={handleSetSubFilter}
@@ -90,6 +129,7 @@ const Missions = ({
                     />
                 )}
             </div>
+
             <div className={styles.missionInfo}>
                 <MissionData
                     launchData={launchData}

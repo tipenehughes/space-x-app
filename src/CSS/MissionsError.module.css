@@ -1,0 +1,36 @@
+.container {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    margin-top: -10vh;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    pointer-events: none;
+}
+
+.errorBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 20%;
+    border: 5px solid var(--space-x-blue);
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    pointer-events: auto;
+}
+
+.errorHeader {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+}
+
+.errorText {
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5;
+    letter-spacing: 1.2;
+    text-transform: uppercase;
+}

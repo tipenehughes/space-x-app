@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import InfoModal from "./InfoModal/InfoModal";
 import Missions from "./Missions";
+import MissionsError from "./MissionsError";
 import Loading from "../Loading";
 import { Route, useHistory } from "react-router-dom";
 
@@ -17,6 +18,8 @@ const MissionLogic = () => {
         landings: "",
         reflown: "",
     });
+    // Checks if there is an error (no results) based on filter selection
+    const [error, setError] = useState(false);
     // Pagination for infoModal
     const [page, setPage] = useState(1);
     // Index of table row from mission data
@@ -48,6 +51,7 @@ const MissionLogic = () => {
 
     useEffect(() => {
         getLaunchData();
+        launchData.length === 0 && setError(true);
     }, [filterOptions.selected]);
 
     const getLaunchData = async () => {
@@ -123,9 +127,7 @@ const MissionLogic = () => {
         setSubFilter(false);
         setFilterDisplay(false);
         setPageCount(0);
-        return result === undefined || result.length === 0
-            ? null
-            : setIsLoading(false);
+        setIsLoading(false);
     };
 
     // Browser back button functionality used to close info modal
@@ -211,17 +213,47 @@ const MissionLogic = () => {
     };
 
     // Event handler to clear sub filter
-    const handleClearFilter = () => {
-        setFilterOptions({
-            ...filterOptions,
-            filterClear: true,
-            selected: {
-                ...filterOptions.selected,
-                vehicles: "",
-                "Launch Site": "",
-                outcome: "",
-            },
-        });
+    const handleClearFilter = (selected) => {
+        if (selected === filterOptions.selected.vehicles) {
+            setFilterOptions({
+                ...filterOptions,
+                filterClear: true,
+                selected: {
+                    ...filterOptions.selected,
+                    vehicles: "",
+                },
+            });
+        } else if (selected === filterOptions.selected["Launch Site"]) {
+            setFilterOptions({
+                ...filterOptions,
+                filterClear: true,
+                selected: {
+                    ...filterOptions.selected,
+                    "Launch Site": "",
+                },
+            });
+        } else if (selected === filterOptions.selected.outcome) {
+            setFilterOptions({
+                ...filterOptions,
+                filterClear: true,
+                selected: {
+                    ...filterOptions.selected,
+                    outcome: "",
+                },
+            });
+        } else {
+            setFilterOptions({
+                ...filterOptions,
+                filterClear: true,
+                selected: {
+                    ...filterOptions.selected,
+                    vehicles: "",
+                    "Launch Site": "",
+                    outcome: "",
+                },
+            });
+        }
+
         setIsLoading(true);
         setFilterDisplay(false);
         setSubFilter(false);
@@ -258,6 +290,8 @@ const MissionLogic = () => {
         pageCount > 0 ? setPageCount(pageCount - 1) : setPageCount(0);
     };
 
+    // Set index based on launchData array map in MissionData component
+
     const handleSetIndex = (i) => {
         setIndex(i);
     };
@@ -267,6 +301,8 @@ const MissionLogic = () => {
     const missionDisplay = () => {
         return isLoading ? (
             <Loading />
+        ) : launchData.length === 0 ? (
+            <MissionsError handleClearFilter={handleClearFilter} />
         ) : (
             <Missions
                 launchData={launchData[pageCount]}

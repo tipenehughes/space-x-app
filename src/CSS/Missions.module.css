@@ -34,6 +34,19 @@
     height: 60px;
 }
 
+.filterSelected {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.filterSelected .selected {
+    background-color: var(--space-x-blue);
+    margin-left: 0.8rem;
+}
+
 .filter button {
     position: relative;
     width: 130px;
