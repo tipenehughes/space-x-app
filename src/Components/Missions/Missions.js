@@ -3,6 +3,7 @@ import MissionData from "./MissionData";
 import Filter from "./Filter/Filter";
 import SubFilter from "./Filter/SubFilter";
 import styles from "../../CSS/Missions.module.css";
+import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faCaretLeft,
@@ -30,6 +31,31 @@ const Missions = ({
     subFilter,
     filterOptions,
 }) => {
+    const filterVariants = {
+        hidden: {
+            scaleY: 0,
+        },
+        visible: {
+            scaleY: 1,
+            transition: {
+                duration: 0.2,
+                type: "tween",
+            },
+        },
+    };
+    const subFilterVariants = {
+        hidden: {
+            scaleY: 0,
+        },
+        visible: {
+            scaleY: 1,
+            transition: {
+                duration: 0.2,
+                type: "tween",
+            },
+        },
+    };
+
     return (
         <section className={styles.missions}>
             <div className={styles.totalStats}>
@@ -116,19 +142,31 @@ const Missions = ({
                     )}
                 </div>
                 {filterDisplay && (
-                    <Filter
-                        handleSetSubFilter={handleSetSubFilter}
-                        handleFilterChoice={handleFilterChoice}
-                        filterOptions={filterOptions}
-                        handleClearFilter={handleClearFilter}
-                        subFilter={subFilter}
-                    />
+                    <motion.div
+                        variants={filterVariants}
+                        initial="hidden"
+                        animate="visible"
+                    >
+                        <Filter
+                            handleSetSubFilter={handleSetSubFilter}
+                            handleFilterChoice={handleFilterChoice}
+                            filterOptions={filterOptions}
+                            handleClearFilter={handleClearFilter}
+                            subFilter={subFilter}
+                        />
+                    </motion.div>
                 )}
                 {subFilter && (
-                    <SubFilter
-                        filterOptions={filterOptions}
-                        handleFilterSelected={handleFilterSelected}
-                    />
+                    <motion.div
+                        variants={subFilterVariants}
+                        initial="hidden"
+                        animate="visible"
+                    >
+                        <SubFilter
+                            filterOptions={filterOptions}
+                            handleFilterSelected={handleFilterSelected}
+                        />
+                    </motion.div>
                 )}
             </div>
 

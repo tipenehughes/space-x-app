@@ -5,17 +5,18 @@
 
 .filterOption {
     display: block;
-    font-size: 13.3px;
+    font-size: 1rem;
     text-align: center;
     border-bottom: 1px solid red;
 }
 
 .subFilterContainer {
     position: absolute;
-    left: 130px;
+    left: 8.125rem;
     background-color: var(--space-x-blue);
 }
 
 .subFilterOption {
     display: block;
+    font-size: 1rem;
 }
