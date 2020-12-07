@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import styles from "../../CSS/MissionsError.module.css";
 
 const MissionsError = ({ handleClearFilter }) => {
@@ -10,6 +12,9 @@ const MissionsError = ({ handleClearFilter }) => {
                     handleClearFilter();
                 }}
             >
+                <button className={styles.closeIcon}>
+                    <FontAwesomeIcon icon={faTimes} />
+                </button>
                 <h3 className={styles.errorHeader}>Uh oh..</h3>
                 <p className={styles.errorText}>
                     It looks like there's no results for this selection yet.

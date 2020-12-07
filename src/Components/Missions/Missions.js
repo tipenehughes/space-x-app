@@ -109,7 +109,9 @@ const Missions = ({
                                 )
                             }
                         >
-                            {filterOptions.selected.outcome}
+                            {filterOptions.selected.outcome === "true"
+                                ? "SUCCESS"
+                                : "FAILURE"}
                         </button>
                     )}
                 </div>

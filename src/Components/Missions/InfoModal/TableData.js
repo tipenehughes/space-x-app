@@ -45,6 +45,9 @@ const TableData = ({ data, unixConverter }) => {
                     <td>
                         {!data.rocket.first_stage.cores[0].landing_intent
                             ? "N/A"
+                            : data.rocket.first_stage.cores[0].land_success ===
+                              null
+                            ? "FALSE"
                             : data.rocket.first_stage.cores[0].land_success.toString()}
                     </td>
                 </tr>

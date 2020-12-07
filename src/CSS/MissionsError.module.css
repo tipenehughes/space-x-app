@@ -10,6 +10,7 @@
 }
 
 .errorBox {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,4 +34,12 @@
     line-height: 1.5;
     letter-spacing: 1.2;
     text-transform: uppercase;
+}
+
+.closeIcon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
 }
