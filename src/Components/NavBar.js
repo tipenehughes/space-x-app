@@ -5,8 +5,7 @@ import logo from "../Assets/img/logo.svg";
 import styles from "../CSS/NavBar.module.css";
 
 const NavBar = ({ handleVehicleSelection }) => {
-    return (
-        <header className={styles.header}>
+    return (        
             <nav className={styles.nav}>
                 <div className={styles.logo}>
                     <Link to="/">
@@ -51,7 +50,7 @@ const NavBar = ({ handleVehicleSelection }) => {
                     </Link>
                 </div>
             </nav>
-        </header>
+        
     );
 };
 
