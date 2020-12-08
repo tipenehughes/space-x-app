@@ -102,3 +102,46 @@
 .box span {
     font-size: 3.4rem;
 }
+
+.homeContainer {
+    height: 100%;
+    width: 100%;
+    margin-top: -5vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media only screen and (max-width: 576px) {
+    .home {
+        padding: 5%;
+    }
+    .homeContainer {        
+        margin-top: -5vh;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+    .homeCountdown {        
+        align-items: flex-end;
+        width: 100%;       
+    }
+    .homeTitle {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 90%;
+    }
+    .homeTitle p {
+        font-size: 1.7rem;
+        font-weight: 400;
+        line-height: 1.4;
+    }    
+    .homeTitle h2 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+  }

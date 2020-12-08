@@ -14,8 +14,8 @@
 .videoContainer {
     display: grid;
     place-items: center;
-    width: 50%;
-    height: 60%;
+    width: 60%;
+    height: 65%;
 }
 
 .video {
@@ -39,3 +39,14 @@
     outline: none;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 992px) {
+    .videoContainer {
+        width: 100%;
+    }
+}
+/* @media only screen and (max-width: 576px) {
+    .videoContainer {
+        width: 100%;
+    }
+} */

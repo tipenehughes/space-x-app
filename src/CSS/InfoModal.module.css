@@ -165,3 +165,26 @@
     font-weight: 700;
     color: var(--space-x-blue) !important;
 }
+
+
+
+  @media only screen and (max-width: 1024px) {
+    .infoContainer {
+        height: 60%;
+        width: 50%;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .infoContainer {
+        height: 50%;
+        width: 70%;
+    }
+  }
+
+  @media only screen and (max-width: 576px) {
+    .infoContainer {
+        height: 70%;
+        width: 90%;
+    }
+  }

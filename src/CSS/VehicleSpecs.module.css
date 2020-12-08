@@ -145,3 +145,57 @@
     width: auto;
     margin: auto 3rem auto 5rem;
 }
+
+@media only screen and (max-width: 576px) {
+    .landing {
+        padding: 2rem;        
+    }
+    .vehicleSpecs {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+    }
+    .specs {
+        padding: 0;
+        align-items: flex-start;
+        flex: auto;
+        width: 50%;
+    }
+    .vehicleImage {
+        display: none;       
+        padding-right: 0;
+        width: 30%;
+    }
+    .vehicleImage img {
+        height: 50%;        
+        margin: 0;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .landing {
+        padding: 2rem;        
+    }
+    .vehicleSpecs {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+    }
+    .specs {
+        padding: 0;
+        align-items: flex-start;
+        flex: auto;
+        width: 50%;
+    }
+    .vehicleImage {
+        
+        padding-right: 0;
+        width: 20%;
+    }
+    .vehicleImage img {
+        height: 50%;        
+        margin: 0;
+    }
+}
