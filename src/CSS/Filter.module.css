@@ -5,7 +5,7 @@
 
 .filterOption {
     display: block;
-    font-size: 1rem;
+    font-size: 0.8rem;
     text-align: center;
     border-bottom: 1px solid red;
 }
@@ -18,5 +18,5 @@
 
 .subFilterOption {
     display: block;
-    font-size: 1rem;
+    font-size: 0.8rem;
 }

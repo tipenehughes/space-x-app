@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
+import HomeLogic from "./HomePage/HomeLogic";
 import VehicleSpecsLanding from "./VehicleSpecs/VehicleSpecsLanding";
 import MissionLogic from "./Missions/MissionLogic";
 import VideoModal from "../Components/VideoModal/VideoModal";
@@ -64,6 +65,9 @@ const Landing = () => {
             <NavBar handleVehicleSelection={handleVehicleSelection} />
             <Switch>
                 {VehicleSpecsDisplay()}
+                <Route exact path="/">
+                    <HomeLogic />
+                </Route>
                 <Route path="/missions">
                     <MissionLogic />
                 </Route>

@@ -1,0 +1,104 @@
+.home {
+    position: absolute;
+    top: 10vh;
+    left: 0;
+    height: 90vh;
+    width: 100%;
+    padding: 15%;
+}
+
+.homeContainer {
+    height: 100%;
+    width: 100%;
+    margin-top: -5vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.homeTitle {
+    flex: 1 1 auto;
+}
+
+.homeTitle p {
+    font-size: 1.75rem;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.homeTitle h2 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.homeTitle button {
+    position: relative;
+    padding: 0.9rem 2.5rem;
+    background: transparent;
+    outline: none;
+    border: 0.25rem solid var(--space-x-blue);
+    font-weight: 500;
+    cursor: pointer;    
+    z-index: 1;
+}
+
+.homeTitle button:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--space-x-blue);
+    transform: scaleY(0);
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    transform-origin: top center;
+    z-index: -1;
+}
+
+.homeTitle button:hover:after {
+    transform: scaleY(1);
+    transition-duration: 0.4s;
+    transform-origin: bottom center;
+}
+
+.homeCountdown {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1 1 auto;
+    margin-bottom: 4rem;
+}
+
+.homeUnit {
+    flex: 1 1 33%;
+    text-align: center;
+}
+
+.homeUnit p {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #fff;
+}
+
+.homeCount {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    display: grid;
+    place-items: center;
+    width: 35%;
+    height: 5.6rem;
+    margin: 0.3rem;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.box span {
+    font-size: 3.4rem;
+}
