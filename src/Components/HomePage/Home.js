@@ -1,20 +1,27 @@
 import React from "react";
+import HomeDescription from "./HomeDescription";
 import { motion } from "framer-motion";
 import styles from "../../CSS/Home.module.css";
 
-const Home = ({ containerVariants }) => {
+const Home = ({ containerVariants, descriptionVariants, getOpen, open }) => {
     return (
         <section className={styles.home}>
             <motion.div
                 variants={containerVariants}
                 initial="hidden"
-                animate="visible"
+                animate={open ? "open" : "visible"}
                 className={styles.homeContainer}
             >
                 <div className={styles.homeTitle}>
                     <p>UPCOMING</p>
                     <h2>CRS-21 MISSION</h2>
-                    <button>SEE MORE</button>
+                    <button
+                        onClick={() => {
+                            getOpen();
+                        }}
+                    >
+                        {open ? "CLOSE" : "SEE MORE"}
+                    </button>
                 </div>
                 <div className={styles.homeCountdown}>
                     <div className={styles.homeUnit}>
@@ -52,6 +59,10 @@ const Home = ({ containerVariants }) => {
                     </div>
                 </div>
             </motion.div>
+            <HomeDescription
+                descriptionVariants={descriptionVariants}
+                open={open}
+            />
         </section>
     );
 };
