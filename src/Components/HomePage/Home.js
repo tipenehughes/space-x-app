@@ -1,9 +1,61 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import HomeDescription from "./HomeDescription";
 import { motion } from "framer-motion";
 import styles from "../../CSS/Home.module.css";
 
-const Home = ({ containerVariants, descriptionVariants, getOpen, open }) => {
+const Home = ({
+    containerVariants,
+    descriptionVariants,
+    getOpen,
+    open,
+    data,
+}) => {
+    // Countdown timer function
+    const countDown = () => {
+        const countDownDate = new Date(data.date_local).getTime();
+        // Get today's date and time
+        const now = new Date().getTime();
+        // Find the distance between now and the count down date
+        const distance = countDownDate - now;
+        // Time calculations for days, hours, minutes and seconds
+        let timeLeft = {};
+        if (distance > 0) {
+            timeLeft = {
+                days: Math.floor(distance / (1000 * 60 * 60 * 24)).toString(),
+                hours: Math.floor(
+                    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+                ).toString(),
+                minutes: Math.floor(
+                    (distance % (1000 * 60 * 60)) / (1000 * 60)
+                ).toString(),
+            };
+        } else {
+            timeLeft = {
+                days: 0,
+                hours: 0,
+                minutes: 0,
+            };
+        }
+
+        return timeLeft;
+    };
+    // Countdown Timer State
+    const [time, setTime] = useState(countDown());
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setTime(countDown());            
+        }, 10000);
+        return () => clearTimeout(timer);
+    });
+
+    const timeSplit = (str) => {
+        if (str.length === 1) {
+            return "0";
+        } else {
+            return str[0];
+        }
+    };
     return (
         <section className={styles.home}>
             <motion.div
@@ -14,7 +66,7 @@ const Home = ({ containerVariants, descriptionVariants, getOpen, open }) => {
             >
                 <div className={styles.homeTitle}>
                     <p>UPCOMING</p>
-                    <h2>CRS-21 MISSION</h2>
+                    <h2>{data.name} MISSION</h2>
                     <button
                         onClick={() => {
                             getOpen();
@@ -28,10 +80,14 @@ const Home = ({ containerVariants, descriptionVariants, getOpen, open }) => {
                         <p>DAYS</p>
                         <div className={styles.homeCount}>
                             <div className={styles.box}>
-                                <span>1</span>
+                                <span>{timeSplit(time.days)}</span>
                             </div>
                             <div className={styles.box}>
-                                <span>4</span>
+                                <span>
+                                    {time.days.length === 1
+                                        ? time.days
+                                        : time.days[1]}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -39,10 +95,14 @@ const Home = ({ containerVariants, descriptionVariants, getOpen, open }) => {
                         <p>HOURS</p>
                         <div className={styles.homeCount}>
                             <div className={styles.box}>
-                                <span>0</span>
+                                <span>{timeSplit(time.hours)}</span>
                             </div>
                             <div className={styles.box}>
-                                <span>6</span>
+                                <span>
+                                    {time.hours.length === 1
+                                        ? time.hours
+                                        : time.hours[1]}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -50,10 +110,14 @@ const Home = ({ containerVariants, descriptionVariants, getOpen, open }) => {
                         <p>MINS</p>
                         <div className={styles.homeCount}>
                             <div className={styles.box}>
-                                <span>3</span>
+                                <span>{timeSplit(time.minutes)}</span>
                             </div>
                             <div className={styles.box}>
-                                <span>2</span>
+                                <span>
+                                    {time.minutes.length === 1
+                                        ? time.minutes
+                                        : time.minutes[1]}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -62,6 +126,7 @@ const Home = ({ containerVariants, descriptionVariants, getOpen, open }) => {
             <HomeDescription
                 descriptionVariants={descriptionVariants}
                 open={open}
+                data={data}
             />
         </section>
     );

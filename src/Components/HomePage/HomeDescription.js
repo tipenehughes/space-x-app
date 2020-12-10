@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import styles from "../../CSS/HomeDescription.module.css";
 
-const HomeDescription = ({ descriptionVariants, open }) => {
+const HomeDescription = ({ descriptionVariants, open, data }) => {
     return (
         <motion.div
             class={styles.homeDescriptionContainer}
@@ -11,12 +11,8 @@ const HomeDescription = ({ descriptionVariants, open }) => {
             animate={open ? "visible" : "hidden"}
         >
             <div class={styles.homeDescription}>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut
-                    harum voluptatum consequatur sunt recusandae debitis
-                    temporibus totam laboriosam facilis qui. Lorem ipsum dolor
-                    sit amet consectetur adipisicing elit. Accusamus, ipsa.
-                </p>
+                <h3>{data.name}</h3>
+                <p>{data.details}</p>
             </div>
             <div class={styles.homeTable}>
                 <table class={styles.table}>

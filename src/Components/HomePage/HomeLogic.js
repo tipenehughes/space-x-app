@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "react-query";
-import { ReactQueryDevtools } from "react-query-devtools";
 import Home from "./Home";
 
 const HomeLogic = () => {
     const [open, setOpen] = useState(false);
-    const getOpen = () => {
-        return open === false ? setOpen(true) : setOpen(false);
-    };
+
     const fetchLaunch = async () => {
         const response = await fetch(
             "https://api.spacexdata.com/v4/launches/next"
         );
         return response.json();
     };
-
     const { data, status } = useQuery("launch", fetchLaunch);
 
-    console.log(data);
+    // Event handler for setting state to open or closed for HomeDescription component
+    const getOpen = () => {
+        return open === false ? setOpen(true) : setOpen(false);
+    };
+
+    // Animation containerVariants
 
     let headerVariants = {
         hidden: {
@@ -57,13 +58,15 @@ const HomeLogic = () => {
     };
     return (
         <>
-            <Home
-                containerVariants={headerVariants}
-                descriptionVariants={descriptionVariants}
-                getOpen={getOpen}
-                open={open}
-            />
-            <ReactQueryDevtools initialIsOpen={false} />
+            {status === "success" && (
+                <Home
+                    containerVariants={headerVariants}
+                    descriptionVariants={descriptionVariants}
+                    getOpen={getOpen}
+                    open={open}
+                    data={data}
+                />
+            )}
         </>
     );
 };
