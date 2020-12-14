@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import NavBar from "./NavBar";
+import NavBar from "./Navigation/NavBar";
+import MobileNavBar from "./Navigation/MobileNavBar";
 import HomeLogic from "./HomePage/HomeLogic";
 import VehicleSpecsLanding from "./VehicleSpecs/VehicleSpecsLanding";
 import MissionLogic from "./Missions/MissionLogic";
@@ -63,11 +64,13 @@ const Landing = () => {
     return (
         <div className={styles.landing}>
             <NavBar handleVehicleSelection={handleVehicleSelection} />
+            <MobileNavBar handleVehicleSelection={handleVehicleSelection} />
             <Switch>
-                {VehicleSpecsDisplay()}
                 <Route exact path="/">
                     <HomeLogic />
                 </Route>
+                {VehicleSpecsDisplay()}
+
                 <Route path="/missions">
                     <MissionLogic />
                 </Route>

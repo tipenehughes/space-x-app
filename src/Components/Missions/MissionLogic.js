@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import InfoModal from "./InfoModal/InfoModal";
 import Missions from "./Missions";
 import MissionsError from "./MissionsError";
-import Loading from "../Loading";
+import Loading from "../Utilities/Loading";
 import { Route, useHistory } from "react-router-dom";
 
 const MissionLogic = () => {

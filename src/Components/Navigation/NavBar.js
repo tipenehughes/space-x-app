@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import logo from "../Assets/img/logo.svg";
-import styles from "../CSS/NavBar.module.css";
+import logo from "../../Assets/img/logo.svg";
+import styles from "../../CSS/NavBar.module.css";
 
 const NavBar = ({ handleVehicleSelection }) => {
     return (        

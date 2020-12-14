@@ -1,14 +1,15 @@
-.mobileNavContainer {
-  display: none;
+.navVehiclesContainer {
+    display: none;
     height: 8%;
     width: 100%;
-    position: absolute;
+    border-radius: 20px 20px 0 0;
     background-color: var(--space-x-blue);
-    bottom: 0;
+    position: absolute;
+    bottom: 8%;
     z-index: 20;
 }
 
-.mobileNav {
+.navVehicles {
     width: 100%;
     height: 100%;
     display: flex;
@@ -16,16 +17,9 @@
     align-items: center;
 }
 
-.mobileNav h4 {
-  display: inline-block;
-  width: 100%;
-  height: auto;
-}
 
 @media only screen and (max-width: 768px) {
-  .mobileNavContainer {
-    display: block;
+  .navVehiclesContainer {
+      display: block;
   }
 }
-
-

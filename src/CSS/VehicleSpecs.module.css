@@ -146,42 +146,50 @@
     margin: auto 3rem auto 5rem;
 }
 
-@media only screen and (max-width: 576px) {
-    .landing {
-        padding: 2rem;        
-    }
+@media only screen and (max-width: 1024px) {
     .vehicleSpecs {
-        position: relative;
-        top: auto;
-        left: auto;
-        width: 100%;
+        width: 60%;
+        left: 40%;
     }
     .specs {
         padding: 0;
-        align-items: flex-start;
-        flex: auto;
-        width: 50%;
     }
     .vehicleImage {
-        display: none;       
         padding-right: 0;
-        width: 30%;
     }
+
     .vehicleImage img {
-        height: 50%;        
         margin: 0;
     }
 }
 
 @media only screen and (max-width: 768px) {
     .landing {
-        padding: 2rem;        
+        padding: 10%;
     }
     .vehicleSpecs {
         position: relative;
         top: auto;
-        left: auto;
-        width: 100%;
+        left: 0;
+        width: 90%;
+        margin: auto;
+    }
+    .specs {
+        align-items: flex-start;
+        width: 50%;
+    }
+    .vehicleImage {
+        width: 30%;
+    }
+    .vehicleImage img {
+        margin-left: 10rem;
+        height: 60%;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .landing {
+        padding: 2rem;
     }
     .specs {
         padding: 0;
@@ -190,12 +198,6 @@
         width: 50%;
     }
     .vehicleImage {
-        
-        padding-right: 0;
-        width: 20%;
-    }
-    .vehicleImage img {
-        height: 50%;        
-        margin: 0;
+        display: none;
     }
 }

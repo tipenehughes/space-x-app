@@ -19,7 +19,7 @@
 }
 
 .homeDescription h3 {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     margin-bottom: 1rem;
 }
 
@@ -28,7 +28,6 @@
 }
 
 .table {
-    margin-bottom: 1.87rem;
     width: 100%;
     font-weight: 500;
     border-collapse: collapse;
@@ -52,22 +51,22 @@
     font-size: 1rem;
 }
 
-/* @media only screen and (max-width: 1024px) {
-    
+@media only screen and (max-width: 1024px) {
+    .homeDescriptionContainer {
+        margin-top: -10vh;       
+        /* flex-direction: column; */
+    }
   }
 
   @media only screen and (max-width: 768px) {
-    
-  } */
+    .homeDescriptionContainer {
+        margin-top: -20vh;       
+        
+    }
+  }
 
 @media only screen and (max-width: 576px) {
-    .homeDescriptionContainer {
-        top: -300px;
-        /* padding: 0; */
-        flex-direction: column;
-    }
-
-    .homeDescription {
+        .homeDescription {
         width: 100%;
     }
 
