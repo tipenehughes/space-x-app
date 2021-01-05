@@ -36,7 +36,6 @@ const Home = ({
                 minutes: 0,
             };
         }
-
         return timeLeft;
     };
     // Countdown Timer State

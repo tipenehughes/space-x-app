@@ -4,9 +4,6 @@ import styles from "../../CSS/VideoModal.module.css";
 import data from "../../data.json";
 import { useHistory, useParams } from "react-router-dom";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-
 const VideoModal = () => {
     const history = useHistory();
     const handleGoBack = () => {
@@ -43,12 +40,7 @@ const VideoModal = () => {
                     allowFullScreen
                     title="video"
                 ></iframe>
-            </div>
-            <div className={styles.closeIcon}>
-                <button onClick={handleGoBack}>
-                    <FontAwesomeIcon icon={faTimes} />
-                </button>
-            </div>
+            </div>            
         </motion.section>
     );
 };

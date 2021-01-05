@@ -58,153 +58,164 @@ const Missions = ({
 
     return (
         <section className={styles.missions}>
-            <div className={styles.totalStats}>
-                <div className={styles.totalLaunches}>
-                    <div className={styles.number}>
-                        <h3>
-                            <CountUp end={dataCounter.launches} duration={1} />
-                        </h3>
+            <div className={styles.container}>
+                <div className={styles.totalStats}>
+                    <div className={styles.totalLaunches}>
+                        <div className={styles.number}>
+                            <h3>
+                                <CountUp
+                                    end={dataCounter.launches}
+                                    duration={1}
+                                />
+                            </h3>
+                        </div>
+                        <div className={styles.subHeading}>
+                            <h4>TOTAL LAUNCHES</h4>
+                        </div>
                     </div>
-                    <div className={styles.subHeading}>
-                        <h4>TOTAL LAUNCHES</h4>
+                    <div className={styles.totalLaunches}>
+                        <div className={styles.number}>
+                            <h3>
+                                <CountUp
+                                    end={dataCounter.landings}
+                                    duration={1}
+                                />
+                            </h3>
+                        </div>
+                        <div className={styles.subHeading}>
+                            <h4>TOTAL LANDINGS</h4>
+                        </div>
+                    </div>
+                    <div className={styles.totalLaunches}>
+                        <div className={styles.number}>
+                            <h3>
+                                <CountUp
+                                    end={dataCounter.reflown}
+                                    duration={1}
+                                />
+                            </h3>
+                        </div>
+                        <div className={styles.subHeading}>
+                            <h4>REFLOWN ROCKETS</h4>
+                        </div>
                     </div>
                 </div>
-                <div className={styles.totalLaunches}>
-                    <div className={styles.number}>
-                        <h3>
-                            <CountUp end={dataCounter.landings} duration={1} />
-                        </h3>
-                    </div>
-                    <div className={styles.subHeading}>
-                        <h4>TOTAL LANDINGS</h4>
-                    </div>
-                </div>
-                <div className={styles.totalLaunches}>
-                    <div className={styles.number}>
-                        <h3>
-                            <CountUp end={dataCounter.reflown} duration={1} />
-                        </h3>
-                    </div>
-                    <div className={styles.subHeading}>
-                        <h4>REFLOWN ROCKETS</h4>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.filter}>
-                <div className={styles.filterSelected}>
-                    <button
-                        className={styles.filterBtn}
-                        onClick={(e) => handleSetFilterDisplay(e)}
-                        style={{
-                            backgroundColor:
-                                filterDisplay && "var(--space-x-blue)",
-                        }}
-                    >
-                        FILTER
-                    </button>
-                    {filterOptions.selected.vehicles && (
+                <div className={styles.filter}>
+                    <div className={styles.filterSelected}>
                         <button
-                            className={styles.selected}
-                            onClick={() =>
-                                handleClearFilter(
-                                    filterOptions.selected.vehicles
-                                )
-                            }
+                            className={styles.filterBtn}
+                            onClick={(e) => handleSetFilterDisplay(e)}
+                            style={{
+                                backgroundColor:
+                                    filterDisplay && "var(--space-x-blue)",
+                            }}
                         >
-                            {filterOptions.selected.vehicles}
+                            FILTER
                         </button>
+                        {filterOptions.selected.vehicles && (
+                            <button
+                                className={styles.selected}
+                                onClick={() =>
+                                    handleClearFilter(
+                                        filterOptions.selected.vehicles
+                                    )
+                                }
+                            >
+                                {filterOptions.selected.vehicles}
+                            </button>
+                        )}
+                        {filterOptions.selected["Launch Site"] && (
+                            <button
+                                className={styles.selected}
+                                onClick={() =>
+                                    handleClearFilter(
+                                        filterOptions.selected["Launch Site"]
+                                    )
+                                }
+                            >
+                                {filterOptions.selected["Launch Site"]}
+                            </button>
+                        )}
+                        {filterOptions.selected.outcome && (
+                            <button
+                                className={styles.selected}
+                                onClick={() =>
+                                    handleClearFilter(
+                                        filterOptions.selected.outcome
+                                    )
+                                }
+                            >
+                                {filterOptions.selected.outcome === "true"
+                                    ? "SUCCESS"
+                                    : "FAILURE"}
+                            </button>
+                        )}
+                    </div>
+                    {filterDisplay && (
+                        <motion.div
+                            variants={filterVariants}
+                            initial="hidden"
+                            animate="visible"
+                        >
+                            <Filter
+                                handleSetSubFilter={handleSetSubFilter}
+                                handleFilterChoice={handleFilterChoice}
+                                filterOptions={filterOptions}
+                                handleClearFilter={handleClearFilter}
+                                subFilter={subFilter}
+                            />
+                        </motion.div>
                     )}
-                    {filterOptions.selected["Launch Site"] && (
-                        <button
-                            className={styles.selected}
-                            onClick={() =>
-                                handleClearFilter(
-                                    filterOptions.selected["Launch Site"]
-                                )
-                            }
+                    {subFilter && (
+                        <motion.div
+                            variants={subFilterVariants}
+                            initial="hidden"
+                            animate="visible"
                         >
-                            {filterOptions.selected["Launch Site"]}
-                        </button>
-                    )}
-                    {filterOptions.selected.outcome && (
-                        <button
-                            className={styles.selected}
-                            onClick={() =>
-                                handleClearFilter(
-                                    filterOptions.selected.outcome
-                                )
-                            }
-                        >
-                            {filterOptions.selected.outcome === "true"
-                                ? "SUCCESS"
-                                : "FAILURE"}
-                        </button>
+                            <SubFilter
+                                filterOptions={filterOptions}
+                                handleFilterSelected={handleFilterSelected}
+                            />
+                        </motion.div>
                     )}
                 </div>
-                {filterDisplay && (
-                    <motion.div
-                        variants={filterVariants}
-                        initial="hidden"
-                        animate="visible"
-                    >
-                        <Filter
-                            handleSetSubFilter={handleSetSubFilter}
-                            handleFilterChoice={handleFilterChoice}
-                            filterOptions={filterOptions}
-                            handleClearFilter={handleClearFilter}
-                            subFilter={subFilter}
-                        />
-                    </motion.div>
-                )}
-                {subFilter && (
-                    <motion.div
-                        variants={subFilterVariants}
-                        initial="hidden"
-                        animate="visible"
-                    >
-                        <SubFilter
-                            filterOptions={filterOptions}
-                            handleFilterSelected={handleFilterSelected}
-                        />
-                    </motion.div>
-                )}
-            </div>
 
-            <div className={styles.missionInfo}>
-                <MissionData
-                    launchData={launchData}
-                    outcome={outcome}
-                    unixConverter={unixConverter}
-                    handleSetIndex={handleSetIndex}
-                    key={pageCount}
-                />
-                <div className={styles.missionsNav}>
-                    <button
-                        className={styles.leftBtn}
-                        onClick={handlePageCounterDown}
-                    >
-                        <FontAwesomeIcon icon={faCaretLeft} />
-                    </button>
-                    <div className={styles.midBtns}>
-                        <button>
-                            <FontAwesomeIcon icon={faCircle} />
+                <div className={styles.missionInfo}>
+                    <MissionData
+                        launchData={launchData}
+                        outcome={outcome}
+                        unixConverter={unixConverter}
+                        handleSetIndex={handleSetIndex}
+                        key={pageCount}
+                    />
+                    <div className={styles.missionsNav}>
+                        <button
+                            className={styles.leftBtn}
+                            onClick={handlePageCounterDown}
+                        >
+                            <FontAwesomeIcon icon={faCaretLeft} />
                         </button>
-                        <button>
-                            <FontAwesomeIcon icon={farCircle} />
-                        </button>
-                        <button>
-                            <FontAwesomeIcon icon={farCircle} />
-                        </button>
-                        <button>
-                            <FontAwesomeIcon icon={farCircle} />
+                        <div className={styles.midBtns}>
+                            <button>
+                                <FontAwesomeIcon icon={faCircle} />
+                            </button>
+                            <button>
+                                <FontAwesomeIcon icon={farCircle} />
+                            </button>
+                            <button>
+                                <FontAwesomeIcon icon={farCircle} />
+                            </button>
+                            <button>
+                                <FontAwesomeIcon icon={farCircle} />
+                            </button>
+                        </div>
+                        <button
+                            className={styles.rightBtn}
+                            onClick={handlePageCounterUp}
+                        >
+                            <FontAwesomeIcon icon={faCaretRight} />
                         </button>
                     </div>
-                    <button
-                        className={styles.rightBtn}
-                        onClick={handlePageCounterUp}
-                    >
-                        <FontAwesomeIcon icon={faCaretRight} />
-                    </button>
                 </div>
             </div>
         </section>

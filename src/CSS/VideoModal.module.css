@@ -23,30 +23,8 @@
     height: 100%;
 }
 
-.closeIcon {
-    position: absolute;
-    color: #fff;
-    font-size: 2rem;
-    top: 1rem;
-    right: 1rem;
-}
-
-.closeIcon button {
-    color: #fff;
-    font-size: 2rem;
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-}
-
 @media only screen and (max-width: 992px) {
     .videoContainer {
         width: 100%;
     }
 }
-/* @media only screen and (max-width: 576px) {
-    .videoContainer {
-        width: 100%;
-    }
-} */

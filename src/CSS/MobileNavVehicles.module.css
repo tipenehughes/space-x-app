@@ -4,7 +4,7 @@
     width: 100%;
     border-radius: 20px 20px 0 0;
     background-color: var(--space-x-blue);
-    position: absolute;
+    position: fixed;
     bottom: 8%;
     z-index: 20;
 }
@@ -17,9 +17,8 @@
     align-items: center;
 }
 
-
 @media only screen and (max-width: 768px) {
-  .navVehiclesContainer {
-      display: block;
-  }
+    .navVehiclesContainer {
+        display: block;
+    }
 }

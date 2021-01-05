@@ -12,7 +12,7 @@ const HomeDescription = ({ descriptionVariants, open, data }) => {
         >
             <div class={styles.homeDescription}>
                 <h3>{data.name}</h3>
-                <p>{data.details}</p>
+                <p>{data.details ? data.details : "Check back soon for more information."}</p>
             </div>
             <div class={styles.homeTable}>
                 <table class={styles.table}>

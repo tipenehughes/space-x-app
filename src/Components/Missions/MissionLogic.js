@@ -6,6 +6,38 @@ import Loading from "../Utilities/Loading";
 import { Route, useHistory } from "react-router-dom";
 
 const MissionLogic = () => {
+    // Example POST method implementation:
+    // const postData = async (url = "", data = {}) => {
+    //     const response = await fetch(url, {
+    //         method: "POST",
+    //         headers: {
+    //             Accept: "application/json",
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(data),
+    //     });
+
+    //     return response.json();
+    // };
+
+    // postData("https://api.spacexdata.com/v4/launches/query", {
+    //     query: { },
+    //     options: {
+    //         limit: 8,            
+    //         populate: [
+    //             {
+    //                 path: "cores",
+    //                 populate: [{ path: "core" }],
+    //             },                
+    //             "payloads",
+    //             "rocket",
+    //             "launchpad",
+    //         ],
+    //     },
+    // }).then((data) => {
+    //     console.log(data); // JSON data parsed by `data.json()` call
+    // });
+
     // API Data
     const [launchData, setLaunchData] = useState({});
     // Pagination for Missions

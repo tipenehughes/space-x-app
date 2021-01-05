@@ -74,29 +74,25 @@ const SpecsSecondPage = ({
         <>
             {setVehicleDisplay()}
             <div className={styles.videoBtns}>
-                <button>
-                    <Link to={`/vehicles/${vehicleSelection}/first-flight`}>
-                        FIRST FLIGHT
-                    </Link>
-                </button>
-                <button>
-                    <Link
-                        to={`/vehicles/${vehicleSelection}/${
-                            vehicleSelection === "dragon"
-                                ? "first-crew-launch"
-                                : "first-landing"
-                        }`}
-                    >
+                <Link to={`/vehicles/${vehicleSelection}/first-flight`}>
+                    <button>FIRST FLIGHT</button>
+                </Link>
+                <Link
+                    to={`/vehicles/${vehicleSelection}/${
+                        vehicleSelection === "dragon"
+                            ? "first-crew-launch"
+                            : "first-landing"
+                    }`}
+                >
+                    <button>
                         {vehicleSelection === "dragon"
                             ? "FIRST CREW LAUNCH"
                             : "FIRST LANDING"}
-                    </Link>
-                </button>
-                <button>
-                    <Link to={`/vehicles/${vehicleSelection}/latest-mission`}>
-                        LATEST MISSION
-                    </Link>
-                </button>
+                    </button>
+                </Link>
+                <Link to={`/vehicles/${vehicleSelection}/latest-mission`}>
+                    <button>LATEST MISSION</button>
+                </Link>
             </div>
         </>
     );
