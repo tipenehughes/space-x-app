@@ -95,7 +95,7 @@
 }
 .missionTable {
     width: 95%;
-    height: auto;
+    min-height: calc(var(--tablerow-height) * 9);
     margin: auto;
     font-weight: 500;
     border-collapse: collapse;
@@ -110,14 +110,21 @@
     width: 100%;
     text-transform: uppercase;
     cursor: pointer;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: var(--tablerow-height);
+    border-bottom: 1px solid var(--secondary-color);
 }
 
 .missionTable td {
-    border-bottom: 1px solid var(--secondary-color);
     font-size: 1rem;
-    width: 14.2%;
     text-align: center;
-    height: 3.75rem;
+    flex: 1 1 15%;
+}
+
+.missionTable td:first-of-type {
+    flex: 1 1 10%;
 }
 
 .missionsNav {
@@ -130,7 +137,7 @@
 
 .leftBtn,
 .rightBtn {
-    font-size: 2rem;
+    font-size: 3rem;
     width: 1.25rem;
     background: none;
     border: none;
@@ -165,8 +172,11 @@
     .totalStats {
         width: 70%;
     }
-    .missionTable td {
-        height: 4.75rem;
+    .missionTable {
+        min-height: calc(var(--tablerow-height-tablet) * 9);
+    }
+    .missionTable tr {
+        height: var(--tablerow-height-tablet);
     }
     .leftBtn,
     .rightBtn {
@@ -184,7 +194,14 @@
         width: 90%;
         margin-bottom: 2rem;
     }
-    .missionTable tr td:nth-of-type(6), .missionTable tr td:nth-of-type(4) {
+    .missionTable {
+        min-height: calc(var(--tablerow-height-mobile) * 9);
+    }
+    .missionTable tr {
+        height: var(--tablerow-height-mobile);
+    }
+    .missionTable tr td:nth-of-type(6),
+    .missionTable tr td:nth-of-type(4) {
         display: none;
     }
     .missionsNav {

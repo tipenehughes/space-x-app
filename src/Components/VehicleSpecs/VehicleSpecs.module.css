@@ -39,7 +39,6 @@
 
 .table {
     margin-top: 2rem;
-    margin-bottom: 1.87rem;
     width: 100%;
     font-weight: 500;
     border-collapse: collapse;
@@ -54,7 +53,7 @@
 }
 
 .table tr {
-    height: 3.75rem;
+    height: var(--tablerow-height);
     width: 100%;
 }
 
@@ -70,8 +69,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: calc(7.25rem - 1.87rem);
-    margin-bottom: 2.1rem;
+    height: calc(var(--tablerow-height) * 2);
 }
 
 .videoBtns a {
@@ -117,12 +115,12 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-top: -1rem;
+    /* margin-top: 1rem; */
 }
 
 .leftBtn,
 .rightBtn {
-    font-size: 2rem;
+    font-size: 3rem;
     width: 1.25rem;
     background: none;
     border: none;
@@ -198,11 +196,12 @@
         font-size: 4rem;
     }
     .table tr {
-        height: 4.25rem;
+        height: var(--tablerow-height-tablet);
     }
-    .videoBtns {
-        height: calc(6.5rem);
+    .videoBtns {        
+        height: calc(var(--tablerow-height-tablet) * 2);
     }
+
 }
 
 @media only screen and (max-width: 576px) {

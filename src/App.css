@@ -7,6 +7,9 @@
     font-family: "Roboto", Arial, sans-serif;    
     --secondary-color: #868686;
     --space-x-blue: #005288;
+    --tablerow-height: 3.75rem;
+    --tablerow-height-tablet: 4.75rem;
+    --tablerow-height-mobile: 4rem;
 }
 
 body {

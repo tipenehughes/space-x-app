@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Route, useHistory } from "react-router-dom";
+import usePersistedState from "../../Custom hooks/usePersistedState";
+
 import InfoModal from "./InfoModal/InfoModal";
 import Missions from "./Missions";
 import MissionsError from "./MissionsError/MissionsError";
 import Loading from "../Utilities/Loading";
-import { Route, useHistory } from "react-router-dom";
 
 const MissionLogic = () => {
     // Example POST method implementation:
@@ -39,9 +41,9 @@ const MissionLogic = () => {
     // });
 
     // API Data
-    const [launchData, setLaunchData] = useState({});
+    const [launchData, setLaunchData] = usePersistedState("launchData", {});
     // Pagination for Missions
-    const [pageCount, setPageCount] = useState(0);
+    const [pageCount, setPageCount] = usePersistedState("pageCount", 0);
     // Checks if API data loaded
     const [isLoading, setIsLoading] = useState(true);
     // Page counter state
@@ -55,7 +57,7 @@ const MissionLogic = () => {
     // Pagination for infoModal
     const [page, setPage] = useState(1);
     // Index of table row from mission data
-    const [index, setIndex] = useState(0);
+    const [index, setIndex] = usePersistedState("infoModal", 0);
     // Filter display
     const [filterDisplay, setFilterDisplay] = useState(false);
     // SubFilter display
@@ -159,7 +161,8 @@ const MissionLogic = () => {
         setLaunchData(result);
         setSubFilter(false);
         setFilterDisplay(false);
-        setPageCount(0);
+        // Set page count to zero if pageAmount is less than than page count
+        pageCount > Math.floor(data.length / 8) && setPageCount(0);
         setPageAmount(Math.floor(data.length / 8));
         setIsLoading(false);
     };
@@ -342,25 +345,25 @@ const MissionLogic = () => {
         ) : launchData.length === 0 ? (
             <MissionsError handleClearFilter={handleClearFilter} />
         ) : (
-                    <Missions
-                        launchData={launchData[pageCount]}
-                        handlePageCounterUp={handlePageCounterUp}
-                        handlePageCounterDown={handlePageCounterDown}
-                        handleSetIndex={handleSetIndex}
-                        handleSetFilterDisplay={handleSetFilterDisplay}
-                        handleSetSubFilter={handleSetSubFilter}
-                        handleFilterChoice={handleFilterChoice}
-                        handleFilterSelected={handleFilterSelected}
-                        handleClearFilter={handleClearFilter}
-                        outcome={outcome}
-                        unixConverter={unixConverter}
-                        pageCount={pageCount}
-                        dataCounter={dataCounter}
-                        filterDisplay={filterDisplay}
-                        subFilter={subFilter}
-                        filterOptions={filterOptions}
-                        pageAmount={pageAmount}
-                        handleSetPageCount={handleSetPageCount}
+            <Missions
+                launchData={launchData[pageCount]}
+                handlePageCounterUp={handlePageCounterUp}
+                handlePageCounterDown={handlePageCounterDown}
+                handleSetIndex={handleSetIndex}
+                handleSetFilterDisplay={handleSetFilterDisplay}
+                handleSetSubFilter={handleSetSubFilter}
+                handleFilterChoice={handleFilterChoice}
+                handleFilterSelected={handleFilterSelected}
+                handleClearFilter={handleClearFilter}
+                outcome={outcome}
+                unixConverter={unixConverter}
+                pageCount={pageCount}
+                dataCounter={dataCounter}
+                filterDisplay={filterDisplay}
+                subFilter={subFilter}
+                filterOptions={filterOptions}
+                pageAmount={pageAmount}
+                handleSetPageCount={handleSetPageCount}
             />
         );
     };
