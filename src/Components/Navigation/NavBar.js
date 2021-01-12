@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import logo from "../../Assets/img/logo.svg";
 import styles from "./NavBar.module.css";
 
-const NavBar = () => {
-
+const NavBar = ({ handleSetVehicleSelection }) => {
     return (
         <nav className={styles.nav}>
             <div className={styles.logo}>

@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import VehicleSpecsNav from "../VehicleSpecsNav";
-import SpecsFirstPage from "./SpecsFirstPage";
-import SpecsSecondPage from "./SpecsSecondPage";
+import SpecsFirstPageDragon from "../InfoPages/SpecsFirstPageDragon";
+import SpecsSecondPage from "../InfoPages/SpecsSecondPage";
 import D2 from "../../../Assets/img/D2.png";
 
 import styles from "../VehicleSpecs.module.css";
@@ -32,7 +32,7 @@ const Dragon = ({
                     </div>
                 </div>
                 {page === 1 ? (
-                    <SpecsFirstPage
+                    <SpecsFirstPageDragon
                         selectionData={vehicleData}
                         vehicleSelection={vehicleSelection}
                     />

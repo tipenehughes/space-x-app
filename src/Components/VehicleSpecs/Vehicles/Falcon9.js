@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import VehicleSpecsNav from "../VehicleSpecsNav";
-import SpecsFirstPage from "./SpecsFirstPage";
-import SpecsSecondPage from "./SpecsSecondPage";
+import SpecsFirstPage from "../InfoPages/SpecsFirstPage";
+import SpecsSecondPage from "../InfoPages/SpecsSecondPage";
 import F9 from "../../../Assets/img/F9.png";
 
 import styles from "../VehicleSpecs.module.css";

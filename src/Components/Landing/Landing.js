@@ -5,19 +5,21 @@ import HomeLogic from "../HomePage/HomeLogic";
 import VehicleSpecsLanding from "../VehicleSpecs/VehicleSpecsLanding";
 import MissionLogic from "../Missions/MissionLogic";
 import VideoModal from "../VideoModal/VideoModal";
-import { Route, Switch, useLocation } from "react-router-dom";
+import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 
 import styles from "./Landing.module.css";
 
 const Landing = () => {
-    const location = useLocation();
+    const history = useHistory();
 
     const [vehicleData, setVehicleData] = useState([]);
-    const [vehicleSelection, setVehicleSelection] = useState("");
+    const [vehicleSelection, setVehicleSelection] = useState(
+        "/vehicles/falcon9"
+    );
     const [isLoading, setIsLoading] = useState(true);
 
     const getVehicleSelection = () => {
-        const locationStr = location.pathname.toString();
+        const locationStr = history.location.pathname.toString();
         if (locationStr.includes("/vehicles/")) {
             const vehicle = locationStr.replace("/vehicles/", "");
             setVehicleSelection(vehicle);
@@ -25,18 +27,14 @@ const Landing = () => {
     };
 
     useEffect(() => {
-        getVehicleSelection();
-    }, [location]);
+        history.listen(getVehicleSelection);
+    }, [history]);
 
     console.log(vehicleSelection);
-
-    console.log(location);
 
     useEffect(() => {
         getVehicleData();
     }, []);
-
-    // console.log(vehicleSelection);
 
     const getVehicleData = async () => {
         const falcon9 = fetch(

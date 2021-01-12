@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Falcon9 from "./Vehicles/Falcon9";
 import Falconheavy from "./Vehicles/Falconheavy";
 import Dragon from "./Vehicles/Dragon";
@@ -6,16 +6,17 @@ import Starship from "./Vehicles/Starship";
 import styles from "./VehicleSpecs.module.css";
 import { Route, Switch } from "react-router-dom";
 
-const VehicleSpecsLanding = ({ vehicleSelection, vehicleData }) => {
+const VehicleSpecsLanding = ({
+    vehicleSelection,
+    vehicleData,
+}) => {
     const [page, setPage] = useState(1);
 
     // Event Handler for switching between Vehicle spec panel pages
 
     const handleSpecPage = (e) => {
         page === 2 ? setPage(1) : setPage(2);
-    }; 
-
-
+    };    
 
     // Variants for animation
 
