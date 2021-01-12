@@ -4,14 +4,21 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Roboto", Arial, sans-serif;
-    color: #fff;
+    font-family: "Roboto", Arial, sans-serif;    
     --secondary-color: #868686;
     --space-x-blue: #005288;
 }
 
+body {
+  overflow: hidden;
+  color: #fff;
+}
 a {
     text-decoration: none;
+    color: #fff;
+}
+button {
+  color: #fff;
 }
 
 @media only screen and (max-width: 1300px) {

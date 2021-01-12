@@ -15,14 +15,14 @@ const InfoModalNav = ({ handleInfoModalPage, page }) => {
                 <FontAwesomeIcon icon={faCaretLeft} />
             </button>
             <div className={styles.midBtns}>
-            <button>
+                <button onClick={handleInfoModalPage}>
                     {page === 1 ? (
                         <FontAwesomeIcon icon={faCircle} />
                     ) : (
                         <FontAwesomeIcon icon={farCircle} />
                     )}
                 </button>
-                <button>
+                <button onClick={handleInfoModalPage}>
                     {page === 2 ? (
                         <FontAwesomeIcon icon={faCircle} />
                     ) : (

@@ -14,20 +14,17 @@ const Starship = ({
     vehicleData,
     containerVariants,
 }) => {
-    const selectionData = vehicleData[0][3];
-
     return (
         <motion.section
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            exit="exit"
             className={styles.vehicleSpecs}
         >
             <div className={styles.specs}>
                 <div>
                     <div className={styles.vehicleTitle}>
-                        <h3>{selectionData.name.toUpperCase()}</h3>
+                        <h3>{vehicleData.name.toUpperCase()}</h3>
                     </div>
                     <div className={styles.title}>
                         <h4>OVERVIEW</h4>
@@ -35,23 +32,17 @@ const Starship = ({
                 </div>
                 {page === 1 ? (
                     <SpecsFirstPage
-                        selectionData={selectionData}
+                        selectionData={vehicleData}
                         vehicleSelection={vehicleSelection}
                     />
                 ) : (
                     <SpecsSecondPage
-                        selectionData={selectionData}
+                        selectionData={vehicleData}
                         vehicleSelection={vehicleSelection}
                     />
                 )}
                 <VehicleSpecsNav page={page} handleSpecPage={handleSpecPage} />
             </div>
-            {/* <VehicleInteriorData
-                page={page}
-                handleSpecPage={handleSpecPage}
-                vehicleSelection={vehicleSelection}
-                selectionData={selectionData}
-            /> */}
             <div className={styles.vehicleImage}>
                 <img src={SS} alt={`Starship vehicle`} />
             </div>

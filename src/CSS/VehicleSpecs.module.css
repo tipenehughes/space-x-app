@@ -171,7 +171,7 @@
 
 @media only screen and (max-width: 768px) {
     .landing {
-        padding: 10%;
+        padding: 0 10% 15% 10%;
     }
     .vehicleSpecs {
         position: relative;
@@ -191,6 +191,18 @@
         margin-left: 10rem;
         height: 60%;
     }
+    .leftBtn,
+    .rightBtn {
+        width: 3rem;
+        height: 5rem;
+        font-size: 4rem;
+    }
+    .table tr {
+        height: 4.25rem;
+    }
+    .videoBtns {
+        height: calc(6.5rem);
+    }
 }
 
 @media only screen and (max-width: 576px) {
@@ -202,6 +214,7 @@
         align-items: flex-start;
         flex: auto;
         width: 50%;
+        margin-bottom: 20%;
     }
     .vehicleImage {
         display: none;

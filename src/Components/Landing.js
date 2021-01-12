@@ -5,26 +5,53 @@ import HomeLogic from "./HomePage/HomeLogic";
 import VehicleSpecsLanding from "./VehicleSpecs/VehicleSpecsLanding";
 import MissionLogic from "./Missions/MissionLogic";
 import VideoModal from "../Components/VideoModal/VideoModal";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 
 import styles from "../CSS/Landing.module.css";
 
 const Landing = () => {
-    const [vehicleData, setVehicleData] = useState({});
-    const [vehicleSelection, setVehicleSelection] = useState("falcon9");
+    const location = useLocation();
+
+    const [vehicleData, setVehicleData] = useState([]);
+    const [vehicleSelection, setVehicleSelection] = useState("");
     const [isLoading, setIsLoading] = useState(true);
+
+    const getVehicleSelection = () => {
+        const locationStr = location.pathname.toString();
+        if (locationStr.includes("/vehicles/")) {
+            const vehicle = locationStr.replace("/vehicles/", "");
+            setVehicleSelection(vehicle);
+        }
+    };
+
+    useEffect(() => {
+        getVehicleSelection();
+    }, [location]);
+
+    console.log(vehicleSelection);
+
+    console.log(location);
 
     useEffect(() => {
         getVehicleData();
-        VehicleSpecsDisplay();
-    }, [vehicleSelection]);
+    }, []);
+
+    // console.log(vehicleSelection);
 
     const getVehicleData = async () => {
-        const rockets = fetch("https://api.spacexdata.com/v4/rockets");
-        const dragons = fetch(
+        const falcon9 = fetch(
+            "https://api.spacexdata.com/v4/rockets/5e9d0d95eda69973a809d1ec"
+        );
+        const falconHeavy = fetch(
+            "https://api.spacexdata.com/v4/rockets/5e9d0d95eda69974db09d1ed"
+        );
+        const starship = fetch(
+            "https://api.spacexdata.com/v4/rockets/5e9d0d96eda699382d09d1ee"
+        );
+        const dragon = fetch(
             "https://api.spacexdata.com/v4/dragons/5e9d058859b1ffd8e2ad5f90"
         );
-        await Promise.all([rockets, dragons])
+        await Promise.all([falcon9, falconHeavy, starship, dragon])
             .then((responses) => {
                 return Promise.all(
                     responses.map((response) => {
@@ -38,39 +65,24 @@ const Landing = () => {
             });
     };
 
-    // Event handler to set state for Vehicle spec display
-
-    const handleVehicleSelection = (e) => {
-        e.preventDefault();
-        let originalText = e.target.innerText;
-        const newText = originalText.replace(/ /g, "").toLowerCase();
-
-        setVehicleSelection(newText);
-    };
-
-    // Determines whether to display Vehicle Spec Panel based on API data being loaded and isLoading = false
-
-    const VehicleSpecsDisplay = () => {
-        return isLoading ? null : (
-            <Route path="/vehicles">
-                <VehicleSpecsLanding
-                    vehicleSelection={vehicleSelection}
-                    vehicleData={vehicleData}
-                />
-            </Route>
-        );
-    };
+    const vehicleSpecDisplay = (
+        <Route path="/vehicles">
+            <VehicleSpecsLanding
+                vehicleSelection={vehicleSelection}
+                vehicleData={vehicleData}
+            />
+        </Route>
+    );
 
     return (
         <div className={styles.landing}>
-            <NavBar handleVehicleSelection={handleVehicleSelection} />
-            <MobileNavBar handleVehicleSelection={handleVehicleSelection} />
+            <NavBar />
+            <MobileNavBar />
             <Switch>
                 <Route exact path="/">
                     <HomeLogic />
                 </Route>
-                {VehicleSpecsDisplay()}
-
+                {!isLoading && vehicleSpecDisplay}
                 <Route path="/missions">
                     <MissionLogic />
                 </Route>

@@ -23,12 +23,12 @@ const MissionLogic = () => {
     // postData("https://api.spacexdata.com/v4/launches/query", {
     //     query: { },
     //     options: {
-    //         limit: 8,            
+    //         limit: 8,
     //         populate: [
     //             {
     //                 path: "cores",
     //                 populate: [{ path: "core" }],
-    //             },                
+    //             },
     //             "payloads",
     //             "rocket",
     //             "launchpad",
@@ -80,6 +80,7 @@ const MissionLogic = () => {
         },
         filterClear: true,
     });
+    const [pageAmount, setPageAmount] = useState();
 
     useEffect(() => {
         getLaunchData();
@@ -159,9 +160,10 @@ const MissionLogic = () => {
         setSubFilter(false);
         setFilterDisplay(false);
         setPageCount(0);
+        setPageAmount(Math.floor(data.length / 8));
         setIsLoading(false);
     };
-
+    console.log(pageAmount);
     // Browser back button functionality used to close info modal
     const history = useHistory();
     const handleGoBack = () => {
@@ -313,13 +315,17 @@ const MissionLogic = () => {
     // Sets state to determine which page of launch data to display in Missions component
 
     const handlePageCounterUp = () => {
-        pageCount < Math.floor(dataCounter.launches / 8)
+        pageCount < pageAmount
             ? setPageCount(pageCount + 1)
             : setPageCount(pageCount);
     };
 
     const handlePageCounterDown = () => {
         pageCount > 0 ? setPageCount(pageCount - 1) : setPageCount(0);
+    };
+
+    const handleSetPageCount = (num) => {
+        setPageCount(num);
     };
 
     // Set index based on launchData array map in MissionData component
@@ -336,23 +342,25 @@ const MissionLogic = () => {
         ) : launchData.length === 0 ? (
             <MissionsError handleClearFilter={handleClearFilter} />
         ) : (
-            <Missions
-                launchData={launchData[pageCount]}
-                handlePageCounterUp={handlePageCounterUp}
-                handlePageCounterDown={handlePageCounterDown}
-                handleSetIndex={handleSetIndex}
-                handleSetFilterDisplay={handleSetFilterDisplay}
-                handleSetSubFilter={handleSetSubFilter}
-                handleFilterChoice={handleFilterChoice}
-                handleFilterSelected={handleFilterSelected}
-                handleClearFilter={handleClearFilter}
-                outcome={outcome}
-                unixConverter={unixConverter}
-                pageCount={pageCount}
-                dataCounter={dataCounter}
-                filterDisplay={filterDisplay}
-                subFilter={subFilter}
-                filterOptions={filterOptions}
+                    <Missions
+                        launchData={launchData[pageCount]}
+                        handlePageCounterUp={handlePageCounterUp}
+                        handlePageCounterDown={handlePageCounterDown}
+                        handleSetIndex={handleSetIndex}
+                        handleSetFilterDisplay={handleSetFilterDisplay}
+                        handleSetSubFilter={handleSetSubFilter}
+                        handleFilterChoice={handleFilterChoice}
+                        handleFilterSelected={handleFilterSelected}
+                        handleClearFilter={handleClearFilter}
+                        outcome={outcome}
+                        unixConverter={unixConverter}
+                        pageCount={pageCount}
+                        dataCounter={dataCounter}
+                        filterDisplay={filterDisplay}
+                        subFilter={subFilter}
+                        filterOptions={filterOptions}
+                        pageAmount={pageAmount}
+                        handleSetPageCount={handleSetPageCount}
             />
         );
     };

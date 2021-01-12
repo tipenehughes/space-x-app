@@ -4,8 +4,7 @@ import Falconheavy from "./Vehicles/Falconheavy";
 import Dragon from "./Vehicles/Dragon";
 import Starship from "./Vehicles/Starship";
 import styles from "../../CSS/VehicleSpecs.module.css";
-import { Route, Switch, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
+import { Route, Switch } from "react-router-dom";
 
 const VehicleSpecsLanding = ({ vehicleSelection, vehicleData }) => {
     const [page, setPage] = useState(1);
@@ -14,9 +13,9 @@ const VehicleSpecsLanding = ({ vehicleSelection, vehicleData }) => {
 
     const handleSpecPage = (e) => {
         page === 2 ? setPage(1) : setPage(2);
-    };
+    }; 
 
-    const location = useLocation();
+
 
     // Variants for animation
 
@@ -33,58 +32,48 @@ const VehicleSpecsLanding = ({ vehicleSelection, vehicleData }) => {
                 type: "tween",
             },
         },
-        exit: {
-            x: 200,
-            opacity: 0,
-            transition: {
-                duration: 0.3,
-                type: "tween",
-            },
-        },
     };
 
     return (
         <main className={styles.landing}>
-            <AnimatePresence exitBeforeEnter>
-                <Switch location={location} key={location}>
-                    <Route path="/vehicles/falcon9/">
-                        <Falcon9
-                            page={page}
-                            handleSpecPage={handleSpecPage}
-                            vehicleSelection={vehicleSelection}
-                            vehicleData={vehicleData}
-                            containerVariants={containerVariants}
-                        />
-                    </Route>
-                    <Route path="/vehicles/falconheavy">
-                        <Falconheavy
-                            page={page}
-                            handleSpecPage={handleSpecPage}
-                            vehicleSelection={vehicleSelection}
-                            vehicleData={vehicleData}
-                            containerVariants={containerVariants}
-                        />
-                    </Route>
-                    <Route path="/vehicles/dragon">
-                        <Dragon
-                            page={page}
-                            handleSpecPage={handleSpecPage}
-                            vehicleSelection={vehicleSelection}
-                            vehicleData={vehicleData}
-                            containerVariants={containerVariants}
-                        />
-                    </Route>
-                    <Route path="/vehicles/starship">
-                        <Starship
-                            page={page}
-                            handleSpecPage={handleSpecPage}
-                            vehicleSelection={vehicleSelection}
-                            vehicleData={vehicleData}
-                            containerVariants={containerVariants}
-                        />
-                    </Route>
-                </Switch>
-            </AnimatePresence>
+            <Switch>
+                <Route path="/vehicles/falcon9">
+                    <Falcon9
+                        page={page}
+                        handleSpecPage={handleSpecPage}
+                        vehicleSelection={vehicleSelection}
+                        vehicleData={vehicleData[0]}
+                        containerVariants={containerVariants}
+                    />
+                </Route>
+                <Route path="/vehicles/falconheavy">
+                    <Falconheavy
+                        page={page}
+                        handleSpecPage={handleSpecPage}
+                        vehicleSelection={vehicleSelection}
+                        vehicleData={vehicleData[1]}
+                        containerVariants={containerVariants}
+                    />
+                </Route>
+                <Route path="/vehicles/dragon">
+                    <Dragon
+                        page={page}
+                        handleSpecPage={handleSpecPage}
+                        vehicleSelection={vehicleSelection}
+                        vehicleData={vehicleData[3]}
+                        containerVariants={containerVariants}
+                    />
+                </Route>
+                <Route path="/vehicles/starship">
+                    <Starship
+                        page={page}
+                        handleSpecPage={handleSpecPage}
+                        vehicleSelection={vehicleSelection}
+                        vehicleData={vehicleData[2]}
+                        containerVariants={containerVariants}
+                    />
+                </Route>
+            </Switch>
         </main>
     );
 };

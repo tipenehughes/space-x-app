@@ -5,17 +5,21 @@ import styles from "../../CSS/HomeDescription.module.css";
 const HomeDescription = ({ descriptionVariants, open, data }) => {
     return (
         <motion.div
-            class={styles.homeDescriptionContainer}
+            className={styles.homeDescriptionContainer}
             variants={descriptionVariants}
             initial="hidden"
             animate={open ? "visible" : "hidden"}
         >
-            <div class={styles.homeDescription}>
+            <div className={styles.homeDescription}>
                 <h3>{data.name}</h3>
-                <p>{data.details ? data.details : "Check back soon for more information."}</p>
+                <p>
+                    {data.details
+                        ? data.details
+                        : "Check back soon for more information."}
+                </p>
             </div>
-            <div class={styles.homeTable}>
-                <table class={styles.table}>
+            <div className={styles.homeTable}>
+                <table className={styles.table}>
                     <tbody>
                         <tr>
                             <td>CORE</td>

@@ -4,7 +4,6 @@ import VehicleSpecsNav from "../VehicleSpecsNav";
 import SpecsFirstPage from "./SpecsFirstPage";
 import SpecsSecondPage from "./SpecsSecondPage";
 import F9 from "../../../Assets/img/F9.png";
-import { useLocation } from "react-router-dom";
 
 import styles from "../../../CSS/VehicleSpecs.module.css";
 const Falcon9 = ({
@@ -14,20 +13,17 @@ const Falcon9 = ({
     vehicleData,
     containerVariants,
 }) => {
-    let selectionData = vehicleData[0][1];
-    const location = useLocation();
     return (
         <motion.section
             variants={containerVariants}
             initial="hidden"
-            animate="visible"
-            exit="exit"
+            animate="visible"            
             className={styles.vehicleSpecs}
         >
             <div className={styles.specs}>
                 <div>
                     <div className={styles.vehicleTitle}>
-                        <h3>{selectionData.name.toUpperCase()}</h3>
+                        <h3>{vehicleData.name.toUpperCase()}</h3>
                     </div>
                     <div className={styles.title}>
                         <h4>OVERVIEW</h4>
@@ -35,12 +31,12 @@ const Falcon9 = ({
                 </div>
                 {page === 1 ? (
                     <SpecsFirstPage
-                        selectionData={selectionData}
+                        selectionData={vehicleData}
                         vehicleSelection={vehicleSelection}
                     />
                 ) : (
                     <SpecsSecondPage
-                        selectionData={selectionData}
+                        selectionData={vehicleData}
                         vehicleSelection={vehicleSelection}
                     />
                 )}

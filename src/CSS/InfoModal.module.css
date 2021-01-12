@@ -88,6 +88,7 @@
     outline: none;
     color: var(--secondary-color);
     cursor: pointer;
+    color: #fff;
 }
 
 .midBtns button {
@@ -96,6 +97,7 @@
     outline: none;
     cursor: pointer;
     margin: 0 0.3rem;
+    color: #fff;
 }
 
 /* Media page */
@@ -167,25 +169,32 @@
     color: var(--space-x-blue) !important;
 }
 
-
-
-  @media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1024px) {
     .infoContainer {
         height: 60%;
         width: 50%;
     }
-  }
+}
 
-  @media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px) {
     .infoContainer {
         height: 50%;
         width: 70%;
     }
-  }
+    .table tr {
+        height: 4.25rem;
+    }
+    .leftBtn,
+    .rightBtn {
+        width: 3rem;
+        height: 5rem;
+        font-size: 4rem;
+    }
+}
 
-  @media only screen and (max-width: 576px) {
+@media only screen and (max-width: 576px) {
     .infoContainer {
         height: 70%;
         width: 90%;
     }
-  }
+}

@@ -5,41 +5,41 @@ import Home from "./Home";
 const HomeLogic = () => {
     const [open, setOpen] = useState(false);
 
-    const postData = async (url = "", data = {}) => {
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        });
+    // const postData = async (url = "", data = {}) => {
+    //     const response = await fetch(url, {
+    //         method: "POST",
+    //         headers: {
+    //             Accept: "application/json",
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(data),
+    //     });
 
-        return response.json();
-    };
+    //     return response.json();
+    // };
 
-    postData("https://api.spacexdata.com/v4/launches/query", {
-        query: { },
-        options: {
-            limit: 8,            
-            populate: [
-                {
-                    path: "cores",
-                    populate: [{ path: "core" }],
-                },                
-                "payloads",
-                "rocket",
-                "launchpad",
-            ],
-        },
-    }).then((data) => {
-        // console.log(data); // JSON data parsed by `data.json()` call
-    });
+    // postData("https://api.spacexdata.com/v4/launches/query", {
+    //     query: { },
+    //     options: {
+    //         limit: 8,
+    //         populate: [
+    //             {
+    //                 path: "cores",
+    //                 populate: [{ path: "core" }],
+    //             },
+    //             "payloads",
+    //             "rocket",
+    //             "launchpad",
+    //         ],
+    //     },
+    // }).then((data) => {
+    //     // console.log(data); // JSON data parsed by `data.json()` call
+    // });
 
     const fetchLaunch = async () => {
         const response = await fetch(
             "https://api.spacexdata.com/v4/launches/next"
-        );        
+        );
         return response.json();
     };
     const { data, status } = useQuery("launch", fetchLaunch);

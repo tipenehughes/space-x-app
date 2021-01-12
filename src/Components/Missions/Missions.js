@@ -30,6 +30,8 @@ const Missions = ({
     filterDisplay,
     subFilter,
     filterOptions,
+    pageAmount,
+    handleSetPageCount,
 }) => {
     const filterVariants = {
         hidden: {
@@ -55,6 +57,18 @@ const Missions = ({
             },
         },
     };
+
+    const buttons = [...Array(pageAmount + 1)].map((data, i) => {
+        return (
+            <button key={i} onClick={() => handleSetPageCount(i)}>
+                {i === pageCount ? (
+                    <FontAwesomeIcon icon={faCircle} />
+                ) : (
+                    <FontAwesomeIcon icon={farCircle} />
+                )}
+            </button>
+        );
+    });
 
     return (
         <section className={styles.missions}>
@@ -190,27 +204,20 @@ const Missions = ({
                     />
                     <div className={styles.missionsNav}>
                         <button
-                            className={styles.leftBtn}
+                            className={`${styles.leftBtn} ${
+                                pageCount === 0 ? styles.disabled : null
+                            }`}
                             onClick={handlePageCounterDown}
                         >
                             <FontAwesomeIcon icon={faCaretLeft} />
                         </button>
-                        <div className={styles.midBtns}>
-                            <button>
-                                <FontAwesomeIcon icon={faCircle} />
-                            </button>
-                            <button>
-                                <FontAwesomeIcon icon={farCircle} />
-                            </button>
-                            <button>
-                                <FontAwesomeIcon icon={farCircle} />
-                            </button>
-                            <button>
-                                <FontAwesomeIcon icon={farCircle} />
-                            </button>
-                        </div>
+                        <div className={styles.midBtns}>{buttons}</div>
                         <button
-                            className={styles.rightBtn}
+                            className={`${styles.rightBtn} ${
+                                pageCount === pageAmount
+                                    ? styles.disabled
+                                    : null
+                            }`}
                             onClick={handlePageCounterUp}
                         >
                             <FontAwesomeIcon icon={faCaretRight} />
