@@ -3,7 +3,7 @@ import Falcon9 from "./Vehicles/Falcon9";
 import Falconheavy from "./Vehicles/Falconheavy";
 import Dragon from "./Vehicles/Dragon";
 import Starship from "./Vehicles/Starship";
-import styles from "../../CSS/VehicleSpecs.module.css";
+import styles from "./VehicleSpecs.module.css";
 import { Route, Switch } from "react-router-dom";
 
 const VehicleSpecsLanding = ({ vehicleSelection, vehicleData }) => {

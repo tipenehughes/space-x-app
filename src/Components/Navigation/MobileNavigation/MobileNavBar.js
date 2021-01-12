@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import MobileNavVehicles from "./MobileNavVehicles";
-import styles from "../../CSS/MobileNavBar.module.css";
+import styles from "./MobileNavBar.module.css";
 
 const MobileNavBar = ({ handleVehicleSelection }) => {
     const [menu, setMenu] = useState(false);

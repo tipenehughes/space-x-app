@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../CSS/Missions.module.css";
+import styles from "./Missions.module.css";
 import { useHistory } from "react-router-dom";
 
 const MissionData = ({

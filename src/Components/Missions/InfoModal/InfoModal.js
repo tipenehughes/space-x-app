@@ -2,7 +2,7 @@ import React from "react";
 
 import InfoModalInterior from "./InfoModalInterior";
 import { motion } from "framer-motion";
-import styles from "../../../CSS/InfoModal.module.css";
+import styles from "./InfoModal.module.css";
 
 const InfoModal = ({
     data,

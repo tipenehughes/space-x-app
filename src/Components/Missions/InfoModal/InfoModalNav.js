@@ -6,7 +6,7 @@ import {
     faCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCircle as farCircle } from "@fortawesome/free-regular-svg-icons";
-import styles from "../../../CSS/InfoModal.module.css";
+import styles from "./InfoModal.module.css";
 
 const InfoModalNav = ({ handleInfoModalPage, page }) => {
     return (

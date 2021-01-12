@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import styles from "../../CSS/MissionsError.module.css";
+import styles from "./MissionsError.module.css";
 
 const MissionsError = ({ handleClearFilter }) => {
     return (

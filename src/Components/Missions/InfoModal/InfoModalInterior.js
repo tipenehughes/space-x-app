@@ -2,7 +2,7 @@ import React from "react";
 import TableData from "./TableData";
 import MediaData from "./MediaData";
 import InfoModalNav from "./InfoModalNav";
-import styles from "../../../CSS/InfoModal.module.css";
+import styles from "./InfoModal.module.css";
 
 const InfoModalInterior = ({
     data,

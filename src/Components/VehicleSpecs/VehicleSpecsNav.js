@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "../../CSS/VehicleSpecs.module.css";
+import styles from "./VehicleSpecs.module.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

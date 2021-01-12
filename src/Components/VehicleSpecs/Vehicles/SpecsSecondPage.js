@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "../../../CSS/VehicleSpecs.module.css";
+import styles from "../VehicleSpecs.module.css";
 
 const SpecsSecondPage = ({
     selectionData: {

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import NavBar from "./Navigation/NavBar";
-import MobileNavBar from "./Navigation/MobileNavBar";
-import HomeLogic from "./HomePage/HomeLogic";
-import VehicleSpecsLanding from "./VehicleSpecs/VehicleSpecsLanding";
-import MissionLogic from "./Missions/MissionLogic";
-import VideoModal from "../Components/VideoModal/VideoModal";
+import NavBar from "../Navigation/NavBar";
+import MobileNavBar from "../Navigation/MobileNavigation/MobileNavBar";
+import HomeLogic from "../HomePage/HomeLogic";
+import VehicleSpecsLanding from "../VehicleSpecs/VehicleSpecsLanding";
+import MissionLogic from "../Missions/MissionLogic";
+import VideoModal from "../VideoModal/VideoModal";
 import { Route, Switch, useLocation } from "react-router-dom";
 
-import styles from "../CSS/Landing.module.css";
+import styles from "./Landing.module.css";
 
 const Landing = () => {
     const location = useLocation();

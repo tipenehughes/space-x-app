@@ -2,7 +2,7 @@ import React from "react";
 import MissionData from "./MissionData";
 import Filter from "./Filter/Filter";
 import SubFilter from "./Filter/SubFilter";
-import styles from "../../CSS/Missions.module.css";
+import styles from "./Missions.module.css";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

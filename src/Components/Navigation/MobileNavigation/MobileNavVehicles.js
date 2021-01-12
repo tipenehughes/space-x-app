@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 
-import styles from "../../CSS/MobileNavVehicles.module.css";
+import styles from "./MobileNavVehicles.module.css";
 
 const MobileNavVehicles = ({ navVariants }) => {
     const location = useLocation();

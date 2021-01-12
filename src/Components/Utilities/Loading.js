@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../CSS/Loading.module.css";
+import styles from "./Loading.module.css";
 import LoadingImg from "../../Assets/img/loading.svg";
 
 const Loading = () => {

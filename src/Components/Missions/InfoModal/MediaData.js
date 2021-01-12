@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../../CSS/InfoModal.module.css";
+import styles from "./InfoModal.module.css";
 
 const MediaData = ({ data }) => {
     return (

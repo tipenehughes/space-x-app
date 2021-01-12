@@ -5,7 +5,7 @@ import SpecsFirstPage from "./SpecsFirstPage";
 import SpecsSecondPage from "./SpecsSecondPage";
 import FH from "../../../Assets/img/FH.png";
 
-import styles from "../../../CSS/VehicleSpecs.module.css";
+import styles from "../VehicleSpecs.module.css";
 
 const Falconheavy = ({
     page,

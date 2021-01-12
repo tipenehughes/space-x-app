@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../../CSS/Filter.module.css";
+import styles from "./Filter.module.css";
 
 const SubFilter = ({ filterOptions, handleFilterSelected }) => {
     const choice = filterOptions.choice.toLowerCase();

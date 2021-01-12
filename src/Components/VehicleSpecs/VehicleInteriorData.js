@@ -3,7 +3,7 @@ import VehicleSpecsNav from "./VehicleSpecsNav";
 import SpecsFirstPage from "./SpecsFirstPage";
 import SpecsSecondPage from "./SpecsSecondPage";
 
-import styles from "../../CSS/VehicleSpecs.module.css";
+import styles from "./VehicleSpecs.module.css";
 
 const VehicleInteriorData = (
     page,

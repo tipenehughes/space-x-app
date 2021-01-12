@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import HomeDescription from "./HomeDescription";
 import { motion } from "framer-motion";
-import styles from "../../CSS/Home.module.css";
+import styles from "./Home.module.css";
 
 const Home = ({
     containerVariants,

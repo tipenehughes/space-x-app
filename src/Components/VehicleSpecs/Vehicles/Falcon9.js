@@ -5,7 +5,7 @@ import SpecsFirstPage from "./SpecsFirstPage";
 import SpecsSecondPage from "./SpecsSecondPage";
 import F9 from "../../../Assets/img/F9.png";
 
-import styles from "../../../CSS/VehicleSpecs.module.css";
+import styles from "../VehicleSpecs.module.css";
 const Falcon9 = ({
     page,
     handleSpecPage,

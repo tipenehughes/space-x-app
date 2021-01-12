@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import styles from "../../CSS/VideoModal.module.css";
+import styles from "./VideoModal.module.css";
 import data from "../../data.json";
 import { useHistory, useParams } from "react-router-dom";
 
@@ -40,7 +40,7 @@ const VideoModal = () => {
                     allowFullScreen
                     title="video"
                 ></iframe>
-            </div>            
+            </div>
         </motion.section>
     );
 };

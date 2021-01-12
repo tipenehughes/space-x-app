@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import styles from "../../CSS/HomeDescription.module.css";
+import styles from "./HomeDescription.module.css";
 
 const HomeDescription = ({ descriptionVariants, open, data }) => {
     return (
