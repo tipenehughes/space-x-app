@@ -1,10 +1,6 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-<!--   <a href="https://github.com/tipenehughes/space-x-app">
-    <img src="src/Assets/img/avatar.svg" alt="Logo" width="100" height="100">
-  </a> -->
-
   <h1 align="center">Welcome to my SpaceX App :rocket:</h3>
 
   <p align="center">
@@ -47,7 +43,7 @@
 
 <br/>
 
-[![Project image][project-image]](src/Assets/Thumbnails/spacex-700w.png)
+[![Project image][project-image]](src/Assets/Thumbnails/spacex.png)
 
 <br/>
 
