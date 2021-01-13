@@ -1,70 +1,139 @@
-# Getting Started with Create React App
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+<!--   <a href="https://github.com/tipenehughes/space-x-app">
+    <img src="src/Assets/img/avatar.svg" alt="Logo" width="100" height="100">
+  </a> -->
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  <h1 align="center">Welcome to my SpaceX App :rocket:</h3>
 
-## Available Scripts
+  <p align="center">
+    SpaceX app displaying information ranging from individual rocket information, to a full list of all SpaceX launches, to upcoming launches!   
+    <br />
+    <br />
+    :round_pushpin:<a href="https://spacex-project.netlify.app/">View Demo</a>
+  </p>
+</p>
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#description-ledger">Description</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started-wrench">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage-mag">Usage</a></li>    
+    <li><a href="#contact-mailbox_with_mail">Contact</a></li>
+    <li><a href="#acknowledgements-clap">Acknowledgements</a></li>
+  </ol>
+</details>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<!-- ABOUT THE PROJECT -->
+## Description :ledger:
 
-### `npm run build`
+<br/>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[![Project image][project-image]](src/Assets/Thumbnails/spacex-700w.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<br/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This app was built with the intention of making a beautiful and easy to use interface for finding information about SpaceX, specifically their launch vehicles, crew vehicles and launches. With this app, you can view information and media on the next upcoming SpaceX launch, the first ever SpaceX launch, and everything in between presented in a clean and engaging package.
 
-### `npm run eject`
+A list of resources used are mentioned in the acknowledgements.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Keep reading to see more about this project!
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Built With 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* [React](https://reactjs.org/)
+* [CSS Modules](https://github.com/css-modules/css-modules)
+* [React Router](https://reactrouter.com/)
+* [React Query](https://react-query.tanstack.com/)
+* [Framer Motion](https://www.framer.com/motion/)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+<!-- GETTING STARTED -->
+## Getting Started :wrench:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Follow these steps to get a local copy up and running.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Prerequisites
 
-### Code Splitting
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Installation
 
-### Analyzing the Bundle Size
+1. Clone the repo
+   ```sh
+   git clone https://github.com/tipenehughes/space-x-app
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Run the app
+   ```sh
+   npm start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<!-- USAGE EXAMPLES -->
+## Usage :mag:
 
-### Making a Progressive Web App
+:round_pushpin:<a href="https://spacex-project.netlify.app/">View Live Demo Here!</a>
+<br/>
+<br/>
+[![Landing gif][landing-gif]](src/Assets/Thumbnails/landing.gif)
+<br />
+:point_up: Landing page displaying countdown to next upcoming launch and other important information items 
+<br/>
+<br />
+[![Vehicles gif][vehicles-gif]](src/Assets/Thumbnails/vehicles.gif)
+<br />
+:point_up: Pages displaying information on different rocket and capsule types, with milestone videos displayed 
+<br />
+<br />
+[![Missions gif][missions-gif]](src/Assets/Thumbnails/missions.gif)
+<br />
+:point_up: Missions list presenting important information about each launch ever conducted by SpaceX.
+The mission list is able to be filtered through a variety of criteria. The user can click on any mission to display a pop up with further information, video, and links to further information.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<!-- CONTACT -->
+## Contact :mailbox_with_mail:
 
-### Advanced Configuration
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+:e-mail: tipenehughes@gmail.com
 
-### Deployment
+Project Link: [https://github.com/tipenehughes/space-x-app](https://github.com/tipenehughes/space-x-app)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<!-- ACKNOWLEDGEMENTS -->
+## Acknowledgements :clap:
+* [SpaceX API](https://github.com/r-spacex/SpaceX-API)
+* [Font Awesome](https://fontawesome.com/)
+* [React-countup](https://github.com/glennreyes/react-countup)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<!-- MARKDOWN LINKS & IMAGES -->
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=2867B2
+[linkedin-url]: https://www.linkedin.com/in/tipene-hughes/
+[project-image]: src/Assets/Thumbnails/spacex.png
+[landing-gif]: src/Assets/Thumbnails/landing.gif
+[vehicles-gif]: src/Assets/Thumbnails/vehicles.gif
+[missions-gif]: src/Assets/Thumbnails/missions.gif
