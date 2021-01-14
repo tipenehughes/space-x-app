@@ -17,7 +17,7 @@ const Falcon9 = ({
         <motion.section
             variants={containerVariants}
             initial="hidden"
-            animate="visible"            
+            animate="visible"
             className={styles.vehicleSpecs}
         >
             <div className={styles.specs}>

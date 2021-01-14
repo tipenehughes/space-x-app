@@ -207,4 +207,7 @@
     .missionsNav {
         width: 100%;
     }
+    .filter button {
+        background-color: var(--space-x-blue);
+    }
 }

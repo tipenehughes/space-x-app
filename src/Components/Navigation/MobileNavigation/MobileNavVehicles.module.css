@@ -6,7 +6,7 @@
     background-color: var(--space-x-blue);
     position: fixed;
     bottom: 8%;
-    z-index: 20;
+    z-index: 2;
 }
 
 .navVehicles {

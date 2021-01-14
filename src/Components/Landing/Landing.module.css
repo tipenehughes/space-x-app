@@ -2,7 +2,14 @@
     height: 100vh;
     width: 100vw;
     margin: auto;
-    background: url("../../Assets/img/background.jpg") no-repeat center center /
+    background: url("../../Assets/img/bgFull.jpg") no-repeat center center /
         cover;
     overflow: hidden;
+}
+
+@media only screen and (max-width: 768px) {
+    .landing {
+        background: url("../../Assets/img/bgTablet.jpg") no-repeat center center /
+            cover;
+    }
 }
