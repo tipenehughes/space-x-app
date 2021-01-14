@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../VehicleSpecs.module.css";
 
-const SpecsSecondPage = ({
-    selectionData: { first_flight, engines },
+const SpecsSecondPageDragon = ({
+    selectionData: { first_flight, thrusters },
     vehicleSelection,
 }) => {
     return (
@@ -21,8 +21,11 @@ const SpecsSecondPage = ({
                     <tr>
                         <td>ENGINES</td>
                         <td>
-                            {engines.number}{" "}
-                            <span>/ {engines.type.toUpperCase()}</span>
+                            {`${thrusters[0].amount} + ${thrusters[1].amount}`}{" "}
+                            <span>
+                                /{" "}
+                                {`${thrusters[0].type.toUpperCase()} + ${thrusters[1].type.toUpperCase()}`}
+                            </span>
                         </td>
                     </tr>
                     <tr>
@@ -37,18 +40,8 @@ const SpecsSecondPage = ({
                 <Link to={`/vehicles/${vehicleSelection}/first-flight`}>
                     <button>FIRST FLIGHT</button>
                 </Link>
-                <Link
-                    to={`/vehicles/${vehicleSelection}/${
-                        vehicleSelection === "dragon"
-                            ? "first-crew-launch"
-                            : "first-landing"
-                    }`}
-                >
-                    <button>
-                        {vehicleSelection === "dragon"
-                            ? "FIRST CREW LAUNCH"
-                            : "FIRST LANDING"}
-                    </button>
+                <Link to={`/vehicles/${vehicleSelection}/first-crew-launch`}>
+                    <button>FIRST CREW LAUNCH</button>
                 </Link>
                 <Link to={`/vehicles/${vehicleSelection}/latest-mission`}>
                     <button>LATEST MISSION</button>
@@ -58,4 +51,4 @@ const SpecsSecondPage = ({
     );
 };
 
-export default SpecsSecondPage;
+export default SpecsSecondPageDragon;
