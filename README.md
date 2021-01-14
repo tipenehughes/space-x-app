@@ -117,7 +117,7 @@ The mission list is able to be filtered through a variety of criteria. The user 
 
 :e-mail: tipenehughes@gmail.com
 
-Project Link: [https://github.com/tipenehughes/space-x-app](https://github.com/tipenehughes/space-x-app)
+Project Link: [https://spacex-project.netlify.app/](https://spacex-project.netlify.app/)
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements :clap:
