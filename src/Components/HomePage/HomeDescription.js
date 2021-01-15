@@ -3,6 +3,19 @@ import { motion } from "framer-motion";
 import styles from "./HomeDescription.module.css";
 
 const HomeDescription = ({ descriptionVariants, open, data }) => {
+    // Converts Unix code returned from API into human readable format
+
+    const unixConverter = (unix) => {
+        const milliseconds = unix * 1000;
+        const dateObject = new Date(milliseconds);
+        const humanDateFormat = dateObject.toLocaleString("en-US", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+        });
+        return humanDateFormat.toUpperCase();
+    };
+
     return (
         <motion.div
             className={styles.homeDescriptionContainer}
@@ -22,20 +35,20 @@ const HomeDescription = ({ descriptionVariants, open, data }) => {
                 <table className={styles.table}>
                     <tbody>
                         <tr>
-                            <td>CORE</td>
-                            <td>BLOCK 4</td>
+                            <td>SCHEDULED LAUNCH</td>
+                            <td>{unixConverter(data.date_unix)}</td>
                         </tr>
                         <tr>
-                            <td>CORE SERIAL</td>
-                            <td>B1028</td>
+                            <td>LAUNCH SITE</td>
+                            <td>KSC LC 39A</td>
+                        </tr>
+                        <tr>
+                            <td>FLIGHT NUMBER</td>
+                            <td>114</td>
                         </tr>
                         <tr>
                             <td>REUSED</td>
                             <td>TRUE</td>
-                        </tr>
-                        <tr>
-                            <td>STATIC FIRE</td>
-                            <td>1 MAR 2018</td>
                         </tr>
                         <tr>
                             <td>PAYLOAD ORBIT</td>
@@ -43,7 +56,7 @@ const HomeDescription = ({ descriptionVariants, open, data }) => {
                         </tr>
                         <tr>
                             <td>LANDING SITE</td>
-                            <td>LZ-1</td>
+                            <td>OCISLY</td>
                         </tr>
                     </tbody>
                 </table>
