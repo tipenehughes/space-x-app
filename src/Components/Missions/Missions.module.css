@@ -63,15 +63,6 @@
     .container {
         margin-bottom: 8%;
     }
-    .totalStats {
-        width: 70%;
-    }
-    .missionTable {
-        min-height: calc(var(--tablerow-height-tablet) * 9);
-    }
-    .missionTable tr {
-        height: var(--tablerow-height-tablet);
-    }
     .leftBtn,
     .rightBtn {
         width: 3.5rem;
@@ -84,24 +75,7 @@
     .container {
         margin-bottom: 15%;
     }
-    .totalStats {
-        width: 90%;
-        margin-bottom: 2rem;
-    }
-    .missionTable {
-        min-height: calc(var(--tablerow-height-mobile) * 9);
-    }
-    .missionTable tr {
-        height: var(--tablerow-height-mobile);
-    }
-    .missionTable tr td:nth-of-type(6),
-    .missionTable tr td:nth-of-type(4) {
-        display: none;
-    }
     .missionsNav {
         width: 100%;
-    }
-    .filter button {
-        background-color: var(--space-x-blue);
-    }
+    }    
 }

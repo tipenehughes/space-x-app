@@ -49,3 +49,9 @@
     transition-duration: 0.4s;
     transform-origin: bottom center;
 }
+
+@media only screen and (max-width: 576px) {
+    .filter button {
+        background-color: var(--space-x-blue);
+    }
+}

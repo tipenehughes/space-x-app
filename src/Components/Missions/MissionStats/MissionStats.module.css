@@ -20,3 +20,15 @@
     font-size: 0.9rem;
     font-weight: 400;
 }
+
+@media only screen and (max-width: 768px) {
+    .totalStats {
+        width: 70%;
+    }
+}
+@media only screen and (max-width: 576px) {
+    .totalStats {
+        width: 90%;
+        margin-bottom: 2rem;
+    }
+}
