@@ -1,0 +1,22 @@
+.filterContainer {
+    position: absolute;
+    background-color: var(--space-x-blue);
+}
+
+.filterOption {
+    display: block;
+    font-size: 0.9rem;
+    text-align: center;
+    border-bottom: 1px solid red;
+}
+
+.subFilterContainer {
+    position: absolute;
+    left: 8.125rem;
+    background-color: var(--space-x-blue);
+}
+
+.subFilterOption {
+    display: block;
+    font-size: 0.9rem;
+}

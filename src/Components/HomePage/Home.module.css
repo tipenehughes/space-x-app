@@ -4,7 +4,7 @@
     left: 0;
     height: 90vh;
     width: 100%;
-    padding: 15%;
+    padding: 15% 10%;
 }
 
 .homeContainer {
@@ -73,7 +73,7 @@
 }
 
 .homeUnit {
-    flex: 1 1 33%;
+    flex: 1 1 25%;
     text-align: center;
 }
 
@@ -93,9 +93,9 @@
 .box {
     display: grid;
     place-items: center;
-    width: 35%;
+    width: 40%;
     height: 5.6rem;
-    margin: 0.3rem;
+    margin: 0.2rem;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.1);
 }
@@ -162,6 +162,4 @@
         font-weight: 700;
         margin-bottom: 1rem;
     }
-  }
-
-
+}

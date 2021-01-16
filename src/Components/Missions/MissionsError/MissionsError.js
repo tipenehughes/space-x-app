@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MissionContext } from "../../../Context/MissionsContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import styles from "./MissionsError.module.css";
 
-const MissionsError = ({ handleClearFilter }) => {
+const MissionsError = () => {
+    const { handleClearFilter } = useContext(MissionContext);
     return (
         <div className={styles.container}>
             <div className={styles.errorBox}>

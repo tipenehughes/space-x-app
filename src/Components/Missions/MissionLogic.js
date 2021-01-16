@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Route, useHistory } from "react-router-dom";
 import { MissionContext } from "../../Context/MissionsContext";
-import usePersistedState from "../../Custom hooks/usePersistedState";
 
 import InfoModal from "./InfoModal/InfoModal";
 import Missions from "./Missions";
@@ -17,8 +16,12 @@ const MissionLogic = () => {
         setPage,
         dataCounter,
         setDataCounter,
+        setFilterDisplay,
+        setSubFilter,
+        filterOptions,
+        isLoading,
+        setIsLoading,
     } = useContext(MissionContext);
-
     // Example POST method implementation:
     // const postData = async (url = "", data = {}) => {
     //     const response = await fetch(url, {
@@ -51,53 +54,11 @@ const MissionLogic = () => {
     //     console.log(data); // JSON data parsed by `data.json()` call
     // });
 
-    // API Data
-    // const [launchData, setLaunchData] = usePersistedState("launchData", {});
-    // Pagination for Missions
-    // const [pageCount, setPageCount] = usePersistedState("pageCount", 0);
-
-    // Checks if API data loaded
-    const [isLoading, setIsLoading] = useState(true);
-    // Page counter state
-    // const [dataCounter, setDataCounter] = useState({
-    //     launches: "",
-    //     landings: "",
-    //     reflown: "",
-    // });
-    // Checks if there is an error (no results) based on filter selection
-    const [error, setError] = useState(false);
-
-    // Index of table row from mission data
-    const [index, setIndex] = usePersistedState("infoModal", 0);
-    // Filter display
-    const [filterDisplay, setFilterDisplay] = useState(false);
-    // SubFilter display
-    const [subFilter, setSubFilter] = useState(false);
-    // Filter options
-    const [filterOptions, setFilterOptions] = useState({
-        choice: "",
-        options: {
-            vehicle: ["FALCON 1", "FALCON 9", "FALCON HEAVY"],
-            "launch site": [
-                "KWAJALEIN ATOLL",
-                "CCAFS SLC 40",
-                "VAFB SLC 4E",
-                "KSC LC 39A",
-            ],
-            outcome: ["SUCCESS", "FAILURE"],
-        },
-        selected: {
-            vehicles: "",
-            "Launch Site": "",
-            outcome: "",
-        },
-        filterClear: true,
-    });
+    // Calcualtes number of results pages based API result length / 8
     const [pageAmount, setPageAmount] = useState();
 
     useEffect(() => {
         getLaunchData();
-        launchData.length === 0 && setError(true);
     }, [filterOptions.selected]);
 
     const getLaunchData = async () => {
@@ -127,48 +88,26 @@ const MissionLogic = () => {
             return resultArray;
         }, []);
 
-        // Function to determine landing number
+        // Function to determine stats for display
         let landingCount = 0;
         let reflownCount = 0;
         const landings = data.forEach((data) => {
-            if (data.rocket.first_stage.cores[0].land_success) {
-                landingCount++;
-            }
-            if (data.rocket.first_stage.cores[0].reused) {
-                reflownCount++;
-            }
-            if (
-                data.rocket.rocket_name === "Falcon Heavy" &&
-                data.rocket.first_stage.cores[1].reused
-            ) {
-                reflownCount++;
-            }
-            if (
-                data.rocket.rocket_name === "Falcon Heavy" &&
-                data.rocket.first_stage.cores[1].land_success
-            ) {
-                landingCount++;
-            }
-            if (
-                data.rocket.rocket_name === "Falcon Heavy" &&
-                data.rocket.first_stage.cores[2].reused
-            ) {
-                reflownCount++;
-            }
-            if (
-                data.rocket.rocket_name === "Falcon Heavy" &&
-                data.rocket.first_stage.cores[2].land_success
-            ) {
-                landingCount++;
+            data.rocket.first_stage.cores[0].land_success && landingCount++;
+            data.rocket.first_stage.cores[0].reused && reflownCount++;
+            if (data.rocket.rocket_name === "Falcon Heavy") {
+                data.rocket.first_stage.cores[1].reused && reflownCount++;
+                data.rocket.first_stage.cores[1].land_success && landingCount++;
+                data.rocket.first_stage.cores[2].reused && reflownCount++;
+                data.rocket.first_stage.cores[2].land_success && landingCount++;
             }
         });
-
         setDataCounter({
             ...dataCounter,
             launches: data.length,
             landings: landingCount,
             reflown: reflownCount,
         });
+
         setLaunchData(result);
         setSubFilter(false);
         setFilterDisplay(false);
@@ -177,6 +116,7 @@ const MissionLogic = () => {
         setPageAmount(Math.floor(data.length / 8));
         setIsLoading(false);
     };
+
     // Browser back button functionality used to close info modal
     const history = useHistory();
     const handleGoBack = () => {
@@ -184,164 +124,33 @@ const MissionLogic = () => {
         setPage(1);
     };
 
-    // Event handler to set filter display
-    const handleSetFilterDisplay = (e) => {
-        if (filterDisplay) {
-            setFilterDisplay(false);
-        } else {
-            setFilterDisplay(true);
-        }
-        if (subFilter) {
-            setSubFilter(false);
-        }
-    };
-
-    // Event handler to set sub filter display
-    const handleSetSubFilter = (e) => {
-        subFilter && e.target.tagName !== "BUTTON"
-            ? setSubFilter(false)
-            : setSubFilter(true);
-    };
-
-    // Event handler to update choice based on first filter option selected
-    const handleFilterChoice = (e) => {
-        let choice = e.target.innerText;
-        setFilterOptions({
-            ...filterOptions,
-            choice: choice,
-        });
-    };
-
-    // Event handler to set state based on filter selections
-    const handleFilterSelected = (e) => {
-        let option = e.target.innerText;
-        if (filterOptions.choice === "VEHICLE") {
-            setFilterOptions({
-                ...filterOptions,
-                filterClear: false,
-                selected: {
-                    ...filterOptions.selected,
-                    vehicles: option,
-                },
-            });
-            setIsLoading(true);
-        } else if (filterOptions.choice === "LAUNCH SITE") {
-            setFilterOptions({
-                ...filterOptions,
-                filterClear: false,
-                selected: {
-                    ...filterOptions.selected,
-                    "Launch Site": option,
-                },
-            });
-            setIsLoading(true);
-        } else if (filterOptions.choice === "OUTCOME") {
-            option === "SUCCESS" ? (option = "true") : (option = "false");
-            setFilterOptions({
-                ...filterOptions,
-                filterClear: false,
-                selected: {
-                    ...filterOptions.selected,
-                    outcome: option,
-                },
-            });
-            setIsLoading(true);
-        }
-    };
-
-    // Event handler to clear sub filter
-    const handleClearFilter = (selected) => {
-        if (selected === filterOptions.selected.vehicles) {
-            setFilterOptions({
-                ...filterOptions,
-                filterClear: true,
-                selected: {
-                    ...filterOptions.selected,
-                    vehicles: "",
-                },
-            });
-        } else if (selected === filterOptions.selected["Launch Site"]) {
-            setFilterOptions({
-                ...filterOptions,
-                filterClear: true,
-                selected: {
-                    ...filterOptions.selected,
-                    "Launch Site": "",
-                },
-            });
-        } else if (selected === filterOptions.selected.outcome) {
-            setFilterOptions({
-                ...filterOptions,
-                filterClear: true,
-                selected: {
-                    ...filterOptions.selected,
-                    outcome: "",
-                },
-            });
-        } else {
-            setFilterOptions({
-                ...filterOptions,
-                filterClear: true,
-                selected: {
-                    ...filterOptions.selected,
-                    vehicles: "",
-                    "Launch Site": "",
-                    outcome: "",
-                },
-            });
-        }
-
-        setIsLoading(true);
-        setFilterDisplay(false);
-        setSubFilter(false);
-    };
-
     // Sets state to determine which page of launch data to display in Missions component
-
     const handlePageCounterUp = () => {
         pageCount < pageAmount
             ? setPageCount(pageCount + 1)
             : setPageCount(pageCount);
     };
-
     const handlePageCounterDown = () => {
         pageCount > 0 ? setPageCount(pageCount - 1) : setPageCount(0);
     };
-
+    // Determines which page to display based on bottom nav buttons clicked in missions component.
     const handleSetPageCount = (num) => {
         setPageCount(num);
     };
 
-    // Determines whether to display Missions based on API data being loaded and isLoading = false
-
-    const missionDisplay = () => {
-        return isLoading ? (
-            <Loading />
-        ) : launchData.length === 0 ? (
-            <MissionsError handleClearFilter={handleClearFilter} />
-        ) : (
+    return isLoading ? (
+        <Loading />
+    ) : launchData.length === 0 ? (
+        <MissionsError />
+    ) : (
+        <>
             <Missions
                 handlePageCounterUp={handlePageCounterUp}
                 handlePageCounterDown={handlePageCounterDown}
-                handleSetFilterDisplay={handleSetFilterDisplay}
-                handleSetSubFilter={handleSetSubFilter}
-                handleFilterChoice={handleFilterChoice}
-                handleFilterSelected={handleFilterSelected}
-                handleClearFilter={handleClearFilter}
                 pageCount={pageCount}
-                dataCounter={dataCounter}
-                filterDisplay={filterDisplay}
-                subFilter={subFilter}
-                filterOptions={filterOptions}
                 pageAmount={pageAmount}
                 handleSetPageCount={handleSetPageCount}
             />
-        );
-    };
-
-    return (
-        <>
-            {missionDisplay()}
             <Route path="/missions/:mission">
                 <InfoModal handleGoBack={handleGoBack} />
             </Route>

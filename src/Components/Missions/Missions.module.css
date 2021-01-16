@@ -12,57 +12,6 @@
     height: auto;
 }
 
-.filter {
-    position: relative;
-    margin-top: 1rem;
-    height: 3.75rem;
-}
-
-.filterSelected {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-    height: auto;
-}
-
-.filterSelected .selected {
-    background-color: var(--space-x-blue);
-    margin-left: 0.8rem;
-}
-
-.filter button {
-    position: relative;
-    width: 8.15rem;
-    height: 2.75rem;
-    background: transparent;
-    outline: none;
-    border: 0.25rem solid var(--space-x-blue);
-    font-weight: 500;
-    cursor: pointer;
-    z-index: 1;
-}
-
-.filter button:after {
-    content: "";
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    width: 100%;
-    height: 100%;
-    border: 1px solid var(--space-x-blue);
-    background: var(--space-x-blue);
-    transform: scaleY(0);
-    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-    transform-origin: top center;
-    z-index: -1;
-}
-
-.filter button:hover:after {
-    transform: scaleY(1);
-    transition-duration: 0.4s;
-    transform-origin: bottom center;
-}
 
 .missionInfo {
     background-color: rgba(0, 0, 0, 0.2);
@@ -70,39 +19,7 @@
     height: auto;
     margin: auto;
 }
-.missionTable {
-    width: 95%;
-    min-height: calc(var(--tablerow-height) * 9);
-    margin: auto;
-    font-weight: 500;
-    border-collapse: collapse;
-    margin-bottom: 1rem;
-}
 
-.missionTable tr:nth-child(even) {
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.missionTable tr {
-    width: 100%;
-    text-transform: uppercase;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    min-height: var(--tablerow-height);
-    border-bottom: 1px solid var(--secondary-color);
-}
-
-.missionTable td {
-    font-size: 1rem;
-    text-align: center;
-    flex: 1 1 15%;
-}
-
-.missionTable td:first-of-type {
-    flex: 1 1 10%;
-}
 
 .missionsNav {
     display: flex;

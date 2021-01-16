@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { VehicleSpecsContext } from "../../../Context/VehicleSpecsContext";
 import { motion } from "framer-motion";
 import VehicleSpecsNav from "../VehicleSpecsNav";
 import SpecsFirstPage from "../InfoPages/SpecsFirstPage";
@@ -7,13 +8,11 @@ import FH from "../../../Assets/img/FH.png";
 
 import styles from "../VehicleSpecs.module.css";
 
-const Falconheavy = ({
-    page,
-    handleSpecPage,
-    vehicleSelection,
-    vehicleData,
-    containerVariants,
-}) => {
+const Falconheavy = () => {
+    const { vehicleData, page, containerVariants } = useContext(
+        VehicleSpecsContext
+    );
+
     return (
         <motion.section
             variants={containerVariants}
@@ -24,24 +23,18 @@ const Falconheavy = ({
             <div className={styles.specs}>
                 <div>
                     <div className={styles.vehicleTitle}>
-                        <h3>{vehicleData.name.toUpperCase()}</h3>
+                        <h3>{vehicleData[1].name.toUpperCase()}</h3>
                     </div>
                     <div className={styles.title}>
                         <h4>OVERVIEW</h4>
                     </div>
                 </div>
                 {page === 1 ? (
-                    <SpecsFirstPage
-                        selectionData={vehicleData}
-                        vehicleSelection={vehicleSelection}
-                    />
+                    <SpecsFirstPage selectionData={vehicleData[1]} />
                 ) : (
-                    <SpecsSecondPage
-                        selectionData={vehicleData}
-                        vehicleSelection={vehicleSelection}
-                    />
+                    <SpecsSecondPage selectionData={vehicleData[1]} />
                 )}
-                <VehicleSpecsNav page={page} handleSpecPage={handleSpecPage} />
+                <VehicleSpecsNav />
             </div>
             <div className={styles.vehicleImage}>
                 <img src={FH} alt={`Falcon 9 vehicle`} />

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
 import MobileNavVehicles from "./MobileNavVehicles";
+
 import styles from "./MobileNavBar.module.css";
 
-const MobileNavBar = ({ handleVehicleSelection }) => {
+const MobileNavBar = () => {
     const [menu, setMenu] = useState(false);
     const handleMenu = () => {
         return menu === false ? setMenu(true) : setMenu(false);
@@ -28,8 +28,7 @@ const MobileNavBar = ({ handleVehicleSelection }) => {
     return (
         <>
             {menu && (
-                <MobileNavVehicles
-                    handleVehicleSelection={handleVehicleSelection}
+                <MobileNavVehicles                    
                     navVariants={navVariants}
                 />
             )}

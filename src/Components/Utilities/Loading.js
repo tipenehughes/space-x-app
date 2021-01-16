@@ -1,6 +1,7 @@
 import React from "react";
-import styles from "./Loading.module.css";
+
 import LoadingImg from "../../Assets/img/loading.svg";
+import styles from "./Loading.module.css";
 
 const Loading = () => {
     return (

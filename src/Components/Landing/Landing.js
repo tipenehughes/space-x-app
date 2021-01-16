@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import { MissionProvider } from "../../Context/MissionsContext";
-import usePersistedState from "../../Custom hooks/usePersistedState";
+import { VehicleSpecsContext } from "../../Context/VehicleSpecsContext";
 
 import NavBar from "../Navigation/NavBar";
 import MobileNavBar from "../Navigation/MobileNavigation/MobileNavBar";
@@ -13,22 +13,25 @@ import VideoModal from "../VideoModal/VideoModal";
 import styles from "./Landing.module.css";
 
 const Landing = () => {
+    const {
+        vehicleData,
+        setVehicleData,
+        vehicleSelection,
+        setVehicleSelection,
+    } = useContext(VehicleSpecsContext);
+
     const history = useHistory();
 
-    const [vehicleData, setVehicleData] = useState([]);
-
-    // custom hook to persist state to local storage
-    const [vehicleSelection, setVehicleSelection] = usePersistedState(
-        "vehicle",
-        "falcon9"
-    );
     const [isLoading, setIsLoading] = useState(true);
 
     // Used to set state using vehicle name from route pathname
     const getVehicleSelection = () => {
         const locationStr = history.location.pathname.toString();
         if (locationStr.includes("/vehicles/")) {
-            const vehicle = locationStr.replace("/vehicles/", "");
+            const vehicle = locationStr
+                .replace("/vehicles/", "")
+                .split("/")[0]
+                .toString();
             setVehicleSelection(vehicle);
         }
     };
@@ -93,7 +96,7 @@ const Landing = () => {
                 </Route>
             </Switch>
             <Route path="/vehicles/:vehicle/:video">
-                <VideoModal vehicleSelection={vehicleSelection} />
+                <VideoModal />
             </Route>
         </div>
     );

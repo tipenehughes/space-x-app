@@ -1,19 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import { VehicleSpecsContext } from "../../../Context/VehicleSpecsContext";
 import { motion } from "framer-motion";
 import VehicleSpecsNav from "../VehicleSpecsNav";
-import SpecsFirstPageDragon from "../InfoPages/SpecsFirstPageDragon";
-import SpecsSecondPageDragon from "../InfoPages/SpecsSecondPageDragon";
+import SpecsFirstPage from "../InfoPages/SpecsFirstPage";
+import SpecsSecondPage from "../InfoPages/SpecsSecondPage";
 import D2 from "../../../Assets/img/D2.png";
 
 import styles from "../VehicleSpecs.module.css";
 
-const Dragon = ({
-    page,
-    handleSpecPage,
-    vehicleSelection,
-    vehicleData,
-    containerVariants,
-}) => {
+const Dragon = () => {
+    const { vehicleData, page, containerVariants } = useContext(
+        VehicleSpecsContext
+    );
+
     return (
         <motion.section
             variants={containerVariants}
@@ -24,24 +23,18 @@ const Dragon = ({
             <div className={styles.specs}>
                 <div>
                     <div className={styles.vehicleTitle}>
-                        <h3>{vehicleData.name.toUpperCase()}</h3>
+                        <h3>{vehicleData[3].name.toUpperCase()}</h3>
                     </div>
                     <div className={styles.title}>
                         <h4>OVERVIEW</h4>
                     </div>
                 </div>
                 {page === 1 ? (
-                    <SpecsFirstPageDragon
-                        selectionData={vehicleData}
-                        vehicleSelection={vehicleSelection}
-                    />
+                    <SpecsFirstPage selectionData={vehicleData[3]} />
                 ) : (
-                    <SpecsSecondPageDragon
-                        selectionData={vehicleData}
-                        vehicleSelection={vehicleSelection}
-                    />
+                    <SpecsSecondPage selectionData={vehicleData[3]} />
                 )}
-                <VehicleSpecsNav page={page} handleSpecPage={handleSpecPage} />
+                <VehicleSpecsNav />
             </div>
             <div className={styles.vehicleImage}>
                 <img

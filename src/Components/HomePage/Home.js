@@ -28,12 +28,14 @@ const Home = ({
                 minutes: Math.floor(
                     (distance % (1000 * 60 * 60)) / (1000 * 60)
                 ).toString(),
+                seconds: Math.floor((distance % (1000 * 60)) / 1000).toString(),
             };
         } else {
             timeLeft = {
                 days: 0,
                 hours: 0,
                 minutes: 0,
+                seconds: 0,
             };
         }
         return timeLeft;
@@ -43,10 +45,11 @@ const Home = ({
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            setTime(countDown());            
-        }, 10000);
+            setTime(countDown());
+        }, 1000);
         return () => clearTimeout(timer);
     });
+    console.log(time.seconds);
 
     const timeSplit = (str) => {
         if (str.length === 1) {
@@ -116,6 +119,21 @@ const Home = ({
                                     {time.minutes.length === 1
                                         ? time.minutes
                                         : time.minutes[1]}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.homeUnit}>
+                        <p>SECS</p>
+                        <div className={styles.homeCount}>
+                            <div className={styles.box}>
+                                <span>{timeSplit(time.seconds)}</span>
+                            </div>
+                            <div className={styles.box}>
+                                <span>
+                                    {time.seconds.length === 1
+                                        ? time.seconds
+                                        : time.seconds[1]}
                                 </span>
                             </div>
                         </div>

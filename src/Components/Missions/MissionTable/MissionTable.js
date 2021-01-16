@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { MissionContext } from "../../Context/MissionsContext";
+import { MissionContext } from "../../../Context/MissionsContext";
 import { useHistory } from "react-router-dom";
 
-import styles from "./Missions.module.css";
+import styles from "./MissionTable.module.css";
 
-const MissionData = () => {
+const MissionTable = () => {
     const { missionData, unixConverter, setRowIndex, outcome } = useContext(
         MissionContext
     );
@@ -51,4 +51,4 @@ const MissionData = () => {
     );
 };
 
-export default MissionData;
+export default MissionTable;

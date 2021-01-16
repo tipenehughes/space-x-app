@@ -1,11 +1,10 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import styles from "./MobileNavVehicles.module.css";
 
 const MobileNavVehicles = ({ navVariants }) => {
-    const location = useLocation();
     return (
         <motion.div
             className={styles.navVehiclesContainer}
