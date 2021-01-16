@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
+import { MissionProvider } from "../../Context/MissionsContext";
 import usePersistedState from "../../Custom hooks/usePersistedState";
 
 import NavBar from "../Navigation/NavBar";
@@ -11,11 +12,10 @@ import VideoModal from "../VideoModal/VideoModal";
 
 import styles from "./Landing.module.css";
 
-const Landing = () => {   
-
+const Landing = () => {
     const history = useHistory();
 
-    const [vehicleData, setVehicleData] = useState([]);    
+    const [vehicleData, setVehicleData] = useState([]);
 
     // custom hook to persist state to local storage
     const [vehicleSelection, setVehicleSelection] = usePersistedState(
@@ -32,7 +32,7 @@ const Landing = () => {
             setVehicleSelection(vehicle);
         }
     };
-    
+
     useEffect(() => {
         history.listen(getVehicleSelection);
     }, [history]);
@@ -87,10 +87,11 @@ const Landing = () => {
                 </Route>
                 {!isLoading && vehicleSpecDisplay}
                 <Route path="/missions">
-                    <MissionLogic />
+                    <MissionProvider>
+                        <MissionLogic />
+                    </MissionProvider>
                 </Route>
             </Switch>
-
             <Route path="/vehicles/:vehicle/:video">
                 <VideoModal vehicleSelection={vehicleSelection} />
             </Route>

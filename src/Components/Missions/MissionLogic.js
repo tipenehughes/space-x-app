@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Route, useHistory } from "react-router-dom";
+import { MissionContext } from "../../Context/MissionsContext";
 import usePersistedState from "../../Custom hooks/usePersistedState";
 
 import InfoModal from "./InfoModal/InfoModal";
@@ -8,6 +9,16 @@ import MissionsError from "./MissionsError/MissionsError";
 import Loading from "../Utilities/Loading";
 
 const MissionLogic = () => {
+    const {
+        pageCount,
+        setPageCount,
+        launchData,
+        setLaunchData,
+        setPage,
+        dataCounter,
+        setDataCounter,
+    } = useContext(MissionContext);
+
     // Example POST method implementation:
     // const postData = async (url = "", data = {}) => {
     //     const response = await fetch(url, {
@@ -41,21 +52,21 @@ const MissionLogic = () => {
     // });
 
     // API Data
-    const [launchData, setLaunchData] = usePersistedState("launchData", {});
+    // const [launchData, setLaunchData] = usePersistedState("launchData", {});
     // Pagination for Missions
-    const [pageCount, setPageCount] = usePersistedState("pageCount", 0);
+    // const [pageCount, setPageCount] = usePersistedState("pageCount", 0);
+
     // Checks if API data loaded
     const [isLoading, setIsLoading] = useState(true);
     // Page counter state
-    const [dataCounter, setDataCounter] = useState({
-        launches: "",
-        landings: "",
-        reflown: "",
-    });
+    // const [dataCounter, setDataCounter] = useState({
+    //     launches: "",
+    //     landings: "",
+    //     reflown: "",
+    // });
     // Checks if there is an error (no results) based on filter selection
     const [error, setError] = useState(false);
-    // Pagination for infoModal
-    const [page, setPage] = useState(1);
+
     // Index of table row from mission data
     const [index, setIndex] = usePersistedState("infoModal", 0);
     // Filter display
@@ -166,22 +177,11 @@ const MissionLogic = () => {
         setPageAmount(Math.floor(data.length / 8));
         setIsLoading(false);
     };
-    console.log(pageAmount);
     // Browser back button functionality used to close info modal
     const history = useHistory();
     const handleGoBack = () => {
         history.goBack();
         setPage(1);
-    };
-
-    // Event Handler for switching between Vehicle spec panel pages
-    const handleInfoModalPage = () => {
-        page === 2 ? setPage(1) : setPage(2);
-    };
-
-    // Stop event handler from firing on child component (infoModalInterior)
-    const stopPropagation = (e) => {
-        e.stopPropagation();
     };
 
     // Event handler to set filter display
@@ -296,25 +296,6 @@ const MissionLogic = () => {
         setSubFilter(false);
     };
 
-    // Converts outcome data to string for display
-
-    const outcome = (outcome) => {
-        return outcome === false ? "FAILURE" : "SUCCESS";
-    };
-
-    // Converts Unix code returned from API into human readable format
-
-    const unixConverter = (unix) => {
-        const milliseconds = unix * 1000;
-        const dateObject = new Date(milliseconds);
-        const humanDateFormat = dateObject.toLocaleString("en-US", {
-            day: "numeric",
-            month: "short",
-            year: "numeric",
-        });
-        return humanDateFormat;
-    };
-
     // Sets state to determine which page of launch data to display in Missions component
 
     const handlePageCounterUp = () => {
@@ -331,12 +312,6 @@ const MissionLogic = () => {
         setPageCount(num);
     };
 
-    // Set index based on launchData array map in MissionData component
-
-    const handleSetIndex = (i) => {
-        setIndex(i);
-    };
-
     // Determines whether to display Missions based on API data being loaded and isLoading = false
 
     const missionDisplay = () => {
@@ -346,17 +321,13 @@ const MissionLogic = () => {
             <MissionsError handleClearFilter={handleClearFilter} />
         ) : (
             <Missions
-                launchData={launchData[pageCount]}
                 handlePageCounterUp={handlePageCounterUp}
                 handlePageCounterDown={handlePageCounterDown}
-                handleSetIndex={handleSetIndex}
                 handleSetFilterDisplay={handleSetFilterDisplay}
                 handleSetSubFilter={handleSetSubFilter}
                 handleFilterChoice={handleFilterChoice}
                 handleFilterSelected={handleFilterSelected}
                 handleClearFilter={handleClearFilter}
-                outcome={outcome}
-                unixConverter={unixConverter}
                 pageCount={pageCount}
                 dataCounter={dataCounter}
                 filterDisplay={filterDisplay}
@@ -372,15 +343,7 @@ const MissionLogic = () => {
         <>
             {missionDisplay()}
             <Route path="/missions/:mission">
-                <InfoModal
-                    data={launchData[pageCount]}
-                    index={index}
-                    unixConverter={unixConverter}
-                    handleInfoModalPage={handleInfoModalPage}
-                    handleGoBack={handleGoBack}
-                    stopPropagation={stopPropagation}
-                    page={page}
-                />
+                <InfoModal handleGoBack={handleGoBack} />
             </Route>
         </>
     );

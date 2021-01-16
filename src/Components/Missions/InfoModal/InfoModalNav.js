@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MissionContext } from "../../../Context/MissionsContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faCaretLeft,
@@ -8,7 +9,8 @@ import {
 import { faCircle as farCircle } from "@fortawesome/free-regular-svg-icons";
 import styles from "./InfoModal.module.css";
 
-const InfoModalNav = ({ handleInfoModalPage, page }) => {
+const InfoModalNav = () => {
+    const { page, handleInfoModalPage } = useContext(MissionContext);
     return (
         <div className={styles.infoNav}>
             <button className={styles.leftBtn} onClick={handleInfoModalPage}>

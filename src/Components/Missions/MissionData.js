@@ -1,20 +1,21 @@
-import React from "react";
-import styles from "./Missions.module.css";
+import React, { useContext } from "react";
+import { MissionContext } from "../../Context/MissionsContext";
 import { useHistory } from "react-router-dom";
 
-const MissionData = ({
-    launchData,
-    outcome,
-    unixConverter,
-    handleSetIndex,    
-}) => {
+import styles from "./Missions.module.css";
+
+const MissionData = () => {
+    const { missionData, unixConverter, setRowIndex, outcome } = useContext(
+        MissionContext
+    );
+
     const history = useHistory();
     const handleRowClick = (i) => {
-        history.push(`/missions/${launchData[i].mission_name}`);
+        history.push(`/missions/${missionData[i].mission_name}`);
     };
 
-    const clickEvent = (i) => {
-        handleSetIndex(i);
+    const handleClick = (i) => {
+        setRowIndex(i);
         handleRowClick(i);
     };
 
@@ -30,8 +31,8 @@ const MissionData = ({
                     <td>CUSTOMER</td>
                     <td>OUTCOME</td>
                 </tr>
-                {launchData.map((data, index) => (
-                    <tr onClick={() => clickEvent(index)} key={index}>
+                {missionData.map((data, index) => (
+                    <tr onClick={() => handleClick(index)} key={index}>
                         <td>{data.flight_number}</td>
                         <td>{data.rocket.rocket_name}</td>
                         <td>{unixConverter(data.launch_date_unix)}</td>

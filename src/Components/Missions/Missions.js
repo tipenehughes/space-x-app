@@ -1,5 +1,6 @@
 import React from "react";
 import MissionData from "./MissionData";
+import MissionStats from "./MissionStats/MissionStats";
 import Filter from "./Filter/Filter";
 import SubFilter from "./Filter/SubFilter";
 import styles from "./Missions.module.css";
@@ -11,21 +12,16 @@ import {
     faCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCircle as farCircle } from "@fortawesome/free-regular-svg-icons";
-import CountUp from "react-countup";
+
 
 const Missions = ({
-    launchData,
     handlePageCounterUp,
     handlePageCounterDown,
-    handleSetIndex,
     handleSetFilterDisplay,
     handleSetSubFilter,
     handleFilterChoice,
     handleFilterSelected,
     handleClearFilter,
-    outcome,
-    dataCounter,
-    unixConverter,
     pageCount,
     filterDisplay,
     subFilter,
@@ -73,47 +69,7 @@ const Missions = ({
     return (
         <section className={styles.missions}>
             <div className={styles.container}>
-                <div className={styles.totalStats}>
-                    <div className={styles.totalLaunches}>
-                        <div className={styles.number}>
-                            <h3>
-                                <CountUp
-                                    end={dataCounter.launches}
-                                    duration={1}
-                                />
-                            </h3>
-                        </div>
-                        <div className={styles.subHeading}>
-                            <h4>TOTAL LAUNCHES</h4>
-                        </div>
-                    </div>
-                    <div className={styles.totalLaunches}>
-                        <div className={styles.number}>
-                            <h3>
-                                <CountUp
-                                    end={dataCounter.landings}
-                                    duration={1}
-                                />
-                            </h3>
-                        </div>
-                        <div className={styles.subHeading}>
-                            <h4>TOTAL LANDINGS</h4>
-                        </div>
-                    </div>
-                    <div className={styles.totalLaunches}>
-                        <div className={styles.number}>
-                            <h3>
-                                <CountUp
-                                    end={dataCounter.reflown}
-                                    duration={1}
-                                />
-                            </h3>
-                        </div>
-                        <div className={styles.subHeading}>
-                            <h4>REFLOWN ROCKETS</h4>
-                        </div>
-                    </div>
-                </div>
+                <MissionStats />
                 <div className={styles.filter}>
                     <div className={styles.filterSelected}>
                         <button
@@ -195,13 +151,7 @@ const Missions = ({
                 </div>
 
                 <div className={styles.missionInfo}>
-                    <MissionData
-                        launchData={launchData}
-                        outcome={outcome}
-                        unixConverter={unixConverter}
-                        handleSetIndex={handleSetIndex}
-                        key={pageCount}
-                    />
+                    <MissionData />
                     <div className={styles.missionsNav}>
                         <button
                             className={`${styles.leftBtn} ${

@@ -1,0 +1,22 @@
+.totalStats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    width: 50%;
+}
+
+.totalLaunches {
+    text-align: center;
+}
+
+.number h3 span {
+    font-size: 5rem;
+    font-weight: 400;
+    line-height: 0.9;
+}
+
+.subHeading h4 {
+    font-size: 0.9rem;
+    font-weight: 400;
+}

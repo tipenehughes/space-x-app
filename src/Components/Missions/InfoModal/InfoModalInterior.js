@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MissionContext } from "../../../Context/MissionsContext";
+
 import TableData from "./TableData";
 import MediaData from "./MediaData";
 import InfoModalNav from "./InfoModalNav";
 import styles from "./InfoModal.module.css";
 
-const InfoModalInterior = ({
-    data,
-    unixConverter,
-    handleInfoModalPage,
-    page,
-    stopPropagation,
-}) => {
+const InfoModalInterior = () => {
+    const { unixConverter, missionData, rowIndex, page } = useContext(
+        MissionContext
+    );
+    const data = missionData[rowIndex];
+
     return (
-        <div className={styles.infoContainer} onClick={stopPropagation}>
+        <div
+            className={styles.infoContainer}
+            onClick={(e) => e.stopPropagation()}
+        >
             <div className={styles.infoHeader}>
                 <div>
                     <div className={styles.vehicleTitle}>
@@ -30,10 +34,7 @@ const InfoModalInterior = ({
                 <TableData data={data} unixConverter={unixConverter} />
             )}
             {page === 2 && <MediaData data={data} />}
-            <InfoModalNav
-                handleInfoModalPage={handleInfoModalPage}
-                page={page}
-            />
+            <InfoModalNav />
         </div>
     );
 };

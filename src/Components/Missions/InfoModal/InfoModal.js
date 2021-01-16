@@ -1,17 +1,10 @@
 import React from "react";
-
 import InfoModalInterior from "./InfoModalInterior";
 import { motion } from "framer-motion";
 import styles from "./InfoModal.module.css";
 
 const InfoModal = ({
-    data,
-    index,
-    unixConverter,
-    handleInfoModalPage,
     handleGoBack,
-    stopPropagation,
-    page,
 }) => {
     const containerVariants = {
         hidden: {
@@ -33,13 +26,7 @@ const InfoModal = ({
             onClick={handleGoBack}
             className={styles.infoModal}
         >
-            <InfoModalInterior
-                data={data[index]}
-                unixConverter={unixConverter}
-                handleInfoModalPage={handleInfoModalPage}
-                stopPropagation={stopPropagation}
-                page={page}
-            />
+            <InfoModalInterior />
         </motion.section>
     );
 };
