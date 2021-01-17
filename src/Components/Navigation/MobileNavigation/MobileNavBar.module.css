@@ -2,7 +2,7 @@
     display: none;
     height: 8%;
     width: 100%;
-    position: absolute;
+    position: fixed;
     background-color: var(--space-x-blue);
     bottom: 0;
     z-index: 2;
