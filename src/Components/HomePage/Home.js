@@ -49,7 +49,6 @@ const Home = ({
         }, 1000);
         return () => clearTimeout(timer);
     });
-    console.log(time.seconds);
 
     const timeSplit = (str) => {
         if (str.length === 1) {
