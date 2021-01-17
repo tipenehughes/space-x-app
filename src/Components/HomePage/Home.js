@@ -50,13 +50,8 @@ const Home = ({
         return () => clearTimeout(timer);
     });
 
-    const timeSplit = (str) => {
-        if (str.length === 1) {
-            return "0";
-        } else {
-            return str[0];
-        }
-    };
+    const timeSplit = (str) => (str.length === 1 ? "0" : str[0]);
+
     return (
         <section className={styles.home}>
             <motion.div
