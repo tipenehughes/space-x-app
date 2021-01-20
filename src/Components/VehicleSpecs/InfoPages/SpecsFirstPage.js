@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { VehicleSpecsContext } from "../../../Context/VehicleSpecsContext";
-import styles from "../VehicleSpecs.module.css";
+
+import styles from "./SpecsPages.module.css";
 
 const SpecsFirstPage = ({
     selectionData: {

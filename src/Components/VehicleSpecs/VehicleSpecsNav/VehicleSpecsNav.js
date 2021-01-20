@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { VehicleSpecsContext } from "../../Context/VehicleSpecsContext";
+import { VehicleSpecsContext } from "../../../Context/VehicleSpecsContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faCaretLeft,
@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faCircle as farCircle } from "@fortawesome/free-regular-svg-icons";
 
-import styles from "./VehicleSpecs.module.css";
+import styles from "./VehicleSpecsNav.module.css";
 
 const VehicleSpecsNav = () => {
     const { page, handleSpecPage } = useContext(VehicleSpecsContext);

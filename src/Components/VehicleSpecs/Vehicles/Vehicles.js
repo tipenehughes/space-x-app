@@ -1,17 +1,23 @@
 import React, { useContext } from "react";
 import { VehicleSpecsContext } from "../../../Context/VehicleSpecsContext";
 import { motion } from "framer-motion";
-import VehicleSpecsNav from "../VehicleSpecsNav";
+import VehicleSpecsNav from "../VehicleSpecsNav/VehicleSpecsNav";
 import SpecsFirstPage from "../InfoPages/SpecsFirstPage";
 import SpecsSecondPage from "../InfoPages/SpecsSecondPage";
+
 import F9 from "../../../Assets/img/F9.png";
+import FH from "../../../Assets/img/FH.png";
+import D2 from "../../../Assets/img/D2.png";
+import SS from "../../../Assets/img/SS.png";
 
-import styles from "../VehicleSpecs.module.css";
+import styles from "./Vehicles.module.css";
 
-const Falcon9 = () => {
+const Vehicles = ({ index }) => {
     const { vehicleData, page, containerVariants } = useContext(
         VehicleSpecsContext
     );
+
+    const vehicleImage = [F9, FH, SS, D2];
 
     return (
         <motion.section
@@ -19,29 +25,33 @@ const Falcon9 = () => {
             initial="hidden"
             animate="visible"
             className={styles.vehicleSpecs}
+            key={index}
         >
             <div className={styles.specs}>
                 <div>
                     <div className={styles.vehicleTitle}>
-                        <h3>{vehicleData[0].name.toUpperCase()}</h3>
+                        <h3>{vehicleData[index].name.toUpperCase()}</h3>
                     </div>
                     <div className={styles.title}>
                         <h4>OVERVIEW</h4>
                     </div>
                 </div>
                 {page === 1 ? (
-                    <SpecsFirstPage selectionData={vehicleData[0]} />
+                    <SpecsFirstPage selectionData={vehicleData[index]} />
                 ) : (
-                    <SpecsSecondPage selectionData={vehicleData[0]} />
+                    <SpecsSecondPage selectionData={vehicleData[index]} />
                 )}
                 <VehicleSpecsNav />
             </div>
-
             <div className={styles.vehicleImage}>
-                <img src={F9} alt={`Falcon 9 vehicle`} />
+                <img
+                    src={vehicleImage[index]}
+                    style={{ height: index === 3 ? "30%" : null }}
+                    alt={`${vehicleData[index].name} vehicle`}
+                />
             </div>
         </motion.section>
     );
 };
 
-export default Falcon9;
+export default Vehicles;

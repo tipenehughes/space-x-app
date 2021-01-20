@@ -1,0 +1,18 @@
+.landing {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 10vh);
+    padding: 0 3rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .landing {
+        padding: 0 10% 15% 10%;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .landing {
+        padding: 2rem;
+    }
+}

@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { VehicleSpecsContext } from "../../../Context/VehicleSpecsContext";
 import { Link } from "react-router-dom";
-import styles from "../VehicleSpecs.module.css";
+
+import styles from "./SpecsPages.module.css";
 
 const SpecsSecondPage = ({
     selectionData: { first_flight, engines, thrusters },

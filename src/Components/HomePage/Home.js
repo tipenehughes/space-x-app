@@ -62,7 +62,7 @@ const Home = ({
             >
                 <div className={styles.homeTitle}>
                     <p>UPCOMING</p>
-                    <h2>{data.name} MISSION</h2>
+                    <h2>{data.name.toUpperCase()} MISSION</h2>
                     <button
                         onClick={() => {
                             getOpen();

@@ -1,27 +1,24 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import Falcon9 from "./Vehicles/Falcon9";
-import Falconheavy from "./Vehicles/Falconheavy";
-import Dragon from "./Vehicles/Dragon";
-import Starship from "./Vehicles/Starship";
+import Vehicles from "./Vehicles/Vehicles";
 
-import styles from "./VehicleSpecs.module.css";
+import styles from "./VehicleSpecsLanding.module.css";
 
 const VehicleSpecsLanding = () => {
     return (
         <main className={styles.landing}>
             <Switch>
                 <Route path="/vehicles/falcon9">
-                    <Falcon9 />
+                    <Vehicles index={0} />
                 </Route>
                 <Route path="/vehicles/falconheavy">
-                    <Falconheavy />
+                    <Vehicles index={1} />
                 </Route>
                 <Route path="/vehicles/dragon">
-                    <Dragon />
+                    <Vehicles index={3} />
                 </Route>
                 <Route path="/vehicles/starship">
-                    <Starship />
+                    <Vehicles index={2} />
                 </Route>
             </Switch>
         </main>

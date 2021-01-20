@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import Home from "./Home";
 
@@ -9,32 +9,34 @@ const HomeLogic = () => {
     //     const response = await fetch(url, {
     //         method: "POST",
     //         headers: {
-    //             Accept: "application/json",
     //             "Content-Type": "application/json",
+    //             Accept: "application/json",
     //         },
-    //         body: JSON.stringify(data),
-    //     });
-
-    //     return response.json();
+    //     })
+    //     const res = await response.json()
+    //     console.log(res);
+    //     return res;
     // };
 
-    // postData("https://api.spacexdata.com/v4/launches/query", {
-    //     query: { },
+    // postData("https://api.spacexdata.com/v4/launches/next", {
+    //     query: {},
     //     options: {
-    //         limit: 8,
     //         populate: [
-    //             {
-    //                 path: "cores",
-    //                 populate: [{ path: "core" }],
-    //             },
-    //             "payloads",
+    //             // {
+    //             //     path: "ships",
+    //             //     select: {},
+    //             // },
+    //             // "ships",
+    //             // "payloads",
     //             "rocket",
     //             "launchpad",
     //         ],
     //     },
     // }).then((data) => {
-    //     // console.log(data); // JSON data parsed by `data.json()` call
+    //     console.log(data); // JSON data parsed by `data.json()` call
     // });
+
+    // postData();
 
     const fetchLaunch = async () => {
         const response = await fetch(
