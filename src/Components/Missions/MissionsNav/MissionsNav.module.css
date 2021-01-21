@@ -1,0 +1,58 @@
+.missionsNav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    height: auto;
+    margin-bottom: -1rem;
+}
+
+.leftBtn,
+.rightBtn {
+    font-size: 3rem;
+    width: auto;
+    height: auto;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.midBtns {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    width: auto;
+}
+.disabled {
+    color: rgba(255, 255, 255, 0.199);
+}
+.midBtns button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin: 0 0.5rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .leftBtn,
+    .rightBtn {
+        width: 3.5rem;
+        height: 5rem;
+        font-size: 4rem;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .missionsNav {
+        width: 100%;
+        flex-direction: row;
+    }
+    .midBtns {
+      flex-direction: row;
+    }
+}

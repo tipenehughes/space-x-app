@@ -1,10 +1,9 @@
 .missionTable {
-    width: 95%;
+    width: 100%;
     min-height: calc(var(--tablerow-height) * 9);
-    margin: auto;
     font-weight: 500;
     border-collapse: collapse;
-    margin-bottom: 1rem;
+    margin-left: 1rem;
 }
 
 .missionTable tr:nth-child(even) {
@@ -44,6 +43,8 @@
 @media only screen and (max-width: 576px) {
     .missionTable {
         min-height: calc(var(--tablerow-height-mobile) * 9);
+        margin-left: 0;
+        margin: auto;
     }
     .missionTable tr {
         height: var(--tablerow-height-mobile);

@@ -12,48 +12,14 @@
     height: auto;
 }
 
-
 .missionInfo {
     background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: row;
     width: 100%;
     height: auto;
     margin: auto;
-}
-
-
-.missionsNav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 95%;
-    margin: auto;
-}
-
-.leftBtn,
-.rightBtn {
-    font-size: 3rem;
-    width: 1.25rem;
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-}
-
-.midBtns {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 50%;
-}
-.disabled {
-    color: rgba(255, 255, 255, 0.199);
-}
-.midBtns button {
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    margin: 0 0.5rem;
+    padding: 1rem;
 }
 
 @media only screen and (max-width: 768px) {
@@ -63,19 +29,13 @@
     .container {
         margin-bottom: 8%;
     }
-    .leftBtn,
-    .rightBtn {
-        width: 3.5rem;
-        height: 5rem;
-        font-size: 4rem;
-    }
 }
 
 @media only screen and (max-width: 576px) {
     .container {
         margin-bottom: 15%;
     }
-    .missionsNav {
-        width: 100%;
-    }    
+    .missionInfo {
+        flex-direction: column-reverse;
+    }
 }
