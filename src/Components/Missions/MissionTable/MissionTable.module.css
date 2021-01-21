@@ -44,7 +44,8 @@
     .missionTable {
         min-height: calc(var(--tablerow-height-mobile) * 9);
         margin-left: 0;
-        margin: auto;
+        width: 100%;
+        
     }
     .missionTable tr {
         height: var(--tablerow-height-mobile);
