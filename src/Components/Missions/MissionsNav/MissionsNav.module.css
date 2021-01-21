@@ -53,6 +53,9 @@
         flex-direction: row;
     }
     .midBtns {
-      flex-direction: row;
+        flex-direction: row;
+    }
+    .midBtns button {
+        margin: 0 0.4rem;
     }
 }
