@@ -31,8 +31,9 @@
 }
 
 .vehicleImage {
-    display: grid;
-    place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     width: 50%;
     padding-right: 2rem;
@@ -41,7 +42,6 @@
 .vehicleImage img {
     height: 80%;
     width: auto;
-    margin: auto 3rem auto 5rem;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -74,10 +74,10 @@
         width: 50%;
     }
     .vehicleImage {
+        padding-left: 10rem;
         width: 30%;
     }
     .vehicleImage img {
-        margin-left: 10rem;
         height: 60%;
     }
 }
