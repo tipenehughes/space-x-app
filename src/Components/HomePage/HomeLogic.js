@@ -1,46 +1,70 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import Home from "./Home";
 
 const HomeLogic = () => {
     const [open, setOpen] = useState(false);
 
-    // const postData = async (url = "", data = {}) => {
-    //     const response = await fetch(url, {
+    // const postData = async () => {
+    //     const settings = {
     //         method: "POST",
     //         headers: {
-    //             "Content-Type": "application/json",
     //             Accept: "application/json",
+    //             "Content-Type": "application/json",
     //         },
-    //     })
-    //     const res = await response.json()
-    //     console.log(res);
-    //     return res;
+    //         body: JSON.stringify({
+    //             query: {
+    //                 upcoming: true,
+    //             },
+    //             options: {
+    //                 limit: 1,
+    //                 sort: {
+    //                     flight_number: "asc",
+    //                 },
+    //                 populate: ["payloads", "launchpad", "rocket"],
+    //             },
+    //         }),
+    //     };
+    //     try {
+    //         const fetchResponse = await fetch(
+    //             "https://api.spacexdata.com/v4/launches/query",
+    //             settings
+    //         );
+    //         const data = await fetchResponse.json();
+    //         console.log(data);
+    //         return data;
+    //     } catch (e) {
+    //         return e;
+    //     }
     // };
 
-    // postData("https://api.spacexdata.com/v4/launches/next", {
-    //     query: {},
-    //     options: {
-    //         populate: [
-    //             // {
-    //             //     path: "ships",
-    //             //     select: {},
-    //             // },
-    //             // "ships",
-    //             // "payloads",
-    //             "rocket",
-    //             "launchpad",
-    //         ],
-    //     },
-    // }).then((data) => {
-    //     console.log(data); // JSON data parsed by `data.json()` call
-    // });
-
-    // postData();
+    // useEffect(() => {
+    //     postData();
+    // }, []);
 
     const fetchLaunch = async () => {
+        const settings = {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                query: {
+                    upcoming: true,
+                },
+                options: {
+                    limit: 1,
+                    sort: {
+                        flight_number: "asc",
+                    },
+                    populate: ["payloads", "launchpad", "rocket"],
+                },
+            }),
+        };
         const response = await fetch(
-            "https://api.spacexdata.com/v4/launches/next"
+            "https://api.spacexdata.com/v4/launches/query",
+            settings
         );
         return response.json();
     };

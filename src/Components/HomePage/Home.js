@@ -10,9 +10,10 @@ const Home = ({
     open,
     data,
 }) => {
+    const launchData = data.docs[0];
     // Countdown timer function
     const countDown = () => {
-        const countDownDate = new Date(data.date_local).getTime();
+        const countDownDate = new Date(launchData.date_local).getTime();
         // Get today's date and time
         const now = new Date().getTime();
         // Find the distance between now and the count down date
@@ -62,7 +63,7 @@ const Home = ({
             >
                 <div className={styles.homeTitle}>
                     <p>UPCOMING</p>
-                    <h2>{data.name.toUpperCase()} MISSION</h2>
+                    <h2>{launchData.name.toUpperCase()} MISSION</h2>
                     <button
                         onClick={() => {
                             getOpen();
@@ -137,7 +138,7 @@ const Home = ({
             <HomeDescription
                 descriptionVariants={descriptionVariants}
                 open={open}
-                data={data}
+                data={launchData}
             />
         </section>
     );

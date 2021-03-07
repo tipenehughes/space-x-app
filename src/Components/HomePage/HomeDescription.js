@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 import styles from "./HomeDescription.module.css";
 
 const HomeDescription = ({ descriptionVariants, open, data }) => {
+    console.log(data);
     // Converts Unix code returned from API into human readable format
-
     const unixConverter = (unix) => {
         const milliseconds = unix * 1000;
         const dateObject = new Date(milliseconds);
@@ -40,23 +40,29 @@ const HomeDescription = ({ descriptionVariants, open, data }) => {
                         </tr>
                         <tr>
                             <td>LAUNCH SITE</td>
-                            <td>KSC LC 39A</td>
+                            <td>{data.launchpad.name}</td>
                         </tr>
                         <tr>
                             <td>FLIGHT NUMBER</td>
-                            <td>114</td>
+                            <td>{data.flight_number}</td>
                         </tr>
                         <tr>
                             <td>REUSED</td>
-                            <td>TRUE</td>
+                            <td>
+                                {data.cores[0].reused.toString().toUpperCase()}
+                            </td>
                         </tr>
                         <tr>
                             <td>PAYLOAD ORBIT</td>
-                            <td>LOW-EARTH</td>
+                            <td>{data.payloads[0].regime.toUpperCase()}</td>
                         </tr>
                         <tr>
                             <td>LANDING SITE</td>
-                            <td>OCISLY</td>
+                            <td>
+                                {!data.cores[0].landpad
+                                    ? "TBA"
+                                    : data.cores[0].landpad}
+                            </td>
                         </tr>
                     </tbody>
                 </table>

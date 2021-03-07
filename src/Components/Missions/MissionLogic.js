@@ -22,37 +22,6 @@ const MissionLogic = () => {
         isLoading,
         setIsLoading,
     } = useContext(MissionContext);
-    // Example POST method implementation:
-    // const postData = async (url = "", data = {}) => {
-    //     const response = await fetch(url, {
-    //         method: "POST",
-    //         headers: {
-    //             Accept: "application/json",
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify(data),
-    //     });
-
-    //     return response.json();
-    // };
-
-    // postData("https://api.spacexdata.com/v4/launches/query", {
-    //     query: { },
-    //     options: {
-    //         limit: 8,
-    //         populate: [
-    //             {
-    //                 path: "cores",
-    //                 populate: [{ path: "core" }],
-    //             },
-    //             "payloads",
-    //             "rocket",
-    //             "launchpad",
-    //         ],
-    //     },
-    // }).then((data) => {
-    //     console.log(data); // JSON data parsed by `data.json()` call
-    // });
 
     // Calcualtes number of results pages based API result length / 8
     const [pageAmount, setPageAmount] = useState();
