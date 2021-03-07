@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import styles from "./HomeDescription.module.css";
 
 const HomeDescription = ({ descriptionVariants, open, data }) => {
-    console.log(data);
     // Converts Unix code returned from API into human readable format
     const unixConverter = (unix) => {
         const milliseconds = unix * 1000;

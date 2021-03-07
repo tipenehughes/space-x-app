@@ -5,7 +5,9 @@ import Home from "./Home";
 const HomeLogic = () => {
     const [open, setOpen] = useState(false);
 
-    // const postData = async () => {
+    // Testing for launch data
+
+    // const getLaunchData = async () => {
     //     const settings = {
     //         method: "POST",
     //         headers: {
@@ -14,33 +16,23 @@ const HomeLogic = () => {
     //         },
     //         body: JSON.stringify({
     //             query: {
-    //                 upcoming: true,
+    //                 success: true,
+
     //             },
     //             options: {
-    //                 limit: 1,
-    //                 sort: {
-    //                     flight_number: "asc",
-    //                 },
-    //                 populate: ["payloads", "launchpad", "rocket"],
+    //                 populate: ["rocket", "launchpad"],
     //             },
     //         }),
     //     };
-    //     try {
-    //         const fetchResponse = await fetch(
-    //             "https://api.spacexdata.com/v4/launches/query",
-    //             settings
-    //         );
-    //         const data = await fetchResponse.json();
-    //         console.log(data);
-    //         return data;
-    //     } catch (e) {
-    //         return e;
-    //     }
+    //     const response = await fetch(
+    //         `https://api.spacexdata.com/v4/launches/query`,
+    //         settings
+    //     );
+    //     const data = await response.json();
+    //     console.log(data);
     // };
 
-    // useEffect(() => {
-    //     postData();
-    // }, []);
+    // getLaunchData();
 
     const fetchLaunch = async () => {
         const settings = {
