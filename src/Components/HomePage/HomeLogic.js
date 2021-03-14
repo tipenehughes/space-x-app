@@ -62,6 +62,8 @@ const HomeLogic = () => {
     };
     const { data, status } = useQuery("launch", fetchLaunch);
 
+    console.log(data);
+
     // Event handler for setting state to open or closed for HomeDescription component
     const getOpen = () => {
         return open === false ? setOpen(true) : setOpen(false);

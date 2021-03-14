@@ -48,7 +48,11 @@ const HomeDescription = ({ descriptionVariants, open, data }) => {
                         <tr>
                             <td>REUSED</td>
                             <td>
-                                {data.cores[0].reused.toString().toUpperCase()}
+                                {!data.cores[0].reused
+                                    ? "TBA"
+                                    : data.cores[0].reused
+                                          .toString()
+                                          .toUpperCase()}
                             </td>
                         </tr>
                         <tr>
